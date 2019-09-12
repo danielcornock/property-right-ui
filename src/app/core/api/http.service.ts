@@ -4,6 +4,7 @@ import { Injectable } from '@angular/core';
   providedIn: 'root'
 })
 export class HttpService {
+  constructor() {}
 
-  constructor() { }
+  public apiUrl = 'http://localhost:2000/api/v1';
 }
