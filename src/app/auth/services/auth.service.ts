@@ -62,4 +62,12 @@ export class AuthService {
       );
     });
   }
+
+  isLoggedIn() {
+    return this.jwt.isLoggedIn();
+  }
+
+  logOut() {
+    this.jwt.logOut();
+  }
 }

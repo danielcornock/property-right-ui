@@ -13,4 +13,8 @@ export class JwtService {
   public logOut() {
     localStorage.setItem('jwt_token', '');
   }
+
+  public isLoggedIn() {
+    return localStorage.getItem('jwt_token') ? true : false;
+  }
 }
