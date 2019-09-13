@@ -1,31 +1,62 @@
 import { Injectable } from '@angular/core';
 import { HttpClient } from '@angular/common/http';
-import { ILoginRequest } from '../login/interfaces/ILoginRequest';
-import { ILoginResponse } from '../login/interfaces/ILoginResponse';
+import { IHttpLoginRequest } from '../login/interfaces/IHttpLoginRequest';
 import { HttpService } from '../../core/api/http.service';
-import { IAuthResponse } from '../login/interfaces/IAuthResponse';
+import { IHttpAuthResponse } from '../interfaces/IHttpAuthResponse';
+import { IHttpResponse } from '../../core/api/interfaces/IHttpResponse';
+import { IHttpErrorResponse } from 'src/app/core/api/interfaces/IHttpErrorResponse';
+import { IHttpRegisterRequest } from '../register/interfaces/IHttpRegisterRequest';
+import { JwtService } from './jwt/jwt.service';
 
 @Injectable({
   providedIn: 'root'
 })
 export class AuthService {
   private apiUrl: string;
-  constructor(private http: HttpClient, private httpService: HttpService) {
+  constructor(
+    private http: HttpClient,
+    private httpService: HttpService,
+    private jwt: JwtService
+  ) {
     this.apiUrl = httpService.apiUrl;
   }
 
-  login(user: ILoginRequest) {
+  login(user: IHttpLoginRequest): Promise<string> {
     return new Promise((resolve, reject) => {
       this.http.post(this.apiUrl + '/users/login', user).subscribe(
-        (response: IAuthResponse) => {
-          const user: ILoginResponse = response.user;
-          console.log(user);
-          if (response.status === 'success') {
-            localStorage.setItem('JWT', response.token);
+        (res: IHttpResponse) => {
+          const resUser: IHttpAuthResponse = res.data.user;
+          if (res.token) {
+            this.jwt.setToken(res.token);
+            return resolve('You are now successfully logged in.');
+          } else {
+            reject("Sorry, we can't seem to log you in at the moment!");
           }
-          resolve('You are now successfully logged in.');
         },
-        error => {
+        (error: IHttpErrorResponse) => {
+          console.log(error);
+          reject("Sorry, that's the wrong email or password");
+        }
+      );
+    });
+  }
+
+  register(user: IHttpRegisterRequest): Promise<string> {
+    return new Promise((resolve, reject) => {
+      this.http.post(this.apiUrl + '/users/signup', user).subscribe(
+        (res: IHttpResponse) => {
+          const resUser: IHttpAuthResponse = res.data.user;
+          if (res.token) {
+            this.jwt.setToken(res.token);
+            return resolve(
+              'You have successfully created an account. You are now logged in.'
+            );
+          } else {
+            reject('Your account has been created. Please log in to continue.');
+          }
+        },
+        (error: IHttpErrorResponse) => {
+          console.log(error);
           reject("Sorry, that's the wrong email or password");
         }
       );
