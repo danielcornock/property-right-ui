@@ -13,11 +13,7 @@ import { JwtService } from './jwt/jwt.service';
 })
 export class AuthService {
   private apiUrl: string;
-  constructor(
-    private http: HttpClient,
-    private httpService: HttpService,
-    private jwt: JwtService
-  ) {}
+  constructor(private httpService: HttpService, private jwt: JwtService) {}
 
   login(user: IHttpLoginRequest): Promise<string> {
     return new Promise((resolve, reject) => {
