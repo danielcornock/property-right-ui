@@ -17,13 +17,11 @@ export class AuthService {
     private http: HttpClient,
     private httpService: HttpService,
     private jwt: JwtService
-  ) {
-    this.apiUrl = httpService.apiUrl;
-  }
+  ) {}
 
   login(user: IHttpLoginRequest): Promise<string> {
     return new Promise((resolve, reject) => {
-      this.http.post(this.apiUrl + '/users/login', user).subscribe(
+      this.httpService.post('/users/login', user).subscribe(
         (res: IHttpResponse) => {
           const resUser: IHttpAuthResponse = res.data.user;
           if (res.token) {
@@ -43,7 +41,7 @@ export class AuthService {
 
   register(user: IHttpRegisterRequest): Promise<string> {
     return new Promise((resolve, reject) => {
-      this.http.post(this.apiUrl + '/users/signup', user).subscribe(
+      this.httpService.post('users/signup', user).subscribe(
         (res: IHttpResponse) => {
           const resUser: IHttpAuthResponse = res.data.user;
           if (res.token) {

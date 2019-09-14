@@ -1,4 +1,5 @@
 import { Component, OnInit } from '@angular/core';
+import { HttpService } from 'src/app/core/api/http.service';
 
 @Component({
   selector: 'app-dashboard',
@@ -6,10 +7,13 @@ import { Component, OnInit } from '@angular/core';
   styleUrls: ['./dashboard.component.scss']
 })
 export class DashboardComponent implements OnInit {
-
-  constructor() { }
+  public properties;
+  constructor(private httpService: HttpService) {}
 
   ngOnInit() {
+    this.httpService.get('properties').subscribe(data => {
+      console.log(data);
+      this.properties = data.data.properties;
+    });
   }
-
 }
