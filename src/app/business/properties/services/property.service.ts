@@ -33,11 +33,13 @@ export class PropertyService {
 
   public getAllProperties(): Promise<Array<IProperty>> {
     return new Promise((resolve, reject) => {
+      if (this.properties) return resolve(this.properties);
+
       this.httpService.get('properties').subscribe(
         (res: IHttpResponse) => {
           const properties: Array<IProperty> = res.data.properties;
           this.properties = properties;
-          resolve(properties);
+          resolve(this.properties);
         },
         (error: IHttpErrorResponse) => {
           console.log(error);
