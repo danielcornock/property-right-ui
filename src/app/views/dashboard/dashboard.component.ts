@@ -29,6 +29,18 @@ export class DashboardComponent implements OnInit, OnDestroy {
       .getPostUpdateListener()
       .subscribe((properties: Array<IProperty>) => {
         this.properties = properties;
+        console.log(properties);
+      });
+  }
+
+  public deleteProperty(id: string) {
+    this.propertyService
+      .deleteProperty(id)
+      .then((msg: string) => {
+        console.log(msg);
+      })
+      .catch(err => {
+        console.log(err);
       });
   }
 

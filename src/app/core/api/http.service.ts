@@ -30,4 +30,10 @@ export class HttpService {
       headers: this.addAuthHeaders()
     });
   }
+
+  public delete(url: string) {
+    return this.http.delete(this.apiUrl + this.processUrl(url), {
+      headers: this.addAuthHeaders()
+    });
+  }
 }

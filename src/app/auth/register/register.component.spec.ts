@@ -5,7 +5,7 @@ import { ReactiveFormsModule, FormsModule } from '@angular/forms';
 import { HttpClientModule } from '@angular/common/http';
 import { RouterTestingModule } from '@angular/router/testing';
 
-fdescribe('RegisterComponent', () => {
+describe('RegisterComponent', () => {
   let component: RegisterComponent;
   let fixture: ComponentFixture<RegisterComponent>;
   let name,
@@ -39,7 +39,7 @@ fdescribe('RegisterComponent', () => {
     expect(component).toBeTruthy();
   });
 
-  fdescribe('when the form values are empty', () => {
+  describe('when the form values are empty', () => {
     it('should return an error', () => {
       expect(component.registerForm.valid).toBe(false);
     });

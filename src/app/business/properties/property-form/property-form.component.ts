@@ -1,8 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { PropertyService } from '../services/property.service';
-import { Subject } from 'rxjs';
-import { IProperty } from '../interfaces/IProperty';
 
 @Component({
   selector: 'app-property-form',

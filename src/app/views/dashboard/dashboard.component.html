@@ -5,6 +5,7 @@
 <div *ngFor="let property of properties">
   <h1>{{ property.name }}</h1>
   <p>{{ property.monthlyRent }}</p>
+  <button (click)="deleteProperty(property._id)">Delete</button>
 </div>
 
 <app-property-form></app-property-form>

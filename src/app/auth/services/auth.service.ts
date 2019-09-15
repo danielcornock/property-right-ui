@@ -51,7 +51,7 @@ export class AuthService {
         },
         (error: IHttpErrorResponse) => {
           console.log(error);
-          reject("Sorry, that's the wrong email or password");
+          reject('Sorry, that email already exists!');
         }
       );
     });

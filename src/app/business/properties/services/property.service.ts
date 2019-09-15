@@ -14,7 +14,7 @@ export class PropertyService {
 
   constructor(private httpService: HttpService) {}
 
-  public addProperty(property: IProperty) {
+  public addProperty(property: IProperty): Promise<string> {
     return new Promise((resolve, reject) => {
       this.httpService.post('properties', property).subscribe(
         (res: IHttpResponse) => {
@@ -41,7 +41,24 @@ export class PropertyService {
         },
         (error: IHttpErrorResponse) => {
           console.log(error);
-          reject("Something's gone wrong!");
+          reject('Not able to retrive properties at this time.');
+        }
+      );
+    });
+  }
+  public deleteProperty(id: string): Promise<string> {
+    return new Promise((resolve, reject) => {
+      this.httpService.delete(`properties/${id}`).subscribe(
+        () => {
+          this.properties = this.properties.filter(
+            property => property._id !== id
+          );
+          this.propertyObservable.next([...this.properties]);
+          resolve('Property successfully deleted.');
+        },
+        (error: IHttpErrorResponse) => {
+          console.log(error);
+          reject('Not able to delete property at this time.');
         }
       );
     });
