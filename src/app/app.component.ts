@@ -10,7 +10,7 @@ export class AppComponent {
   constructor(private authService: AuthService) {}
   title = 'property-right-ui';
 
-  public isLoggedIn() {
-    return this.authService.isLoggedIn();
+  public isAuthenticated() {
+    return this.authService.isAuthenticated();
   }
 }

@@ -57,8 +57,8 @@ export class AuthService {
     });
   }
 
-  isLoggedIn() {
-    return this.jwt.isLoggedIn();
+  isAuthenticated() {
+    return this.jwt.isAuthenticated();
   }
 
   logOut() {
