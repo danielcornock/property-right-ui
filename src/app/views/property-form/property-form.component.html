@@ -1,5 +1,6 @@
-Add new property
+<h2>Add new property</h2>
 <form [formGroup]="propertyForm" class="property-form" (ngSubmit)="submit()">
+  <label>Property Name</label>
   <input
     placeholder="Property Name"
     type="text"
@@ -7,6 +8,7 @@ Add new property
     class="property-form__input"
     required
   />
+  <label>Monthly Rent Income</label>
   <input
     type="text"
     class="property-form__input"

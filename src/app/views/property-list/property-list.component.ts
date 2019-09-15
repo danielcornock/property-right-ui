@@ -1,16 +1,14 @@
-import { Component, OnInit, OnDestroy } from '@angular/core';
-import { HttpService } from 'src/app/core/api/http.service';
-import { IHttpResponse } from '../../core/api/interfaces/IHttpResponse';
-import { IProperty } from '../../business/properties/interfaces/IProperty';
-import { PropertyService } from 'src/app/business/properties/services/property.service';
+import { Component, OnInit } from '@angular/core';
 import { Subscription } from 'rxjs';
+import { PropertyService } from 'src/app/business/properties/services/property.service';
+import { IProperty } from 'src/app/business/properties/interfaces/IProperty';
 
 @Component({
-  selector: 'app-dashboard',
-  templateUrl: './dashboard.component.html',
-  styleUrls: ['./dashboard.component.scss']
+  selector: 'app-property-list',
+  templateUrl: './property-list.component.html',
+  styleUrls: ['./property-list.component.scss']
 })
-export class DashboardComponent implements OnInit, OnDestroy {
+export class PropertyListComponent implements OnInit {
   public properties: Array<IProperty>;
   private propertiesSub: Subscription;
   constructor(private propertyService: PropertyService) {}
@@ -32,9 +30,15 @@ export class DashboardComponent implements OnInit, OnDestroy {
       });
   }
 
-  getUserEmail() {
-    // TODO - this is temporary
-    return localStorage.getItem('email');
+  public deleteProperty(id: string) {
+    this.propertyService
+      .deleteProperty(id)
+      .then((msg: string) => {
+        console.log(msg);
+      })
+      .catch(err => {
+        console.log(err);
+      });
   }
 
   ngOnDestroy() {

@@ -16,6 +16,9 @@ export class AuthService {
   constructor(private httpService: HttpService, private jwt: JwtService) {}
 
   login(user: IHttpLoginRequest): Promise<string> {
+    // TODO - Temporary solution - remove later
+    localStorage.setItem('email', user.email);
+
     return new Promise((resolve, reject) => {
       this.httpService.post('/users/login', user).subscribe(
         (res: IHttpResponse) => {
@@ -36,6 +39,9 @@ export class AuthService {
   }
 
   register(user: IHttpRegisterRequest): Promise<string> {
+    // TODO - Temporary solution - remove later
+    localStorage.setItem('email', user.email);
+
     return new Promise((resolve, reject) => {
       this.httpService.post('users/signup', user).subscribe(
         (res: IHttpResponse) => {

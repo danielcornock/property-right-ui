@@ -4,15 +4,21 @@ import { LoginComponent } from './auth/login/login.component';
 import { RegisterComponent } from './auth/register/register.component';
 import { DashboardComponent } from './views/dashboard/dashboard.component';
 import { AuthGuardService as AuthGuard } from './auth/services/guards/auth-guard.service';
+import { PropertyListComponent } from './views/property-list/property-list.component';
 
 const routes: Routes = [
-  { path: '', pathMatch: 'full', redirectTo: 'login' },
+  { path: '', pathMatch: 'full', redirectTo: 'dashboard' },
   { path: 'login', component: LoginComponent },
   { path: 'register', component: RegisterComponent },
   {
     path: 'dashboard',
     canActivate: [AuthGuard],
     component: DashboardComponent
+  },
+  {
+    path: 'properties',
+    canActivate: [AuthGuard],
+    component: PropertyListComponent
   },
   { path: '**', component: DashboardComponent }
 ];
