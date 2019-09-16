@@ -8,9 +8,8 @@ import { AuthService } from './auth/services/auth.service';
 })
 export class AppComponent {
   constructor(private authService: AuthService) {}
-  title = 'property-right-ui';
 
-  public isAuthenticated() {
+  public showSidebar() {
     return this.authService.isAuthenticated();
   }
 }

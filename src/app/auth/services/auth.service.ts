@@ -7,13 +7,18 @@ import { IHttpResponse } from '../../core/api/interfaces/IHttpResponse';
 import { IHttpErrorResponse } from 'src/app/core/api/interfaces/IHttpErrorResponse';
 import { IHttpRegisterRequest } from '../register/interfaces/IHttpRegisterRequest';
 import { JwtService } from './jwt/jwt.service';
+import { CacheService } from 'src/app/core/cache.service';
 
 @Injectable({
   providedIn: 'root'
 })
 export class AuthService {
   private apiUrl: string;
-  constructor(private httpService: HttpService, private jwt: JwtService) {}
+  constructor(
+    private httpService: HttpService,
+    private jwt: JwtService,
+    private cacheService: CacheService
+  ) {}
 
   login(user: IHttpLoginRequest): Promise<string> {
     // TODO - Temporary solution - remove later
@@ -68,6 +73,7 @@ export class AuthService {
   }
 
   logOut() {
+    this.cacheService.clearCache();
     this.jwt.logOut();
   }
 }

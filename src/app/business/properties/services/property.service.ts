@@ -69,4 +69,8 @@ export class PropertyService {
   public getPostUpdateListener() {
     return this.propertyObservable.asObservable();
   }
+
+  public clearCache() {
+    this.properties = undefined;
+  }
 }
