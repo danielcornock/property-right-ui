@@ -1,0 +1,8 @@
+<h3>Todos</h3>
+
+<div class="flex" *ngFor="let todo of todos">
+  <div>{{ todo.title }}</div>
+  <div>{{ todo.date }}</div>
+  <div>{{ todo.severity }}</div>
+  <div>Completed: {{ todo.completed }}</div>
+</div>

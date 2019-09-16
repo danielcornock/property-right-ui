@@ -10,7 +10,7 @@ import { PropertyService } from 'src/app/business/properties/services/property.s
 })
 export class PropertySummaryComponent implements OnInit {
   public property: IProperty;
-  private propertyId: string;
+  public propertyId: string;
   constructor(
     private route: ActivatedRoute,
     private propertyService: PropertyService
