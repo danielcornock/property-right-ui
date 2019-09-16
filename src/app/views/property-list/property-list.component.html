@@ -1,6 +1,8 @@
 <h2>Your properties</h2>
 <div class="list-item" *ngFor="let property of properties">
-  <div>{{ property.name }}</div>
+  <a [routerLink]="[property._id]">
+    <div>{{ property.name }}</div>
+  </a>
   <div>{{ property.monthlyRent }}</div>
   <button (click)="deleteProperty(property._id)">Delete</button>
 </div>

@@ -11,6 +11,7 @@ import { HttpClientModule } from '@angular/common/http';
 import { SidebarComponent } from './layout/sidebar/sidebar.component';
 import { PropertyFormComponent } from './views/property-form/property-form.component';
 import { PropertyListComponent } from './views/property-list/property-list.component';
+import { PropertySummaryComponent } from './views/property-summary/property-summary.component';
 
 @NgModule({
   declarations: [
@@ -20,7 +21,8 @@ import { PropertyListComponent } from './views/property-list/property-list.compo
     DashboardComponent,
     SidebarComponent,
     PropertyFormComponent,
-    PropertyListComponent
+    PropertyListComponent,
+    PropertySummaryComponent
   ],
   imports: [
     BrowserModule,

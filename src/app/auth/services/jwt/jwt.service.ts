@@ -13,7 +13,7 @@ export class JwtService {
   }
 
   public logOut() {
-    localStorage.setItem('jwt_token', '');
+    localStorage.removeItem('jwt_token');
   }
 
   public isAuthenticated() {

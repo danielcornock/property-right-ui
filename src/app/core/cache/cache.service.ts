@@ -1,5 +1,5 @@
 import { Injectable } from '@angular/core';
-import { PropertyService } from '../business/properties/services/property.service';
+import { PropertyService } from '../../business/properties/services/property.service';
 
 @Injectable({
   providedIn: 'root'

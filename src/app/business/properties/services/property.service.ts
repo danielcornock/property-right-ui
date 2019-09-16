@@ -4,6 +4,7 @@ import { IProperty } from '../interfaces/IProperty';
 import { IHttpErrorResponse } from 'src/app/core/api/interfaces/IHttpErrorResponse';
 import { IHttpResponse } from 'src/app/core/api/interfaces/IHttpResponse';
 import { Subject } from 'rxjs';
+import { CacheService } from 'src/app/core/cache/cache.service';
 
 @Injectable({
   providedIn: 'root'
@@ -31,9 +32,12 @@ export class PropertyService {
     });
   }
 
-  public getAllProperties(): Promise<Array<IProperty>> {
+  public getAllProperties(): Promise<IProperty | Array<IProperty>> {
     return new Promise((resolve, reject) => {
-      if (this.properties) return resolve(this.properties);
+      const cachedProperties = this.checkForCached(this.properties);
+      if (cachedProperties) {
+        return resolve(cachedProperties);
+      }
 
       this.httpService.get('properties').subscribe(
         (res: IHttpResponse) => {
@@ -66,11 +70,44 @@ export class PropertyService {
     });
   }
 
+  public getProperty(id: string): Promise<IProperty | Array<IProperty>> {
+    return new Promise((resolve, reject) => {
+      const cachedProperty = this.checkForCached(this.properties, id);
+      if (cachedProperty) {
+        return resolve(cachedProperty);
+      }
+
+      this.httpService.get(`properties/${id}`).subscribe(
+        (res: IHttpResponse) => {
+          const property: IProperty = res.data.property;
+          resolve(property);
+        },
+        (error: IHttpErrorResponse) => {
+          console.log(error);
+          reject('Not able to retrieve property at this time.');
+        }
+      );
+    });
+  }
+
   public getPostUpdateListener() {
     return this.propertyObservable.asObservable();
   }
 
   public clearCache() {
     this.properties = undefined;
+  }
+
+  private checkForCached(
+    properties: Array<IProperty>,
+    id?: string
+  ): IProperty | Array<IProperty> {
+    if (properties) {
+      if (id) {
+        return properties.find(property => property._id === id);
+      } else {
+        return properties;
+      }
+    }
   }
 }
