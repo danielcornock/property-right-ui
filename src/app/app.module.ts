@@ -14,6 +14,7 @@ import { PropertyListComponent } from './views/property-list/property-list.compo
 import { PropertySummaryComponent } from './views/property-summary/property-summary.component';
 import { TodoListComponent } from './business/todos/todo-list/todo-list.component';
 import { TodoCreateComponent } from './business/todos/todo-create/todo-create.component';
+import { TodosPageComponent } from './views/todos-page/todos-page.component';
 
 @NgModule({
   declarations: [
@@ -26,7 +27,8 @@ import { TodoCreateComponent } from './business/todos/todo-create/todo-create.co
     PropertyListComponent,
     PropertySummaryComponent,
     TodoListComponent,
-    TodoCreateComponent
+    TodoCreateComponent,
+    TodosPageComponent
   ],
   imports: [
     BrowserModule,

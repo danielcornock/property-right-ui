@@ -18,6 +18,14 @@
     <option value="moderate">Moderate</option>
     <option value="severe">Severe</option>
   </select>
+  <select
+    *ngIf="!propertyId && propertyOptions.length"
+    formControlName="propertyId"
+  >
+    <option *ngFor="let option of propertyOptions" value="{{ option.id }}">{{
+      option.name
+    }}</option>
+  </select>
 
   <input type="submit" value="Add Todo" class="todo-form__submit" />
 </form>

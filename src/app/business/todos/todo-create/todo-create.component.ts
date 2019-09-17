@@ -1,6 +1,9 @@
 import { Component, OnInit, Input } from '@angular/core';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { TodoService } from '../services/todo.service';
+import { PropertyService } from '../../properties/services/property.service';
+import { IProperty } from '../../properties/interfaces/IProperty';
+import { IPropertyDropdownOptions } from './interfaces/IPropertyDropdownOptions';
 
 @Component({
   selector: 'app-todo-create',
@@ -10,25 +13,31 @@ import { TodoService } from '../services/todo.service';
 export class TodoCreateComponent implements OnInit {
   @Input() propertyId: string;
   todoForm: FormGroup;
+  propertyOptions: Array<IPropertyDropdownOptions> = [];
+
   constructor(
     private formBuilder: FormBuilder,
-    private todoService: TodoService
+    private todoService: TodoService,
+    private propertyService: PropertyService
   ) {}
 
   ngOnInit() {
     this.todoForm = this.formBuilder.group({
       title: ['', Validators.required],
       date: '',
-      severity: ''
+      severity: '',
+      propertyId: null
     });
+    this.setPropertyDropdownOptions();
   }
 
-  submitTodo(): void {
+  public submitTodo(): void {
     if (this.todoForm.invalid) {
       return console.error('You need to add a title!');
     }
-    this.todoForm.value.property = this.propertyId;
-    console.log(this.todoForm.value);
+    if (this.propertyId) {
+      this.todoForm.value.propertyId = this.propertyId;
+    }
     this.todoService
       .addTodo(this.todoForm.value)
       .then(msg => {
@@ -36,6 +45,23 @@ export class TodoCreateComponent implements OnInit {
       })
       .catch(err => {
         console.error(err);
+      });
+  }
+
+  private setPropertyDropdownOptions(): void {
+    this.propertyService
+      .getAllProperties()
+      .then((propertiesResponse: Array<IProperty>) => {
+        this.propertyOptions = propertiesResponse.map(property => {
+          return {
+            name: property.name,
+            id: property._id
+          };
+        });
+        console.log(this.propertyOptions);
+      })
+      .catch((err: string) => {
+        console.log(err);
       });
   }
 }

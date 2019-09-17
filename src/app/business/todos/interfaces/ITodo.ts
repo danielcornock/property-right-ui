@@ -1,5 +1,7 @@
 export interface ITodo {
-  property?: string;
+  _id: string;
+  propertyId?: string;
+  propertyName?: string;
   user: string;
   title: string;
   due?: Date;

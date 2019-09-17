@@ -1,8 +1,9 @@
 <h3>Todos</h3>
 
-<div class="flex" *ngFor="let todo of todos">
-  <div>{{ todo.title }}</div>
-  <div>{{ todo.date }}</div>
-  <div>{{ todo.severity }}</div>
-  <div>Completed: {{ todo.completed }}</div>
+<div *ngFor="let todo of todos" class="flex">
+  <div class="item">{{ todo.title }}</div>
+  <div class="item">{{ todo.date }}</div>
+  <div class="item">{{ todo.severity }}</div>
+  <div *ngIf="!propertyId" class="item">{{ todo.propertyName }}</div>
+  <button (click)="deleteTodo(todo._id)">Delete</button>
 </div>
