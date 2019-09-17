@@ -12,6 +12,9 @@ import { SidebarComponent } from './layout/sidebar/sidebar.component';
 import { PropertyFormComponent } from './views/property-form/property-form.component';
 import { PropertyListComponent } from './views/property-list/property-list.component';
 import { PropertySummaryComponent } from './views/property-summary/property-summary.component';
+import { TodoListComponent } from './business/todos/todo-list/todo-list.component';
+import { TodoCreateComponent } from './business/todos/todo-create/todo-create.component';
+import { TodosPageComponent } from './views/todos-page/todos-page.component';
 
 @NgModule({
   declarations: [
@@ -22,7 +25,10 @@ import { PropertySummaryComponent } from './views/property-summary/property-summ
     SidebarComponent,
     PropertyFormComponent,
     PropertyListComponent,
-    PropertySummaryComponent
+    PropertySummaryComponent,
+    TodoListComponent,
+    TodoCreateComponent,
+    TodosPageComponent
   ],
   imports: [
     BrowserModule,

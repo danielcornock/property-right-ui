@@ -1,0 +1,31 @@
+<h3>Add todo item</h3>
+<form [formGroup]="todoForm" class="todo-form" (ngSubmit)="submitTodo()">
+  <input
+    placeholder="Title"
+    type="text"
+    formControlName="title"
+    class="todo-form__input"
+    required
+  />
+  <input
+    placeholder="Date"
+    type="date"
+    formControlName="date"
+    class="todo-form__input"
+  />
+  <select formControlName="severity">
+    <option value="easy">Easy</option>
+    <option value="moderate">Moderate</option>
+    <option value="severe">Severe</option>
+  </select>
+  <select
+    *ngIf="!propertyId && propertyOptions.length"
+    formControlName="propertyId"
+  >
+    <option *ngFor="let option of propertyOptions" value="{{ option.id }}">{{
+      option.name
+    }}</option>
+  </select>
+
+  <input type="submit" value="Add Todo" class="todo-form__submit" />
+</form>
