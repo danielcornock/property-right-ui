@@ -1,0 +1,147 @@
+@import 'src/assets/styles/themes.scss';
+
+.background {
+  background-image: url('../../../assets/images/login-background.png');
+  background-size: cover;
+  height: 100vh;
+  width: 100%;
+}
+.login {
+  &-container {
+    @include card-background;
+    padding: 70px;
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    display: flex;
+    flex-direction: column;
+    box-shadow: 0 2px 24px rgba(0, 0, 0, 0.12);
+    border-radius: 10px;
+  }
+
+  &-branding {
+    margin-bottom: 50px;
+  }
+
+  &-title {
+    color: $color-text-primary;
+    margin: 0;
+    margin-bottom: 5px;
+  }
+
+  &-subtext {
+    font-size: 14px;
+    margin-bottom: 20px;
+    &__link {
+      color: $color-text-primary;
+      font-weight: 600;
+      text-decoration: none;
+    }
+  }
+
+  &-form {
+    display: flex;
+    flex-direction: column;
+
+    &__label {
+      text-transform: uppercase;
+      font-size: 12px;
+      margin-bottom: 5px;
+      font-weight: 600;
+      margin-left: 15px;
+    }
+
+    &__input {
+      border: none;
+      margin-bottom: 10px;
+      background-color: $color-bg-input;
+      padding: 15px;
+      border-radius: 5px;
+      width: 400px;
+      margin-bottom: 20px;
+
+      @media (max-width: 768px) {
+        width: 100%;
+      }
+    }
+
+    &__bottomRow {
+      display: flex;
+      justify-content: space-between;
+      align-items: baseline;
+    }
+    &__forgotPassword {
+      text-decoration: none;
+      font-size: 14px;
+      color: #aaa;
+
+      &:hover {
+        color: $color-text-primary;
+      }
+    }
+
+    &__submit {
+      background-color: $color-text-primary;
+      color: white;
+      padding: 10px 35px;
+      cursor: pointer;
+      border-radius: 9999px;
+      transition: 250ms;
+
+      &:hover {
+        background-color: darken($color-text-primary, 5%);
+      }
+    }
+
+    &__checkbox {
+      margin-right: 25px;
+      appearance: none;
+      position: relative;
+
+      &::before {
+        content: '';
+        position: absolute;
+        top: 50%;
+        transform: translateY(-50%);
+        height: 0;
+        width: 0;
+        margin-left: 10px;
+        transition: 100ms;
+        background-color: $color-text-primary;
+        border-radius: 2px;
+      }
+
+      &:checked {
+        &::before {
+          height: 9px;
+          width: 9px;
+          margin-left: 5px;
+        }
+      }
+
+      &::after {
+        content: '';
+        display: inline-block;
+        border: 2px solid #e5e5e5;
+        height: 15px;
+        width: 15px;
+        border-radius: 5px;
+        position: absolute;
+        top: 50%;
+        transform: translateY(-50%);
+      }
+      &-container {
+        display: flex;
+        align-items: baseline;
+        margin-bottom: 30px;
+        align-items: center;
+      }
+      &-label {
+        font-size: 14px;
+        font-weight: 500;
+        color: #666;
+      }
+    }
+  }
+}

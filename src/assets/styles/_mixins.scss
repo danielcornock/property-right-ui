@@ -1,0 +1,7 @@
+@mixin card-background {
+  background-color: $color-bg-card;
+}
+
+@mixin card-styles {
+  @include card-background;
+}

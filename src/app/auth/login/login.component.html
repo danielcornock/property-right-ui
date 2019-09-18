@@ -1,19 +1,49 @@
-<form [formGroup]="loginForm" class="login-form" (ngSubmit)="login()">
-  <input
-    placeholder="Email"
-    type="email"
-    formControlName="email"
-    class="login-form__input"
-    required
+<div class="background"></div>
+<div class="login-container">
+  <img
+    class="login-branding"
+    src="../../../assets/images/branding.svg"
+    alt=""
   />
-  <input
-    type="password"
-    class="login-form__input"
-    placeholders="Password"
-    formControlName="password"
-    required
-  />
-  <input type="submit" value="Log in" class="login-form__submit" />
-</form>
-
-<a routerLink="/register">Register</a>
+  <!-- <h1 class="login-title">Log in</h1> -->
+  <div class="login-subtext">
+    Don't have an account?
+    <a class="login-subtext__link" routerLink="/register">Create one now.</a>
+  </div>
+  <form
+    class="login-form"
+    [formGroup]="loginForm"
+    class="login-form"
+    (ngSubmit)="login()"
+  >
+    <!-- <label class="login-form__label" for="email">Email</label> -->
+    <input
+      name="email"
+      placeholder="Email"
+      type="email"
+      formControlName="email"
+      class="login-form__input"
+      required
+    />
+    <!-- <label class="login-form__label" for="password">Password</label> -->
+    <input
+      name="password"
+      type="password"
+      class="login-form__input"
+      placeholder="Password"
+      formControlName="password"
+      required
+    />
+    <label class="login-form__checkbox-container">
+      <input
+        class="login-form__checkbox"
+        type="checkbox"
+        name="remember"
+      /><span class="login-form__checkbox-label">Remember Me</span>
+    </label>
+    <div class="login-form__bottomRow">
+      <a class="login-form__forgotPassword" routerLink="/">Forgot password?</a>
+      <input class="login-form__submit" type="submit" value="Log in" />
+    </div>
+  </form>
+</div>
