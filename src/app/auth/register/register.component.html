@@ -1,26 +1,54 @@
-<form [formGroup]="registerForm" class="register-form" (ngSubmit)="register()">
-  <input
-    placeholder="Name"
-    type="text"
-    formControlName="name"
-    class="register-form__input"
-    required
+<div class="register-container">
+  <img
+    class="register-branding"
+    src="../../../assets/images/branding.svg"
+    alt=""
   />
-  <input
-    placeholder="Email"
-    type="email"
-    formControlName="email"
-    class="register-form__input"
-    required
-  />
-  <input
-    type="password"
-    class="register-form__input"
-    placeholders="Password"
-    formControlName="password"
-    required
-  />
-  <input type="submit" value="Register" class="register-form__submit" />
-</form>
-
-<a routerLink="/login">Login</a>
+  <div class="register-subtext">
+    Already have an account?
+    <a class="register-subtext__link" routerLink="/login">Log in.</a>
+  </div>
+  <form
+    [formGroup]="registerForm"
+    class="register-form"
+    (ngSubmit)="register()"
+  >
+    <input
+      name="name"
+      placeholder="Name"
+      type="text"
+      formControlName="name"
+      class="register-form__input"
+      required
+    />
+    <input
+      name="email"
+      placeholder="Email"
+      type="email"
+      formControlName="email"
+      class="register-form__input"
+      required
+    />
+    <input
+      name="password"
+      type="password"
+      class="register-form__input"
+      placeholder="Password"
+      formControlName="password"
+      required
+    />
+    <label class="register-form__checkbox-container">
+      <input
+        class="register-form__checkbox"
+        type="checkbox"
+        name="remember"
+      /><span class="register-form__checkbox-label">Remember Me</span>
+    </label>
+    <input
+      class="register-form__submit"
+      type="submit"
+      value="Register"
+      class="register-form__submit"
+    />
+  </form>
+</div>

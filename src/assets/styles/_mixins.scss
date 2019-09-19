@@ -1,7 +1,63 @@
 @mixin card-background {
   background-color: $color-bg-card;
+  box-shadow: 0 2px 24px rgba(0, 0, 0, 0.12);
 }
 
 @mixin card-styles {
   @include card-background;
+}
+
+@mixin center-self {
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+}
+
+@mixin center-contents {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+@mixin flex($orientation: row) {
+  display: flex;
+  @if ($orientation) {
+    flex-direction: $orientation;
+  }
+}
+
+@mixin default-text-input {
+  border: none;
+  background-color: $color-bg-input;
+  border-radius: 5px;
+  padding: 15px;
+}
+
+@mixin media($device) {
+  @media (max-width: $device) {
+    @content;
+  }
+}
+
+@mixin hover($speed) {
+  transition: $speed;
+  &:hover {
+    @content;
+  }
+}
+
+@mixin button($type) {
+  padding: 13px 40px;
+  border-radius: $br-max;
+  cursor: pointer;
+  font-weight: $semi-bold;
+
+  @if ($type == primary) {
+    color: $color-text-button-highlight;
+    background-color: $color-bg-highlight;
+    @include hover($medium-trans) {
+      background-color: darken($color-bg-highlight, 5%);
+    }
+  }
 }

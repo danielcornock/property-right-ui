@@ -2,6 +2,11 @@
 @import 'src/assets/styles/themes.scss';
 @import url('https://fonts.googleapis.com/css?family=Montserrat:400,500,600,700,800&display=swap');
 
+*,
+*::after,
+*::before {
+  box-sizing: border-box;
+}
 html {
   font-family: 'Montserrat';
 }
@@ -11,5 +16,5 @@ body {
 }
 
 *:focus {
-  outline-color: lighten($color-text-primary, 10%);
+  outline-color: lighten($color-text-highlight, 10%);
 }

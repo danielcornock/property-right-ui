@@ -1,22 +1,14 @@
-<div class="background"></div>
 <div class="login-container">
   <img
     class="login-branding"
     src="../../../assets/images/branding.svg"
     alt=""
   />
-  <!-- <h1 class="login-title">Log in</h1> -->
   <div class="login-subtext">
     Don't have an account?
     <a class="login-subtext__link" routerLink="/register">Create one now.</a>
   </div>
-  <form
-    class="login-form"
-    [formGroup]="loginForm"
-    class="login-form"
-    (ngSubmit)="login()"
-  >
-    <!-- <label class="login-form__label" for="email">Email</label> -->
+  <form class="login-form" [formGroup]="loginForm" (ngSubmit)="login()">
     <input
       name="email"
       placeholder="Email"
@@ -25,7 +17,6 @@
       class="login-form__input"
       required
     />
-    <!-- <label class="login-form__label" for="password">Password</label> -->
     <input
       name="password"
       type="password"

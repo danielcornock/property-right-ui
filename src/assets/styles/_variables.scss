@@ -1,5 +1,36 @@
-$color-bg-main: #f6f8fd;
-$color-bg-card: #ffffff;
-$color-bg-input: #f6f8fd;
+//* Colours
+$pink: #dc2b6b;
+$white: #ffffff;
+$pale-blue: #f6f8fd;
+$pale-grey: #aaaaaa;
 
-$color-text-primary: #dc2b6b;
+$color-bg-main: $pale-blue;
+$color-bg-card: $white;
+$color-bg-input: $pale-blue;
+$color-bg-highlight: $pink;
+
+$color-text-highlight: $pink;
+$color-text-grey: $pale-grey;
+$color-text-button-highlight: $white;
+
+//* Border radius
+$br-max: 9999px;
+$br-med: 10px;
+
+//* Font weight
+$standard: 400;
+$medium: 500;
+$semi-bold: 600;
+$bold: 700;
+
+//* Transition times
+$medium-trans: 250ms;
+
+//* Breakpoints
+$ld: 1014px;
+$tablet: 768px;
+$phone: 480px;
+
+$font-tiny: 12px;
+$font-small: 14px;
+$font-standard: 16px;
