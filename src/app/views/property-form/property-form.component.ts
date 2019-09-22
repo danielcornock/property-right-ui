@@ -29,6 +29,7 @@ export class PropertyFormComponent implements OnInit {
     this.propertyService
       .addProperty(this.propertyForm.value)
       .then(msg => {
+        this.propertyForm.reset();
         console.log(msg);
       })
       .catch(err => {

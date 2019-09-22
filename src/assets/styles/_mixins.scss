@@ -31,7 +31,7 @@
   border: none;
   background-color: $color-bg-input;
   border-radius: 5px;
-  padding: 15px;
+  padding: $padding-small;
 }
 
 @mixin media($device) {
@@ -48,7 +48,7 @@
 }
 
 @mixin button($type) {
-  padding: 13px 40px;
+  padding: 13px $padding-med;
   border-radius: $br-max;
   cursor: pointer;
   font-weight: $semi-bold;
@@ -60,4 +60,31 @@
       background-color: darken($color-bg-highlight, 5%);
     }
   }
+}
+
+@mixin box-shadow($strength) {
+  @if ($strength = 'light') {
+    box-shadow: 0 1px 8px rgba(0, 0, 0, 0.05);
+  }
+}
+
+@mixin pseudo($type) {
+  @if ($type == 'before') {
+    &::before {
+      content: '';
+      position: absolute;
+      @content;
+    }
+  } @else {
+    &::after {
+      content: '';
+      position: absolute;
+      @content;
+    }
+  }
+}
+
+@mixin button-default {
+  border: none;
+  cursor: pointer;
 }

@@ -2,16 +2,30 @@
 $pink: #dc2b6b;
 $white: #ffffff;
 $pale-blue: #f6f8fd;
+$palest-grey: #fafafa;
 $pale-grey: #aaaaaa;
+$dark-grey: #808080;
+$blue: #132253;
 
 $color-bg-main: $pale-blue;
 $color-bg-card: $white;
 $color-bg-input: $pale-blue;
 $color-bg-highlight: $pink;
+$color-bg-light: $palest-grey;
 
 $color-text-highlight: $pink;
 $color-text-grey: $pale-grey;
 $color-text-button-highlight: $white;
+$color-text-primary: $blue;
+
+$color-text-sidebar: $dark-grey;
+
+$color-bg-hover-light: $palest-grey;
+
+//* Margin/Padding
+$padding-lrg: 70px;
+$padding-med: 40px;
+$padding-small: 15px;
 
 //* Border radius
 $br-max: 9999px;
@@ -22,6 +36,7 @@ $standard: 400;
 $medium: 500;
 $semi-bold: 600;
 $bold: 700;
+$extra-bold: 800;
 
 //* Transition times
 $medium-trans: 250ms;

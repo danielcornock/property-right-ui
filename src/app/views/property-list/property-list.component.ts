@@ -9,6 +9,7 @@ import { IProperty } from 'src/app/business/properties/interfaces/IProperty';
   styleUrls: ['./property-list.component.scss']
 })
 export class PropertyListComponent implements OnInit {
+  public isLoading: boolean;
   public properties: Array<IProperty>;
   private propertiesSub: Subscription;
   constructor(private propertyService: PropertyService) {}

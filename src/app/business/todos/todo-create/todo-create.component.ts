@@ -58,7 +58,6 @@ export class TodoCreateComponent implements OnInit {
             id: property._id
           };
         });
-        console.log(this.propertyOptions);
       })
       .catch((err: string) => {
         console.log(err);
