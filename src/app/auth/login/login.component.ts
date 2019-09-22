@@ -9,17 +9,17 @@ import { RouterService } from '../../core/routing/router.service';
   styleUrls: ['./login.component.scss']
 })
 export class LoginComponent implements OnInit {
+  public isLoading: boolean;
+  loginForm: FormGroup;
+
   constructor(
     private formBuilder: FormBuilder,
     private authService: AuthService,
     private router: RouterService
   ) {}
 
-  loginForm: FormGroup;
-  isSubmitted: boolean;
-
   ngOnInit() {
-    this.isSubmitted = false;
+    this.isLoading = false;
     this.loginForm = this.formBuilder.group({
       email: ['', [Validators.required, Validators.email]],
       password: ['', Validators.required]
@@ -31,10 +31,10 @@ export class LoginComponent implements OnInit {
   }
 
   login() {
-    this.isSubmitted = true;
     if (this.loginForm.invalid) {
       return console.error('This login form is invalid');
     }
+    this.isLoading = true;
     this.authService
       .login(this.loginForm.value)
       .then(msg => {
@@ -42,6 +42,7 @@ export class LoginComponent implements OnInit {
         this.router.navigate('dashboard');
       })
       .catch(err => {
+        this.isLoading = false;
         console.error(err);
       });
   }

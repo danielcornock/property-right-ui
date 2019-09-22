@@ -18,3 +18,7 @@ body {
 *:focus {
   outline-color: lighten($color-text-highlight, 10%);
 }
+
+a {
+  text-decoration: none;
+}

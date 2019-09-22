@@ -1,10 +1,12 @@
-<h2>Your properties</h2>
-<div class="list-item" *ngFor="let property of properties">
-  <a [routerLink]="[property._id]">
-    <div>{{ property.name }}</div>
-  </a>
-  <div>{{ property.monthlyRent }}</div>
-  <button (click)="deleteProperty(property._id)">Delete</button>
-</div>
+<div class="propertyList-container">
+  <h2>Your properties</h2>
+  <div class="list-item" *ngFor="let property of properties">
+    <a [routerLink]="[property._id]">
+      {{ property.name }}
+    </a>
+    <div>{{ property.monthlyRent }}</div>
+    <button (click)="deleteProperty(property._id)">Delete</button>
+  </div>
 
-<app-property-form></app-property-form>
+  <app-property-form></app-property-form>
+</div>

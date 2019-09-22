@@ -1,7 +1,103 @@
-.test-header {
-  height: 300px;
-  background-color: #eee;
-  display: flex;
-  justify-content: center;
+@import 'src/assets/styles/themes.scss';
+
+@mixin sidebar-item {
   align-items: center;
+  color: $color-text-sidebar;
+  display: flex;
+  padding: $padding-small $padding-med;
+}
+
+.sidebar {
+  @include flex(column);
+  @include box-shadow(light);
+  background-color: $color-bg-card;
+  height: 100vh;
+
+  &-branding {
+    padding: 60px $padding-med $padding-med;
+
+    &.minimised {
+      padding: 30px 20px;
+      @include center-contents;
+    }
+
+    &__img {
+      width: 240px;
+      &--small {
+        width: 40px;
+      }
+    }
+  }
+
+  &-nav {
+    @include flex(column);
+
+    &__item {
+      @include sidebar-item;
+      font-weight: $bold;
+
+      &-icon {
+        margin-right: 35px;
+
+        &.minimised {
+          margin-right: 0;
+        }
+      }
+
+      &-text {
+        font-size: $font-tiny;
+        font-weight: $extra-bold;
+        letter-spacing: 2px;
+        text-transform: uppercase;
+      }
+
+      @include hover(0) {
+        background-color: $color-bg-hover-light;
+      }
+
+      &.active {
+        color: $color-text-primary;
+        position: relative;
+        @include pseudo(after) {
+          left: 0;
+          top: 0;
+          height: 100%;
+          width: 5px;
+          background-color: $color-bg-highlight;
+        }
+
+        .sidebar-nav__item-icon {
+          color: $color-text-highlight;
+        }
+      }
+    }
+  }
+  &-logout {
+    @include button-default;
+    @include sidebar-item;
+    background-color: $color-bg-light;
+    width: 100%;
+
+    &:hover {
+      background-color: $color-bg-main;
+    }
+  }
+
+  &-minimise {
+    @include button-default;
+    @include sidebar-item;
+    width: 100%;
+
+    &:hover {
+      background-color: $color-bg-main;
+    }
+  }
+
+  &-actionButtons {
+    margin-top: auto;
+  }
+}
+
+.hidden {
+  display: none;
 }

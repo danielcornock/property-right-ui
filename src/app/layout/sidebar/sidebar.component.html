@@ -1,6 +1,57 @@
-<div class="test-header">
-  <button (click)="logout()">Log out</button>
-  <a routerLink="/dashboard">Dashboard</a>
-  <a routerLink="/properties">Properties</a>
-  <a routerLink="/todos">Todos</a>
+<div class="sidebar">
+  <div class="sidebar-branding" [class.minimised]="minimised">
+    <img
+      [class.hidden]="minimised"
+      class="sidebar-branding__img"
+      src="../../../assets/images/branding-text.svg"
+      alt=""
+    />
+    <img
+      [class.hidden]="minimised === false"
+      class="sidebar-branding__img--small"
+      src="../../../assets/images/branding-minimised.svg"
+      alt=""
+    />
+  </div>
+  <nav class="sidebar-nav">
+    <a
+      *ngFor="let navLink of navLinks"
+      routerLinkActive="active"
+      class="sidebar-nav__item"
+      [routerLink]="navLink.link"
+    >
+      <app-ui-icon
+        class="sidebar-nav__item-icon"
+        [class.minimised]="minimised"
+        [name]="navLink.icon"
+        [size]="'small'"
+      ></app-ui-icon>
+
+      <span [class.hidden]="minimised" class="sidebar-nav__item-text">{{
+        navLink.label
+      }}</span>
+    </a>
+  </nav>
+  <div class="sidebar-actionButtons">
+    <button class="sidebar-minimise" (click)="minimiseNav()">
+      <app-ui-icon
+        [name]="minimised ? 'chevrons-left' : 'chevrons-right'"
+        [class.minimised]="minimised"
+        class="sidebar-nav__item-icon"
+      ></app-ui-icon>
+      <span [class.hidden]="minimised" class="sidebar-logout__text">
+        Minimise
+      </span>
+    </button>
+    <button class="sidebar-logout" (click)="logout()">
+      <app-ui-icon
+        name="log-out"
+        [class.minimised]="minimised"
+        class="sidebar-nav__item-icon"
+      ></app-ui-icon>
+      <span [class.hidden]="minimised" class="sidebar-logout__text">
+        Log out
+      </span>
+    </button>
+  </div>
 </div>

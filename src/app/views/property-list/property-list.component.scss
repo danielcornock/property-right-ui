@@ -1,5 +1,27 @@
+@import 'src/assets/styles/themes.scss';
+
 .list-item {
   display: grid;
   grid-template-columns: 200px 40px 100px;
   padding: 10px;
+  animation: enter-list 500ms forwards;
+  position: relative;
+  opacity: 0;
+
+  @for $num from 1 through 20 {
+    &:nth-child(#{$num}) {
+      animation-delay: $num * 50ms;
+    }
+  }
+}
+
+@keyframes enter-list {
+  from {
+    top: 50px;
+    opacity: 0;
+  }
+  to {
+    top: 0;
+    opacity: 1;
+  }
 }

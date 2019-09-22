@@ -1,0 +1,11 @@
+@import 'src/assets/styles/themes.scss';
+
+:host {
+  @include center-contents;
+}
+.icon {
+  &-small {
+    width: 25px;
+    height: 25px;
+  }
+}

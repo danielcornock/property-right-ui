@@ -8,6 +8,25 @@ import { RouterService } from 'src/app/core/routing/router.service';
   styleUrls: ['./sidebar.component.scss']
 })
 export class SidebarComponent implements OnInit {
+  public navLinks = [
+    {
+      label: 'Dashboard',
+      link: '/dashboard',
+      icon: 'layout'
+    },
+    {
+      label: 'My Properties',
+      link: '/properties',
+      icon: 'home'
+    },
+    {
+      label: 'To Do',
+      link: '/todos',
+      icon: 'check-square'
+    }
+  ];
+
+  public minimised: boolean = false;
   constructor(
     private authService: AuthService,
     private router: RouterService
@@ -18,5 +37,13 @@ export class SidebarComponent implements OnInit {
   public logout() {
     this.authService.logOut();
     this.router.navigate('login');
+  }
+
+  public minimiseNav() {
+    this.minimised = !this.minimised;
+  }
+
+  public getNav() {
+    return this.navLinks;
   }
 }
