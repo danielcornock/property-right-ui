@@ -1,12 +1,8 @@
 import { Component, OnInit } from '@angular/core';
-import {
-  FormBuilder,
-  FormGroup,
-  Validators,
-  FormControl
-} from '@angular/forms';
+import { FormGroup, Validators, FormControl } from '@angular/forms';
 import { PropertyService } from '../../business/properties/services/property.service';
-import { HttpService } from 'src/app/core/api/http.service';
+import { Router, ActivatedRoute, ParamMap } from '@angular/router';
+import { IProperty } from 'src/app/business/properties/interfaces/IProperty';
 
 @Component({
   selector: 'app-property-form',
@@ -15,47 +11,96 @@ import { HttpService } from 'src/app/core/api/http.service';
 })
 export class PropertyFormComponent implements OnInit {
   private propertyForm: FormGroup;
+  public property: IProperty;
   imagePreview: string;
   uploadedImage: File;
+  editMode: boolean;
+  activePropertyId: string;
 
   constructor(
-    private formBuilder: FormBuilder,
     private propertyService: PropertyService,
-    private httpService: HttpService
+    private router: Router,
+    private activeRoute: ActivatedRoute
   ) {}
 
   ngOnInit() {
-    this.propertyForm = new FormGroup({
+    this.propertyForm = this._initialiseForm();
+    this.editMode = this.router.url.includes('/properties/edit');
+    this._checkForEditMode(this.editMode).then(() => {
+      this._populateFields();
+    });
+  }
+
+  private _populateFields() {
+    this.propertyService.getProperty(this.activePropertyId).then(property => {
+      console.log(property);
+      this.property = property;
+      this.propertyForm.setValue({
+        name: this.property.name,
+        monthlyRent: this.property.monthlyRent,
+        image: this.property.image
+      });
+    });
+  }
+
+  private _checkForEditMode(editMode) {
+    return new Promise(resolve => {
+      if (editMode) {
+        this.activeRoute.paramMap.subscribe(
+          (params: ParamMap) =>
+            (this.activePropertyId = params.get('propertyId'))
+        );
+        return resolve();
+      }
+    });
+  }
+
+  private _initialiseForm() {
+    return new FormGroup({
       name: new FormControl(null, {
         validators: [Validators.required]
       }),
       monthlyRent: new FormControl(null),
       image: new FormControl(null)
     });
-    // this.propertyForm = this.formBuilder.group({
-    //   name: '',
-    //   monthlyRent: ['', Validators.pattern('^[0-9]*$')],
-    //   image: null
-    // });
+  }
+
+  private _postNewProperty() {
+    this.propertyService
+      .addProperty(this.propertyForm.value)
+      .then(res => {
+        this.propertyForm.reset();
+        this.router.navigate([`/properties/${res.id}`]);
+        console.log(res.msg);
+      })
+      .catch(err => {
+        console.log(err);
+      });
+  }
+
+  private _editProperty() {
+    this.propertyService
+      .updateProperty(this.propertyForm.value, this.activePropertyId)
+      .then(msg => {
+        console.log(msg);
+        this.propertyForm.reset();
+        this.router.navigate([`/properties/${this.activePropertyId}`]);
+      })
+      .catch(err => {
+        console.log(err);
+      });
   }
 
   public submit() {
     if (this.propertyForm.invalid) {
       return console.error('This form is invalid');
     }
-    this.propertyService
-      .addProperty(
-        this.propertyForm.value.name,
-        this.propertyForm.value.monthlyRent,
-        this.propertyForm.value.image
-      )
-      .then(msg => {
-        this.propertyForm.reset();
-        console.log(msg);
-      })
-      .catch(err => {
-        console.log(err);
-      });
+
+    if (this.editMode) {
+      this._editProperty();
+    } else {
+      this._postNewProperty();
+    }
   }
 
   public onImagePicked(event: Event) {

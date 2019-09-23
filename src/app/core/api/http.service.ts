@@ -25,6 +25,12 @@ export class HttpService {
     });
   }
 
+  public put(url: string, data: object) {
+    return this.http.put(this.apiUrl + this.processUrl(url), data, {
+      headers: this.addAuthHeaders()
+    });
+  }
+
   public get(url: string) {
     return this.http.get(this.apiUrl + this.processUrl(url), {
       headers: this.addAuthHeaders()

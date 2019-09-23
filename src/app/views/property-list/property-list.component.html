@@ -5,8 +5,8 @@
     <div class="list-item" *ngFor="let property of properties">
       <img
         class="preview-image"
-        *ngIf="property.imagePath"
-        [src]="property.imagePath"
+        *ngIf="property.image"
+        [src]="property.image"
         alt=""
       />
       <a class="property-name" [routerLink]="[property._id]">

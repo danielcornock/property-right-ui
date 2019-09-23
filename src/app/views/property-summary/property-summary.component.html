@@ -2,7 +2,8 @@
   <h1>{{ property.name }}</h1>
   <div>Price</div>
   <div>{{ property.monthlyRent }}</div>
-  <img class="preview-image" [src]="property.imagePath" alt="" />
+  <img class="preview-image" [src]="property.image" alt="" />
+  <a routerLink="/properties/edit/{{ property._id }}">Edit Property</a>
 </div>
 <app-todo-create [propertyId]="propertyId"></app-todo-create>
 <app-todo-list [propertyId]="propertyId"></app-todo-list>

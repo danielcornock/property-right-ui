@@ -4,7 +4,7 @@ import { IProperty } from '../interfaces/IProperty';
 import { IHttpErrorResponse } from 'src/app/core/api/interfaces/IHttpErrorResponse';
 import { IHttpResponse } from 'src/app/core/api/interfaces/IHttpResponse';
 import { Subject } from 'rxjs';
-import { CacheService } from 'src/app/core/cache/cache.service';
+import { IPropertyPatch } from '../interfaces/IPropertyPatch';
 
 @Injectable({
   providedIn: 'root'
@@ -15,15 +15,19 @@ export class PropertyService {
 
   constructor(private httpService: HttpService) {}
 
+  private setPropertyData(property: IProperty | IPropertyPatch): FormData {
+    const propertyForm = new FormData();
+    propertyForm.append('name', property.name);
+    propertyForm.append('monthlyRent', property.monthlyRent);
+    propertyForm.append('image', property.image);
+
+    return propertyForm;
+  }
+
   public addProperty(
-    name: string,
-    monthlyRent: string,
-    image: File
-  ): Promise<string> {
-    const propertyData = new FormData();
-    propertyData.append('name', name);
-    propertyData.append('monthlyRent', monthlyRent);
-    propertyData.append('image', image);
+    property: IProperty
+  ): Promise<{ msg: string; id?: string }> {
+    const propertyData = this.setPropertyData(property);
 
     return new Promise((resolve, reject) => {
       this.httpService.post('properties', propertyData).subscribe(
@@ -33,7 +37,10 @@ export class PropertyService {
             this.properties.push(propertyResponse);
           }
           this.propertyObservable.next(this.properties);
-          resolve('Property successfully added.');
+          resolve({
+            msg: 'Property successfully added.',
+            id: propertyResponse._id
+          });
         },
         (error: IHttpErrorResponse) => {
           console.log(error);
@@ -45,7 +52,7 @@ export class PropertyService {
 
   public getAllProperties(): Promise<IProperty | Array<IProperty>> {
     return new Promise((resolve, reject) => {
-      const cachedProperties = this.checkForCached(this.properties);
+      const cachedProperties = this.checkForCachedMultiple(this.properties);
       if (cachedProperties) {
         return resolve(cachedProperties);
       }
@@ -81,9 +88,9 @@ export class PropertyService {
     });
   }
 
-  public getProperty(id: string): Promise<IProperty | Array<IProperty>> {
+  public getProperty(id: string): Promise<IProperty> {
     return new Promise((resolve, reject) => {
-      const cachedProperty = this.checkForCached(this.properties, id);
+      const cachedProperty = this.checkForCachedSingle(this.properties, id);
       if (cachedProperty) {
         return resolve(cachedProperty);
       }
@@ -95,10 +102,46 @@ export class PropertyService {
         },
         (error: IHttpErrorResponse) => {
           console.log(error);
-          reject('Not able to retrieve property at this time.');
+          reject(error);
         }
       );
     });
+  }
+
+  public updateProperty(property: IPropertyPatch, id: string) {
+    return new Promise((resolve, reject) => {
+      let propertyData: IPropertyPatch | FormData;
+      if (typeof property.image === 'object') {
+        propertyData = this.setPropertyData(property);
+      } else {
+        propertyData = property;
+
+        this.httpService.put(`properties/${id}`, propertyData).subscribe(
+          (res: IHttpResponse) => {
+            this.properties = this._patchLocalProperty(res.data.property, id);
+            this.propertyObservable.next([...this.properties]);
+            resolve('Property successfully updated');
+          },
+          error => {
+            console.log(error);
+            reject('Unable to process at this time.');
+          }
+        );
+      }
+    });
+  }
+
+  private _patchLocalProperty(
+    propertyRes: IProperty,
+    id: string
+  ): Array<IProperty> {
+    const updatedProperties = [...this.properties];
+    const oldPropertyIndex: number = updatedProperties.findIndex(
+      p => p._id === id
+    );
+    const property = propertyRes;
+    updatedProperties[oldPropertyIndex] = property;
+    return updatedProperties;
   }
 
   public getPostUpdateListener() {
@@ -109,16 +152,22 @@ export class PropertyService {
     this.properties = undefined;
   }
 
-  private checkForCached(
+  private checkForCachedSingle(
     properties: Array<IProperty>,
-    id?: string
-  ): IProperty | Array<IProperty> {
+    id: string
+  ): IProperty {
     if (properties) {
       if (id) {
         return properties.find(property => property._id === id);
-      } else {
-        return properties;
       }
+    }
+  }
+
+  private checkForCachedMultiple(
+    properties: Array<IProperty>
+  ): Array<IProperty> {
+    if (properties) {
+      return properties;
     }
   }
 }

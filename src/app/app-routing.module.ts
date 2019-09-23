@@ -24,6 +24,11 @@ const routes: Routes = [
     component: PropertyFormComponent
   },
   {
+    path: 'properties/edit/:propertyId',
+    canActivate: [AuthGuard],
+    component: PropertyFormComponent
+  },
+  {
     path: 'properties/:propertyId',
     canActivate: [AuthGuard],
     component: PropertySummaryComponent
