@@ -1,12 +1,12 @@
 @import 'src/assets/styles/themes.scss';
 
 .list-item {
-  display: grid;
-  grid-template-columns: 200px 40px 100px;
   padding: 10px;
   animation: enter-list 500ms forwards;
   position: relative;
   opacity: 0;
+  width: 33%;
+  min-width: 200px;
 
   @for $num from 1 through 20 {
     &:nth-child(#{$num}) {
@@ -24,4 +24,20 @@
     top: 0;
     opacity: 1;
   }
+}
+
+.preview-image {
+  width: 100%;
+  object-fit: cover;
+  object-position: top;
+  height: 200px;
+}
+
+.property-name {
+  display: block;
+}
+
+.flex-wrap {
+  display: flex;
+  flex-wrap: wrap;
 }

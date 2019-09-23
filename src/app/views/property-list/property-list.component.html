@@ -1,12 +1,19 @@
 <div class="propertyList-container">
+  <a routerLink="/properties/create">Create new property</a>
   <h2>Your properties</h2>
-  <div class="list-item" *ngFor="let property of properties">
-    <a [routerLink]="[property._id]">
-      {{ property.name }}
-    </a>
-    <div>{{ property.monthlyRent }}</div>
-    <button (click)="deleteProperty(property._id)">Delete</button>
+  <div class="flex-wrap">
+    <div class="list-item" *ngFor="let property of properties">
+      <img
+        class="preview-image"
+        *ngIf="property.imagePath"
+        [src]="property.imagePath"
+        alt=""
+      />
+      <a class="property-name" [routerLink]="[property._id]">
+        {{ property.name }}
+      </a>
+      <div>{{ property.monthlyRent }}</div>
+      <button (click)="deleteProperty(property._id)">Delete</button>
+    </div>
   </div>
-
-  <app-property-form></app-property-form>
 </div>

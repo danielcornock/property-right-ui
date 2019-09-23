@@ -26,7 +26,8 @@ export class SidebarComponent implements OnInit {
     }
   ];
 
-  public minimised: boolean = false;
+  public minimised: boolean =
+    localStorage.getItem('sidebar-minimised') === 'true';
   constructor(
     private authService: AuthService,
     private router: RouterService
@@ -40,6 +41,11 @@ export class SidebarComponent implements OnInit {
   }
 
   public minimiseNav() {
+    if (this.minimised) {
+      localStorage.setItem('sidebar-minimised', 'false');
+    } else {
+      localStorage.setItem('sidebar-minimised', 'true');
+    }
     this.minimised = !this.minimised;
   }
 

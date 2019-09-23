@@ -3,3 +3,18 @@
   flex-direction: column;
   align-items: flex-start;
 }
+
+.select-image {
+}
+
+.inputImageHidden {
+  visibility: hidden;
+}
+
+.image-preview {
+  width: 300px;
+
+  img {
+    width: 100%;
+  }
+}

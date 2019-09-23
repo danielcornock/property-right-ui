@@ -2,6 +2,7 @@
   <h1>{{ property.name }}</h1>
   <div>Price</div>
   <div>{{ property.monthlyRent }}</div>
+  <img class="preview-image" [src]="property.imagePath" alt="" />
 </div>
 <app-todo-create [propertyId]="propertyId"></app-todo-create>
 <app-todo-list [propertyId]="propertyId"></app-todo-list>

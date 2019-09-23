@@ -16,5 +16,14 @@
     formControlName="monthlyRent"
     required
   />
+
+  <input #imagePicker type="file" (change)="onImagePicked($event)" />
   <input type="submit" value="Submit" class="property-form__submit" />
 </form>
+
+<div
+  class="image-preview"
+  *ngIf="imagePreview !== '' && imagePreview && propertyForm.get('image').valid"
+>
+  <img [src]="imagePreview" />
+</div>

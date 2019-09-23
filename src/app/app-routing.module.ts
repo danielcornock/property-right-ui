@@ -7,6 +7,7 @@ import { AuthGuardService as AuthGuard } from './auth/services/guards/auth-guard
 import { PropertyListComponent } from './views/property-list/property-list.component';
 import { PropertySummaryComponent } from './views/property-summary/property-summary.component';
 import { TodosPageComponent } from './views/todos-page/todos-page.component';
+import { PropertyFormComponent } from './views/property-form/property-form.component';
 
 const routes: Routes = [
   { path: '', pathMatch: 'full', redirectTo: 'dashboard' },
@@ -16,6 +17,11 @@ const routes: Routes = [
     path: 'dashboard',
     canActivate: [AuthGuard],
     component: DashboardComponent
+  },
+  {
+    path: 'properties/create',
+    canActivate: [AuthGuard],
+    component: PropertyFormComponent
   },
   {
     path: 'properties/:propertyId',
