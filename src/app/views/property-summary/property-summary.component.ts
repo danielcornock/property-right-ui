@@ -1,7 +1,7 @@
 import { Component, OnInit } from '@angular/core';
-import { IProperty } from 'src/app/business/properties/interfaces/IProperty';
+import { IProperty } from 'src/app/properties/interfaces/IProperty';
 import { ActivatedRoute, ParamMap } from '@angular/router';
-import { PropertyService } from 'src/app/business/properties/services/property.service';
+import { PropertyService } from 'src/app/properties/services/property.service';
 
 @Component({
   selector: 'app-property-summary',

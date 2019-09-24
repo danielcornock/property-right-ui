@@ -9,13 +9,13 @@
 
 .login {
   &-container {
-    @include card-background;
+    @include card-default;
     @include flex(column);
-    padding: $padding-lrg;
+    padding: $spacing-lrg;
     border-radius: $br-med;
 
     @include media($phone) {
-      padding: $padding-lrg $padding-med;
+      padding: $spacing-lrg $spacing-med;
     }
   }
 
@@ -57,7 +57,7 @@
       font-size: $font-small;
       color: $color-text-grey;
 
-      @include hover($medium-trans) {
+      @include hover($t250) {
         color: $color-text-highlight;
       }
     }

@@ -12,13 +12,14 @@ import { SidebarComponent } from './layout/sidebar/sidebar.component';
 import { PropertyFormComponent } from './views/property-form/property-form.component';
 import { PropertyListComponent } from './views/property-list/property-list.component';
 import { PropertySummaryComponent } from './views/property-summary/property-summary.component';
-import { TodoListComponent } from './business/todos/todo-list/todo-list.component';
-import { TodoCreateComponent } from './business/todos/todo-create/todo-create.component';
-import { TodosPageComponent } from './views/todos-page/todos-page.component';
+import { TodoListComponent } from './todos/todo-list/todo-list.component';
+import { TodoCreateComponent } from './todos/todo-create/todo-create.component';
+import { TodosPageComponent } from './todos/views/todos-page/todos-page.component';
 import { IconsModule } from './icons/icons.module';
 import { LoadingAnimationComponent } from './presentation-components/loading-animation/loading-animation.component';
 import { CheckboxComponent } from './presentation-components/forms/checkbox/checkbox.component';
 import { UiIconComponent } from './presentation-components/assets/ui-icon/ui-icon.component';
+import { PropertyCardComponent } from './properties/presentation/property-card/property-card.component';
 
 @NgModule({
   declarations: [
@@ -35,7 +36,8 @@ import { UiIconComponent } from './presentation-components/assets/ui-icon/ui-ico
     TodosPageComponent,
     LoadingAnimationComponent,
     CheckboxComponent,
-    UiIconComponent
+    UiIconComponent,
+    PropertyCardComponent
   ],
   imports: [
     BrowserModule,

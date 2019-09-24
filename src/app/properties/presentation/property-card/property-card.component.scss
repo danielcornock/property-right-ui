@@ -1,0 +1,83 @@
+@import 'src/assets/styles/themes.scss';
+
+.propertyCard {
+  &-container {
+    @include flex(column);
+    @include card-default;
+    border-radius: $br-small;
+  }
+  &-image {
+    @include image-default;
+    height: 160px;
+  }
+  &-contents {
+    padding: $spacing-tiny $spacing-small;
+  }
+
+  &-income {
+    margin-bottom: $spacing-micro;
+    &__amount {
+      font-weight: $extra-bold;
+      letter-spacing: 1px;
+      font-size: $font-large;
+      color: $color-text-primary;
+    }
+    &__interval {
+      font-size: $font-small;
+      font-weight: $extra-bold;
+      color: $color-text-highlight;
+    }
+  }
+
+  &-address {
+    text-transform: uppercase;
+    color: $color-text-primary;
+    font-size: $font-tiny;
+    letter-spacing: 1.2px;
+    font-weight: $standard;
+    margin-bottom: $spacing-tiny;
+  }
+
+  &-button {
+    @include center-contents;
+    @include button-plain;
+    width: 100%;
+  }
+
+  &-contact {
+    @include flex(row);
+    justify-content: space-between;
+    background-color: $color-bg-light;
+    padding: $spacing-tiny $spacing-small;
+
+    &__tenant {
+      @include flex(column);
+    }
+
+    &__tenantLabel {
+      font-size: $font-tiny;
+      font-weight: $extra-bold;
+      text-transform: uppercase;
+      color: $color-text-highlight;
+      margin-bottom: $spacing-micro;
+    }
+
+    &__tenantName {
+      color: $color-text-sidebar;
+      font-weight: $light;
+      font-size: $font-standard;
+    }
+
+    &__buttons {
+      @include flex(row);
+      align-items: center;
+    }
+    &__button {
+      color: $color-text-highlight--inactive;
+      @include space-by(right, $spacing-small);
+      @include hover($t250) {
+        color: $color-text-highlight;
+      }
+    }
+  }
+}

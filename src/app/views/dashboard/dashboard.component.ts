@@ -1,8 +1,8 @@
 import { Component, OnInit, OnDestroy } from '@angular/core';
 import { HttpService } from 'src/app/core/api/http.service';
 import { IHttpResponse } from '../../core/api/interfaces/IHttpResponse';
-import { IProperty } from '../../business/properties/interfaces/IProperty';
-import { PropertyService } from 'src/app/business/properties/services/property.service';
+import { IProperty } from '../../properties/interfaces/IProperty';
+import { PropertyService } from 'src/app/properties/services/property.service';
 import { Subscription } from 'rxjs';
 
 @Component({
@@ -35,6 +35,17 @@ export class DashboardComponent implements OnInit, OnDestroy {
   getUserEmail() {
     // TODO - this is temporary
     return localStorage.getItem('email');
+  }
+
+  public deleteProperty(id: string) {
+    this.propertyService
+      .deleteProperty(id)
+      .then((msg: string) => {
+        console.log(msg);
+      })
+      .catch(err => {
+        console.log(err);
+      });
   }
 
   ngOnDestroy() {

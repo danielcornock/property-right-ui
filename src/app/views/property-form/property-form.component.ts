@@ -1,8 +1,8 @@
 import { Component, OnInit } from '@angular/core';
 import { FormGroup, Validators, FormControl } from '@angular/forms';
-import { PropertyService } from '../../business/properties/services/property.service';
+import { PropertyService } from '../../properties/services/property.service';
 import { Router, ActivatedRoute, ParamMap } from '@angular/router';
-import { IProperty } from 'src/app/business/properties/interfaces/IProperty';
+import { IProperty } from 'src/app/properties/interfaces/IProperty';
 
 @Component({
   selector: 'app-property-form',

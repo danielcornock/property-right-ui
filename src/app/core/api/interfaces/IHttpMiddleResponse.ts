@@ -1,5 +1,5 @@
 import { IHttpAuthResponse } from '../../../auth/interfaces/IHttpAuthResponse';
-import { IProperty } from 'src/app/business/properties/interfaces/IProperty';
+import { IProperty } from 'src/app/properties/interfaces/IProperty';
 import { ITodo } from 'src/app/business/todos/interfaces/ITodo';
 
 export interface IHttpMiddleResponse {

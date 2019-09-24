@@ -6,7 +6,7 @@ import { DashboardComponent } from './views/dashboard/dashboard.component';
 import { AuthGuardService as AuthGuard } from './auth/services/guards/auth-guard.service';
 import { PropertyListComponent } from './views/property-list/property-list.component';
 import { PropertySummaryComponent } from './views/property-summary/property-summary.component';
-import { TodosPageComponent } from './views/todos-page/todos-page.component';
+import { TodosPageComponent } from './todos/views/todos-page/todos-page.component';
 import { PropertyFormComponent } from './views/property-form/property-form.component';
 
 const routes: Routes = [

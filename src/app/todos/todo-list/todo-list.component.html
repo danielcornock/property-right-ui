@@ -5,7 +5,7 @@
   <div class="item">{{ todo.date }}</div>
   <div class="item">{{ todo.severity }}</div>
   <a
-    *ngIf="!propertyId"
+    *ngIf="!propertyId && todo.propertyId"
     class="item"
     [routerLink]="['/properties', todo.propertyId]"
     >{{ todo.propertyName }}</a

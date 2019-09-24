@@ -9,7 +9,11 @@ import {
   CheckSquare,
   LogOut,
   ChevronsLeft,
-  ChevronsRight
+  ChevronsRight,
+  Mail,
+  Phone,
+  MessageSquare,
+  Plus
 } from 'angular-feather/icons';
 
 const icons = {
@@ -19,7 +23,11 @@ const icons = {
   CheckSquare,
   LogOut,
   ChevronsLeft,
-  ChevronsRight
+  ChevronsRight,
+  Mail,
+  Phone,
+  MessageSquare,
+  Plus
 };
 
 @NgModule({

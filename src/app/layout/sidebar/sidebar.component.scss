@@ -4,7 +4,7 @@
   align-items: center;
   color: $color-text-sidebar;
   display: flex;
-  padding: $padding-small $padding-med;
+  padding: $spacing-tiny $spacing-med;
 }
 
 .sidebar {
@@ -14,7 +14,7 @@
   height: 100vh;
 
   &-branding {
-    padding: 60px $padding-med $padding-med;
+    padding: 60px $spacing-med $spacing-med;
 
     &.minimised {
       padding: 30px 20px;

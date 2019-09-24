@@ -7,31 +7,37 @@ $pale-grey: #aaaaaa;
 $dark-grey: #808080;
 $blue: #132253;
 
+//* Assigned Colours - background
 $color-bg-main: $pale-blue;
 $color-bg-card: $white;
 $color-bg-input: $pale-blue;
 $color-bg-highlight: $pink;
 $color-bg-light: $palest-grey;
+$color-bg-hover-light: $palest-grey;
 
+//* Assigned Colours - text
 $color-text-highlight: $pink;
 $color-text-grey: $pale-grey;
 $color-text-button-highlight: $white;
 $color-text-primary: $blue;
-
 $color-text-sidebar: $dark-grey;
 
-$color-bg-hover-light: $palest-grey;
+$color-text-highlight--inactive: rgba($pink, 0.7);
 
 //* Margin/Padding
-$padding-lrg: 70px;
-$padding-med: 40px;
-$padding-small: 15px;
+$spacing-lrg: 70px;
+$spacing-med: 40px;
+$spacing-small: 25px;
+$spacing-tiny: 15px;
+$spacing-micro: 5px;
 
 //* Border radius
 $br-max: 9999px;
 $br-med: 10px;
+$br-small: 5px;
 
 //* Font weight
+$light: 300;
 $standard: 400;
 $medium: 500;
 $semi-bold: 600;
@@ -39,7 +45,7 @@ $bold: 700;
 $extra-bold: 800;
 
 //* Transition times
-$medium-trans: 250ms;
+$t250: 250ms;
 
 //* Breakpoints
 $ld: 1014px;
@@ -49,3 +55,4 @@ $phone: 480px;
 $font-tiny: 12px;
 $font-small: 14px;
 $font-standard: 16px;
+$font-large: 24px;

@@ -1,7 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { Subscription } from 'rxjs';
-import { PropertyService } from 'src/app/business/properties/services/property.service';
-import { IProperty } from 'src/app/business/properties/interfaces/IProperty';
+import { PropertyService } from 'src/app/properties/services/property.service';
+import { IProperty } from 'src/app/properties/interfaces/IProperty';
 
 @Component({
   selector: 'app-property-list',
@@ -28,17 +28,6 @@ export class PropertyListComponent implements OnInit {
       .getPostUpdateListener()
       .subscribe((properties: Array<IProperty>) => {
         this.properties = properties;
-      });
-  }
-
-  public deleteProperty(id: string) {
-    this.propertyService
-      .deleteProperty(id)
-      .then((msg: string) => {
-        console.log(msg);
-      })
-      .catch(err => {
-        console.log(err);
       });
   }
 

@@ -1,0 +1,34 @@
+<div class="propertyCard-container">
+  <div class="propertyCard-imageContainer">
+    <img class="propertyCard-image" [src]="property.image" />
+  </div>
+  <div class="propertyCard-contents">
+    <div class="propertyCard-income">
+      <span class="propertyCard-income__amount"
+        >£{{ property.monthlyRent }}</span
+      >
+      <span class="propertyCard-income__interval"> / month</span>
+    </div>
+    <div class="propertyCard-address">{{ property.name }}</div>
+    <a routerLink="/properties/{{ property._id }}" class="propertyCard-button"
+      >View Details</a
+    >
+  </div>
+  <div class="propertyCard-contact">
+    <div class="propertyCard-contact__tenant">
+      <span class="propertyCard-contact__tenantLabel">Tenant</span>
+      <span class="propertyCard-contact__tenantName">Daniel Cornock</span>
+    </div>
+    <div class="propertyCard-contact__buttons">
+      <a href="" class="propertyCard-contact__button">
+        <app-ui-icon size="tiny" name="message-square"></app-ui-icon>
+      </a>
+      <a href="" class="propertyCard-contact__button">
+        <app-ui-icon size="tiny" name="mail"></app-ui-icon>
+      </a>
+      <a href="" class="propertyCard-contact__button">
+        <app-ui-icon size="tiny" name="phone"></app-ui-icon>
+      </a>
+    </div>
+  </div>
+</div>
