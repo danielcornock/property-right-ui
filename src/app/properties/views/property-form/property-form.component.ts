@@ -1,6 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { FormGroup, Validators, FormControl } from '@angular/forms';
-import { PropertyService } from '../../properties/services/property.service';
+import { PropertyService } from '../../services/property.service';
 import { Router, ActivatedRoute, ParamMap } from '@angular/router';
 import { IProperty } from 'src/app/properties/interfaces/IProperty';
 
