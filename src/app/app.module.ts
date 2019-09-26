@@ -21,6 +21,8 @@ import { CheckboxComponent } from './components/forms/checkbox/checkbox.componen
 import { UiIconComponent } from './components/assets/ui-icon/ui-icon.component';
 import { PropertyCardComponent } from './properties/presentation/property-card/property-card.component';
 import { TopbarComponent } from './layout/topbar/topbar.component';
+import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
+import { ToastrModule } from 'ngx-toastr';
 
 @NgModule({
   declarations: [
@@ -47,7 +49,9 @@ import { TopbarComponent } from './layout/topbar/topbar.component';
     ReactiveFormsModule,
     FormsModule,
     HttpClientModule,
-    IconsModule
+    IconsModule,
+    BrowserAnimationsModule,
+    ToastrModule.forRoot()
   ],
   providers: [],
   bootstrap: [AppComponent]

@@ -5,6 +5,7 @@ import { IHttpErrorResponse } from 'src/app/core/api/interfaces/IHttpErrorRespon
 import { IHttpResponse } from 'src/app/core/api/interfaces/IHttpResponse';
 import { Subject } from 'rxjs';
 import { IPropertyPatch } from '../interfaces/IPropertyPatch';
+import { ToastService } from 'src/app/components/toast-messages/toast.service';
 
 @Injectable({
   providedIn: 'root'
@@ -13,7 +14,7 @@ export class PropertyService {
   private propertyObservable = new Subject<IProperty[]>();
   private properties: Array<IProperty>;
 
-  constructor(private httpService: HttpService) {}
+  constructor(private httpService: HttpService, private toast: ToastService) {}
 
   private setPropertyData(property: IProperty | IPropertyPatch): FormData {
     const propertyForm = new FormData();
@@ -24,9 +25,7 @@ export class PropertyService {
     return propertyForm;
   }
 
-  public addProperty(
-    property: IProperty
-  ): Promise<{ msg: string; id?: string }> {
+  public addProperty(property: IProperty): Promise<string> {
     const propertyData = this.setPropertyData(property);
 
     return new Promise((resolve, reject) => {
@@ -37,14 +36,13 @@ export class PropertyService {
             this.properties.push(propertyResponse);
           }
           this.propertyObservable.next(this.properties);
-          resolve({
-            msg: 'Property successfully added.',
-            id: propertyResponse._id
-          });
+          this.toast.success('Property successfully added.');
+          resolve(propertyResponse._id);
         },
         (error: IHttpErrorResponse) => {
           console.log(error);
-          reject("Something's gone wrong!");
+          this.toast.error('Your property could not be added at this time.');
+          reject();
         }
       );
     });
@@ -65,7 +63,8 @@ export class PropertyService {
         },
         (error: IHttpErrorResponse) => {
           console.log(error);
-          reject('Not able to retrive properties at this time.');
+          this.toast.error('Not able to retrieve properties at this time.');
+          reject();
         }
       );
     });
@@ -78,11 +77,13 @@ export class PropertyService {
             property => property._id !== id
           );
           this.propertyObservable.next([...this.properties]);
-          resolve('Property successfully deleted.');
+          this.toast.success('Property successfully deleted');
+          resolve();
         },
         (error: IHttpErrorResponse) => {
           console.log(error);
-          reject('Not able to delete property at this time.');
+          this.toast.error('Property unable to be deleted at this time.');
+          reject();
         }
       );
     });
@@ -102,7 +103,8 @@ export class PropertyService {
         },
         (error: IHttpErrorResponse) => {
           console.log(error);
-          reject(error);
+          this.toast.error('Unable to fetch property at this time!');
+          reject();
         }
       );
     });
@@ -120,11 +122,13 @@ export class PropertyService {
           (res: IHttpResponse) => {
             this.properties = this._patchLocalProperty(res.data.property, id);
             this.propertyObservable.next([...this.properties]);
-            resolve('Property successfully updated');
+            this.toast.success('Property successfully updated.');
+            resolve();
           },
           error => {
             console.log(error);
-            reject('Unable to process at this time.');
+            this.toast.error('Unable to update property at this time.');
+            reject();
           }
         );
       }

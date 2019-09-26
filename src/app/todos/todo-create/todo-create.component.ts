@@ -3,7 +3,7 @@ import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { TodoService } from '../services/todo.service';
 import { PropertyService } from '../../properties/services/property.service';
 import { IProperty } from '../../properties/interfaces/IProperty';
-import { IPropertyDropdownOptions } from './interfaces/IPropertyDropdownOptions';
+import { IPropertyDropdownOption } from './interfaces/IPropertyDropdownOption';
 
 @Component({
   selector: 'app-todo-create',
@@ -13,7 +13,7 @@ import { IPropertyDropdownOptions } from './interfaces/IPropertyDropdownOptions'
 export class TodoCreateComponent implements OnInit {
   @Input() propertyId: string;
   todoForm: FormGroup;
-  propertyOptions: Array<IPropertyDropdownOptions> = [];
+  propertyOptions: Array<IPropertyDropdownOption> = [];
 
   constructor(
     private formBuilder: FormBuilder,
@@ -38,14 +38,7 @@ export class TodoCreateComponent implements OnInit {
     if (this.propertyId) {
       this.todoForm.value.propertyId = this.propertyId;
     }
-    this.todoService
-      .addTodo(this.todoForm.value)
-      .then(msg => {
-        console.log(msg);
-      })
-      .catch(err => {
-        console.error(err);
-      });
+    this.todoService.addTodo(this.todoForm.value);
   }
 
   private setPropertyDropdownOptions(): void {
@@ -58,9 +51,6 @@ export class TodoCreateComponent implements OnInit {
             id: property._id
           };
         });
-      })
-      .catch((err: string) => {
-        console.log(err);
       });
   }
 }

@@ -26,14 +26,7 @@ export class TodoListComponent implements OnInit, OnDestroy {
   }
 
   public deleteTodo(id: string): void {
-    this.todoService
-      .deleteTodo(id)
-      .then((msg: string) => {
-        console.log(msg);
-      })
-      .catch((err: string) => {
-        console.log(err);
-      });
+    this.todoService.deleteTodo(id);
   }
 
   private fetchTodos(): void {

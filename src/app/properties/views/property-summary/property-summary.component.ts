@@ -25,9 +25,6 @@ export class PropertySummaryComponent implements OnInit {
         .getProperty(this.propertyId)
         .then((property: IProperty) => {
           this.property = property;
-        })
-        .catch(err => {
-          console.log(err);
         });
     });
   }

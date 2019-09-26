@@ -37,13 +37,12 @@ export class LoginComponent implements OnInit {
     this.isLoading = true;
     this.authService
       .login(this.loginForm.value)
-      .then(msg => {
-        console.log(msg);
+      .then(() => {
+        this.isLoading = false;
         this.router.navigate('properties');
       })
-      .catch(err => {
+      .catch(() => {
         this.isLoading = false;
-        console.error(err);
       });
   }
 }

@@ -25,11 +25,10 @@ export class PropertyListComponent implements OnInit {
       .then((properties: Array<IProperty>) => {
         this.properties = properties;
         this.filteredProperties = properties;
-        console.log(this.filteredProperties);
         this.isLoading = false;
       })
-      .catch(err => {
-        console.log(err);
+      .catch(() => {
+        this.isLoading = false;
       });
 
     this.propertiesSub = this.propertyService

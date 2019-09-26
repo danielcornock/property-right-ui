@@ -8,6 +8,7 @@ import { IHttpErrorResponse } from 'src/app/core/api/interfaces/IHttpErrorRespon
 import { IHttpRegisterRequest } from '../register/interfaces/IHttpRegisterRequest';
 import { JwtService } from './jwt/jwt.service';
 import { CacheService } from 'src/app/core/cache/cache.service';
+import { ToastService } from 'src/app/components/toast-messages/toast.service';
 
 @Injectable({
   providedIn: 'root'
@@ -17,7 +18,8 @@ export class AuthService {
   constructor(
     private httpService: HttpService,
     private jwt: JwtService,
-    private cacheService: CacheService
+    private cacheService: CacheService,
+    private toast: ToastService
   ) {}
 
   login(user: IHttpLoginRequest): Promise<string> {
@@ -30,20 +32,28 @@ export class AuthService {
           const resUser: IHttpAuthResponse = res.data.user;
           if (res.token) {
             this.jwt.setToken(res.token);
-            return resolve('You are now successfully logged in.');
+            this.toast.blankSuccess(
+              `Welcome back, ${localStorage.getItem('email')}`
+            );
+            return resolve();
           } else {
-            reject("Sorry, we can't seem to log you in at the moment!");
+            this.toast.error(
+              "Sorry, we can't seem to log you in at the moment!"
+            );
+            reject();
           }
         },
         (error: IHttpErrorResponse) => {
           console.log(error);
-          reject("Sorry, that's the wrong email or password");
+          this.toast.error("That's the wrong username or password.");
+
+          reject();
         }
       );
     });
   }
 
-  register(user: IHttpRegisterRequest): Promise<string> {
+  register(user: IHttpRegisterRequest): Promise<boolean> {
     // TODO - Temporary solution - remove later
     localStorage.setItem('email', user.email);
 
@@ -53,16 +63,18 @@ export class AuthService {
           const resUser: IHttpAuthResponse = res.data.user;
           if (res.token) {
             this.jwt.setToken(res.token);
-            return resolve(
-              'You have successfully created an account. You are now logged in.'
+            this.toast.blankSuccess(
+              `Welcome to the crew, ${localStorage.getItem('email')}`
             );
+            return resolve();
           } else {
-            reject('Your account has been created. Please log in to continue.');
+            reject(true);
           }
         },
         (error: IHttpErrorResponse) => {
           console.log(error);
-          reject('Sorry, that email already exists!');
+          this.toast.error('That email address already exists.');
+          reject(false);
         }
       );
     });

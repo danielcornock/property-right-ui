@@ -66,28 +66,17 @@ export class PropertyFormComponent implements OnInit {
   }
 
   private _postNewProperty() {
-    this.propertyService
-      .addProperty(this.propertyForm.value)
-      .then(res => {
-        this.propertyForm.reset();
-        this.router.navigate([`/properties/${res.id}`]);
-        console.log(res.msg);
-      })
-      .catch(err => {
-        console.log(err);
-      });
+    this.propertyService.addProperty(this.propertyForm.value).then(id => {
+      this.propertyForm.reset();
+      this.router.navigate([`/properties/${id}`]);
+    });
   }
 
   private _editProperty() {
     this.propertyService
       .updateProperty(this.propertyForm.value, this.activePropertyId)
-      .then(msg => {
-        console.log(msg);
-        this.propertyForm.reset();
+      .then(() => {
         this.router.navigate([`/properties/${this.activePropertyId}`]);
-      })
-      .catch(err => {
-        console.log(err);
       });
   }
 

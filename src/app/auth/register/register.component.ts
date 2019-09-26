@@ -34,12 +34,13 @@ export class RegisterComponent implements OnInit {
     }
     this.authService
       .register(this.registerForm.value)
-      .then(msg => {
-        console.log(msg);
+      .then(() => {
         this.router.navigate('dashboard');
       })
-      .catch(err => {
-        console.error(err);
+      .catch((jwt: boolean) => {
+        if (jwt) {
+          this.router.navigate('login');
+        }
       });
   }
 }

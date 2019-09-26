@@ -64,13 +64,13 @@
 }
 
 @mixin box-shadow($strength) {
-  @if ($strength = 'light') {
+  @if ($strength == 'light') {
     box-shadow: 0 1px 8px rgba(0, 0, 0, 0.05);
   }
-  @if ($strength = 'feint') {
+  @if ($strength == 'feint') {
     box-shadow: 0 2px 24px rgba(0, 0, 0, 0.12);
   }
-  @if ($strength = 'feint-active') {
+  @if ($strength == 'feint-active') {
     box-shadow: 0 2px 32px rgba(0, 0, 0, 0.12);
   }
 }
