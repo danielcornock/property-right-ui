@@ -1,0 +1,31 @@
+@import 'src/assets/styles/themes.scss';
+
+.topbar {
+  &-container {
+    // background-color: rgba($color-bg-highlight, 0.1);
+    @include flex(row);
+    justify-content: space-between;
+    padding: $spacing-lrg $spacing-small 0;
+    align-items: baseline;
+  }
+
+  &-settings {
+    @include button-default;
+    @include flex(row);
+    align-items: center;
+    &__label {
+      text-transform: uppercase;
+      margin-right: $spacing-micro;
+      font-size: $font-tiny;
+      font-weight: $bold;
+    }
+    &__icon {
+      color: $color-text-highlight;
+    }
+  }
+}
+
+.page-title {
+  color: $blue;
+  margin-top: 0;
+}

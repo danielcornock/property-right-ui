@@ -8,10 +8,12 @@
 }
 
 .sidebar {
-  @include flex(column);
-  @include box-shadow(light);
-  background-color: $color-bg-card;
-  height: 100vh;
+  &-container {
+    @include flex(column);
+    @include box-shadow(light);
+    background-color: $color-bg-card;
+    height: 100vh;
+  }
 
   &-branding {
     padding: 60px $spacing-med $spacing-med;

@@ -39,7 +39,7 @@ export class LoginComponent implements OnInit {
       .login(this.loginForm.value)
       .then(msg => {
         console.log(msg);
-        this.router.navigate('dashboard');
+        this.router.navigate('properties');
       })
       .catch(err => {
         this.isLoading = false;

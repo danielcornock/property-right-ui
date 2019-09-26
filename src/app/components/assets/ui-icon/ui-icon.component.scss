@@ -4,6 +4,10 @@
   @include center-contents;
 }
 .icon {
+  &-medium {
+    width: 32px;
+    height: 32px;
+  }
   &-small {
     width: 25px;
     height: 25px;

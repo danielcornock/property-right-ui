@@ -5,6 +5,13 @@
     @include flex(column);
     @include card-default;
     border-radius: $br-small;
+    position: relative;
+    top: 0;
+
+    @include hover($t150) {
+      top: -5px;
+      @include box-shadow(feint-active);
+    }
   }
   &-image {
     @include image-default;

@@ -13,7 +13,10 @@ import {
   Mail,
   Phone,
   MessageSquare,
-  Plus
+  Plus,
+  Settings,
+  Filter,
+  Search
 } from 'angular-feather/icons';
 
 const icons = {
@@ -27,7 +30,10 @@ const icons = {
   Mail,
   Phone,
   MessageSquare,
-  Plus
+  Plus,
+  Settings,
+  Filter,
+  Search
 };
 
 @NgModule({

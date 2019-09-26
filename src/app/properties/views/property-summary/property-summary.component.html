@@ -4,6 +4,7 @@
   <div>{{ property.monthlyRent }}</div>
   <img class="preview-image" [src]="property.image" alt="" />
   <a routerLink="/properties/edit/{{ property._id }}">Edit Property</a>
+  <button (click)="deleteProperty()">Delete Property</button>
 </div>
 <app-todo-create [propertyId]="propertyId"></app-todo-create>
 <app-todo-list [propertyId]="propertyId"></app-todo-list>

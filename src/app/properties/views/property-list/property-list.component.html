@@ -1,16 +1,36 @@
 <div class="propertyList-container">
+  <!-- <h2 class="page-title">{{ pageTitle }}</h2> -->
   <div class="flex-between">
-    <h2>Your properties</h2>
+    <div class="search-container" [class.search-active]="searchFocus">
+      <div class="search-icon">
+        <app-ui-icon name="search" size="tiny"></app-ui-icon>
+      </div>
+      <input
+        type="text"
+        #searchBar
+        (keyup)="searchProperties($event)"
+        (focus)="setSearchFocus(true)"
+        (blur)="setSearchFocus(false)"
+        class="test-search"
+        placeholder="START TYPING TO SEARCH..."
+      />
+    </div>
+    <button class="add-new">
+      <app-ui-icon size="tiny" name="filter" class="button-icon"></app-ui-icon>
+      Filter
+    </button>
     <a routerLink="create" class="add-new">
       <app-ui-icon size="tiny" name="plus" class="button-icon"></app-ui-icon>
       Add New</a
     >
   </div>
   <div class="flex-wrap">
+    <app-loading-animation *ngIf="isLoading"></app-loading-animation>
+    <p *ngIf="properties && !filteredProperties.length">No properties found.</p>
     <app-property-card
       class="list-item"
       [property]="property"
-      *ngFor="let property of properties"
+      *ngFor="let property of filteredProperties"
     ></app-property-card>
   </div>
 </div>

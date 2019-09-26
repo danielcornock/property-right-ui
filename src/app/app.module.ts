@@ -20,6 +20,7 @@ import { LoadingAnimationComponent } from './components/assets/loading-animation
 import { CheckboxComponent } from './components/forms/checkbox/checkbox.component';
 import { UiIconComponent } from './components/assets/ui-icon/ui-icon.component';
 import { PropertyCardComponent } from './properties/presentation/property-card/property-card.component';
+import { TopbarComponent } from './layout/topbar/topbar.component';
 
 @NgModule({
   declarations: [
@@ -37,7 +38,8 @@ import { PropertyCardComponent } from './properties/presentation/property-card/p
     LoadingAnimationComponent,
     CheckboxComponent,
     UiIconComponent,
-    PropertyCardComponent
+    PropertyCardComponent,
+    TopbarComponent
   ],
   imports: [
     BrowserModule,

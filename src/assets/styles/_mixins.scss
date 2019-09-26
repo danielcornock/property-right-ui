@@ -4,7 +4,7 @@
 
 @mixin card-default {
   @include card-background;
-  box-shadow: 0 2px 24px rgba(0, 0, 0, 0.12);
+  @include box-shadow(feint);
   overflow: hidden;
 }
 
@@ -67,6 +67,12 @@
   @if ($strength = 'light') {
     box-shadow: 0 1px 8px rgba(0, 0, 0, 0.05);
   }
+  @if ($strength = 'feint') {
+    box-shadow: 0 2px 24px rgba(0, 0, 0, 0.12);
+  }
+  @if ($strength = 'feint-active') {
+    box-shadow: 0 2px 32px rgba(0, 0, 0, 0.12);
+  }
 }
 
 @mixin pseudo($type) {
@@ -88,6 +94,7 @@
 @mixin button-default {
   border: none;
   cursor: pointer;
+  background-color: transparent;
 }
 
 @mixin image-default {
