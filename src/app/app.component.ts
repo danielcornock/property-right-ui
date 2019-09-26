@@ -9,7 +9,7 @@ import { AuthService } from './auth/services/auth.service';
 export class AppComponent {
   constructor(private authService: AuthService) {}
 
-  public showSidebar() {
+  public isLoggedIn() {
     return this.authService.isAuthenticated();
   }
 }

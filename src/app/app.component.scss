@@ -10,6 +10,12 @@
 }
 
 .router {
+}
+
+.logged-in {
   padding: $spacing-small;
-  min-height: 100%;
+}
+
+.logged-out {
+  height: 100%;
 }

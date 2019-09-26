@@ -1,10 +1,13 @@
 <div class="app">
   <div class="sidebar">
-    <app-sidebar class="sidebar" *ngIf="showSidebar()"></app-sidebar>
+    <app-sidebar class="sidebar" *ngIf="isLoggedIn()"></app-sidebar>
   </div>
   <div class="main">
     <!-- <app-topbar *ngIf="showSidebar()"></app-topbar> -->
-    <div class="router">
+    <div *ngIf="!isLoggedIn()" class="router logged-out">
+      <router-outlet></router-outlet>
+    </div>
+    <div *ngIf="isLoggedIn()" class="router logged-in">
       <router-outlet></router-outlet>
     </div>
   </div>
