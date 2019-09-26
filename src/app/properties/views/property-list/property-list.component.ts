@@ -16,7 +16,7 @@ export class PropertyListComponent implements OnInit {
   public properties: Array<IProperty>;
   private propertiesSub: Subscription;
   constructor(private propertyService: PropertyService) {}
-  @ViewChild('searchBar') searchBar;
+  @ViewChild('searchBar', { static: true }) searchBar;
 
   ngOnInit() {
     this.isLoading = true;
