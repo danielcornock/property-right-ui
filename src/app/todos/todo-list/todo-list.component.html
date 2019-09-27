@@ -1,14 +1,17 @@
 <h3>Todos</h3>
 
-<div *ngFor="let todo of todos" class="flex">
+<div *ngFor="let todo of todos"
+     class="flex"
+     (click)="toggleCompleted(todo)"
+     [class.completed]="todo.completed">
   <div class="item">{{ todo.title }}</div>
   <div class="item">{{ todo.date }}</div>
   <div class="item">{{ todo.severity }}</div>
   <a
-    *ngIf="!propertyId && todo.propertyId"
-    class="item"
-    [routerLink]="['/properties', todo.propertyId]"
-    >{{ todo.propertyName }}</a
+          *ngIf="!propertyId && todo.propertyId"
+          class="item"
+          [routerLink]="['/properties', todo.propertyId]"
+  >{{ todo.propertyName }}</a
   >
   <button (click)="deleteTodo(todo._id)">Delete</button>
 </div>

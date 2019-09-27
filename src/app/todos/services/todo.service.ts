@@ -1,10 +1,10 @@
 import { Injectable } from '@angular/core';
-import { HttpService } from 'src/app/core/api/http.service';
-import { ITodo } from '../interfaces/ITodo';
-import { IHttpResponse } from 'src/app/core/api/interfaces/IHttpResponse';
-import { IHttpErrorResponse } from 'src/app/core/api/interfaces/IHttpErrorResponse';
 import { Subject } from 'rxjs';
 import { ToastService } from 'src/app/components/toast-messages/toast.service';
+import { HttpService } from 'src/app/core/api/http.service';
+import { IHttpErrorResponse } from 'src/app/core/api/interfaces/IHttpErrorResponse';
+import { IHttpResponse } from 'src/app/core/api/interfaces/IHttpResponse';
+import { ITodo } from '../interfaces/ITodo';
 
 @Injectable({
   providedIn: 'root'
@@ -12,7 +12,10 @@ import { ToastService } from 'src/app/components/toast-messages/toast.service';
 export class TodoService {
   public todoObservable = new Subject<ITodo>();
   public todoDeleteObservable = new Subject<string>();
-  constructor(private httpService: HttpService, private toast: ToastService) {}
+  public todoUpdateObservable = new Subject<ITodo>();
+
+  constructor(private httpService: HttpService, private toast: ToastService) {
+  }
 
   public addTodo(todo: ITodo): void {
     this.httpService.post('todos', todo).subscribe(
@@ -23,7 +26,7 @@ export class TodoService {
       },
       (error: IHttpErrorResponse) => {
         console.log(error);
-        this.toast.error("Something's gone wrong!");
+        this.toast.error('Something\'s gone wrong!');
       }
     );
   }
@@ -44,8 +47,8 @@ export class TodoService {
     });
   }
 
-  public deleteTodo(id: string): void {
-    this.httpService.delete(`todos/${id}`).subscribe(
+  public deleteTodo(id: string): void | IHttpErrorResponse {
+    this.httpService.delete(`todos/${ id }`).subscribe(
       () => {
         this.todoDeleteObservable.next(id);
         this.toast.success('Todo item successfully deleted.');
@@ -57,9 +60,23 @@ export class TodoService {
     );
   }
 
+  public toggleTodoCompletion(id: string, status: boolean): Promise<ITodo | null> {
+    const newStatus = { completed: status };
+    return new Promise((resolve, reject) => {
+      this.httpService.put(`todos/${ id }`, newStatus)
+        .subscribe((res: IHttpResponse) => {
+          const todoRes = res.data.todo;
+          resolve(todoRes);
+        }, error => {
+          console.log(error);
+          reject();
+        });
+    });
+  }
+
   private setTodoRoute(propertyId: string) {
     if (propertyId) {
-      return `properties/${propertyId}/todos`;
+      return `properties/${ propertyId }/todos`;
     } else {
       return 'todos';
     }

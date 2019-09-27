@@ -1,7 +1,7 @@
-import { Component, OnInit, Input, OnDestroy } from '@angular/core';
-import { TodoService } from '../services/todo.service';
-import { ITodo } from '../interfaces/ITodo';
+import { Component, Input, OnDestroy, OnInit } from '@angular/core';
 import { Subscription } from 'rxjs';
+import { ITodo } from '../interfaces/ITodo';
+import { TodoService } from '../services/todo.service';
 
 @Component({
   selector: 'app-todo-list',
@@ -17,7 +17,8 @@ export class TodoListComponent implements OnInit, OnDestroy {
   private todoSub: Subscription;
   private todoDeleteSub: Subscription;
 
-  constructor(private todoService: TodoService) {}
+  constructor(private todoService: TodoService) {
+  }
 
   ngOnInit() {
     this.fetchTodos();
@@ -27,6 +28,19 @@ export class TodoListComponent implements OnInit, OnDestroy {
 
   public deleteTodo(id: string): void {
     this.todoService.deleteTodo(id);
+  }
+
+  public toggleCompleted(todo: ITodo): void {
+    const newStatus = !todo.completed;
+    this.todoService.toggleTodoCompletion(todo._id, newStatus)
+      .then((res: ITodo) => {
+        this.todos = this._patchLocalTodos(newStatus, todo._id);
+      });
+  }
+
+  ngOnDestroy() {
+    this.todoSub.unsubscribe();
+    this.todoDeleteSub.unsubscribe();
   }
 
   private fetchTodos(): void {
@@ -54,8 +68,12 @@ export class TodoListComponent implements OnInit, OnDestroy {
     );
   }
 
-  ngOnDestroy() {
-    this.todoSub.unsubscribe();
-    this.todoDeleteSub.unsubscribe();
+  private _patchLocalTodos(newState, id) {
+    const updatedTodos = [...this.todos];
+    const oldTodoIndex: number = updatedTodos.findIndex(t => t._id === id);
+    updatedTodos[oldTodoIndex].completed = newState;
+
+    return updatedTodos;
+
   }
 }
