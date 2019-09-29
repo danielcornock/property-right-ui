@@ -13,34 +13,49 @@ export class TodoListComponent implements OnInit, OnDestroy {
   propertyId: string = '';
 
   public todos: Array<ITodo>;
+  public showCompleted: boolean = false;
 
   private todoSub: Subscription;
   private todoDeleteSub: Subscription;
 
-  constructor(private todoService: TodoService) {
-  }
+  constructor(private todoService: TodoService) {}
 
   ngOnInit() {
     this.fetchTodos();
     this.observeNewTodos();
-    this.observeDeletedTodos();
+  }
+
+  public getActiveTodos() {
+    if (this.todos) {
+      return this.todos.filter(todo => todo.completed === false);
+    }
+  }
+
+  public getCompletedTodos() {
+    if (this.todos && this.showCompleted === true) {
+      return this.todos.filter(todo => todo.completed === true);
+    }
   }
 
   public deleteTodo(id: string): void {
-    this.todoService.deleteTodo(id);
+    this.todoService.deleteTodo(id).then(() => {
+      this._deleteLocalTodos(id);
+    });
   }
 
   public toggleCompleted(todo: ITodo): void {
     const newStatus = !todo.completed;
-    this.todoService.toggleTodoCompletion(todo._id, newStatus)
-      .then((res: ITodo) => {
-        this.todos = this._patchLocalTodos(newStatus, todo._id);
-      });
+    this.todoService.toggleTodoCompletion(todo._id, newStatus).then(() => {
+      this.todos = this._patchLocalTodos(newStatus, todo._id);
+    });
   }
 
   ngOnDestroy() {
     this.todoSub.unsubscribe();
-    this.todoDeleteSub.unsubscribe();
+  }
+
+  public setShowCompleted() {
+    this.showCompleted = true;
   }
 
   private fetchTodos(): void {
@@ -60,12 +75,8 @@ export class TodoListComponent implements OnInit, OnDestroy {
     });
   }
 
-  private observeDeletedTodos(): void {
-    this.todoDeleteSub = this.todoService.todoDeleteObservable.subscribe(
-      (todoId: string) => {
-        this.todos = this.todos.filter(todo => todo._id !== todoId);
-      }
-    );
+  private _deleteLocalTodos(todoId: string): void {
+    this.todos = this.todos.filter(todo => todo._id !== todoId);
   }
 
   private _patchLocalTodos(newState, id) {
@@ -74,6 +85,5 @@ export class TodoListComponent implements OnInit, OnDestroy {
     updatedTodos[oldTodoIndex].completed = newState;
 
     return updatedTodos;
-
   }
 }

@@ -11,24 +11,25 @@ import { ITodo } from '../interfaces/ITodo';
 })
 export class TodoService {
   public todoObservable = new Subject<ITodo>();
-  public todoDeleteObservable = new Subject<string>();
-  public todoUpdateObservable = new Subject<ITodo>();
 
-  constructor(private httpService: HttpService, private toast: ToastService) {
-  }
+  constructor(private httpService: HttpService, private toast: ToastService) {}
 
-  public addTodo(todo: ITodo): void {
-    this.httpService.post('todos', todo).subscribe(
-      (res: IHttpResponse) => {
-        const todoResponse: ITodo = res.data.todo;
-        this.todoObservable.next(todoResponse);
-        this.toast.success('Todo item successfully added.');
-      },
-      (error: IHttpErrorResponse) => {
-        console.log(error);
-        this.toast.error('Something\'s gone wrong!');
-      }
-    );
+  public addTodo(todo: ITodo): Promise<void> {
+    return new Promise((resolve, reject) => {
+      this.httpService.post('todos', todo).subscribe(
+        (res: IHttpResponse) => {
+          const todoResponse: ITodo = res.data.todo;
+          this.todoObservable.next(todoResponse);
+          this.toast.success('Todo item successfully added.');
+          resolve();
+        },
+        (error: IHttpErrorResponse) => {
+          console.log(error);
+          this.toast.error("Something's gone wrong!");
+          reject();
+        }
+      );
+    });
   }
 
   public getTodos(propertyId?: string): Promise<Array<ITodo>> {
@@ -47,36 +48,41 @@ export class TodoService {
     });
   }
 
-  public deleteTodo(id: string): void | IHttpErrorResponse {
-    this.httpService.delete(`todos/${ id }`).subscribe(
-      () => {
-        this.todoDeleteObservable.next(id);
-        this.toast.success('Todo item successfully deleted.');
-      },
-      (error: IHttpErrorResponse) => {
-        console.log(error);
-        this.toast.error('Not able to delete todo at this time.');
-      }
-    );
+  public deleteTodo(id: string): Promise<void> {
+    return new Promise((resolve, reject) => {
+      this.httpService.delete(`todos/${id}`).subscribe(
+        () => {
+          this.toast.success('Todo item successfully deleted.');
+          resolve();
+        },
+        (error: IHttpErrorResponse) => {
+          console.log(error);
+          this.toast.error('Not able to delete todo at this time.');
+          reject();
+        }
+      );
+    });
   }
 
-  public toggleTodoCompletion(id: string, status: boolean): Promise<ITodo | null> {
+  public toggleTodoCompletion(id: string, status: boolean): Promise<null> {
     const newStatus = { completed: status };
     return new Promise((resolve, reject) => {
-      this.httpService.put(`todos/${ id }`, newStatus)
-        .subscribe((res: IHttpResponse) => {
+      this.httpService.put(`todos/${id}`, newStatus).subscribe(
+        (res: IHttpResponse) => {
           const todoRes = res.data.todo;
-          resolve(todoRes);
-        }, error => {
+          resolve();
+        },
+        error => {
           console.log(error);
           reject();
-        });
+        }
+      );
     });
   }
 
   private setTodoRoute(propertyId: string) {
     if (propertyId) {
-      return `properties/${ propertyId }/todos`;
+      return `properties/${propertyId}/todos`;
     } else {
       return 'todos';
     }

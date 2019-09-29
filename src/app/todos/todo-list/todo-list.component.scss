@@ -1,5 +1,8 @@
+@import 'src/assets/styles/themes.scss';
+
 .flex {
   display: flex;
+  align-items: center;
 }
 
 .item {
@@ -9,4 +12,14 @@
 .completed {
   background-color: rgba(green, 0.3);
   text-decoration: strikethrough;
+  & > .item {
+    @include pseudo(after) {
+      left: 0;
+      width: 100%;
+      top: 50%;
+      transform: translateY(-50%);
+      height: 2px;
+      background-color: grey;
+    }
+  }
 }
