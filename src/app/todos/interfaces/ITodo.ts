@@ -4,7 +4,7 @@ export interface ITodo {
   propertyName?: string;
   user: string;
   title: string;
-  due?: Date;
+  date?: Date;
   severity?: 'easy' | 'moderate' | 'severe';
   completed: boolean;
 }

@@ -1,4 +1,4 @@
-import { Component, OnInit, ViewChild, HostListener } from '@angular/core';
+import { Component, OnInit, ViewChild, HostListener, OnDestroy } from '@angular/core';
 import { Subscription } from 'rxjs';
 import { PropertyService } from 'src/app/properties/services/property.service';
 import { IProperty } from 'src/app/properties/interfaces/IProperty';
@@ -8,7 +8,7 @@ import { IProperty } from 'src/app/properties/interfaces/IProperty';
   templateUrl: './property-list.component.html',
   styleUrls: ['./property-list.component.scss']
 })
-export class PropertyListComponent implements OnInit {
+export class PropertyListComponent implements OnInit, OnDestroy {
   public searchFocus: boolean = false;
   public pageTitle: string = 'Your Properties';
   public isLoading: boolean;
@@ -54,7 +54,7 @@ export class PropertyListComponent implements OnInit {
     const filteredProps = this.properties.filter(property => {
       return property.name
         .toLowerCase()
-        .includes(event.target.value.toLowerCase());
+        .includes((event.target as HTMLInputElement).value.toLowerCase());
     });
     console.log(filteredProps);
 

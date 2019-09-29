@@ -22,12 +22,7 @@ export class TodoCreateComponent implements OnInit {
   ) {}
 
   ngOnInit() {
-    this.todoForm = this.formBuilder.group({
-      title: ['', Validators.required],
-      date: '',
-      severity: '',
-      propertyId: null
-    });
+    this.todoForm = this._initialiseTodoForm();
     this.setPropertyDropdownOptions();
   }
 
@@ -38,7 +33,10 @@ export class TodoCreateComponent implements OnInit {
     if (this.propertyId) {
       this.todoForm.value.propertyId = this.propertyId;
     }
-    this.todoService.addTodo(this.todoForm.value);
+    this.todoService.addTodo(this.todoForm.value).then(() => {
+      this.todoForm.reset();
+      this.todoForm = this._initialiseTodoForm();
+    });
   }
 
   private setPropertyDropdownOptions(): void {
@@ -52,5 +50,14 @@ export class TodoCreateComponent implements OnInit {
           };
         });
       });
+  }
+
+  private _initialiseTodoForm() {
+    return this.formBuilder.group({
+      title: ['', Validators.required],
+      date: '',
+      severity: '',
+      propertyId: null
+    });
   }
 }

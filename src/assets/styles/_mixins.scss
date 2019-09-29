@@ -76,6 +76,7 @@
 }
 
 @mixin pseudo($type) {
+  position: relative;
   @if ($type == 'before') {
     &::before {
       content: '';

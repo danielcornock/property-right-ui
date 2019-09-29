@@ -1,7 +1,7 @@
-import { Component, OnInit, Input, OnDestroy } from '@angular/core';
-import { TodoService } from '../services/todo.service';
-import { ITodo } from '../interfaces/ITodo';
+import { Component, Input, OnDestroy, OnInit } from '@angular/core';
 import { Subscription } from 'rxjs';
+import { ITodo } from '../interfaces/ITodo';
+import { TodoService } from '../services/todo.service';
 
 @Component({
   selector: 'app-todo-list',
@@ -13,6 +13,7 @@ export class TodoListComponent implements OnInit, OnDestroy {
   propertyId: string = '';
 
   public todos: Array<ITodo>;
+  public showCompleted: boolean = false;
 
   private todoSub: Subscription;
   private todoDeleteSub: Subscription;
@@ -22,11 +23,39 @@ export class TodoListComponent implements OnInit, OnDestroy {
   ngOnInit() {
     this.fetchTodos();
     this.observeNewTodos();
-    this.observeDeletedTodos();
+  }
+
+  public getActiveTodos() {
+    if (this.todos) {
+      return this.todos.filter(todo => todo.completed === false);
+    }
+  }
+
+  public getCompletedTodos() {
+    if (this.todos && this.showCompleted === true) {
+      return this.todos.filter(todo => todo.completed === true);
+    }
   }
 
   public deleteTodo(id: string): void {
-    this.todoService.deleteTodo(id);
+    this.todoService.deleteTodo(id).then(() => {
+      this._deleteLocalTodos(id);
+    });
+  }
+
+  public toggleCompleted(todo: ITodo): void {
+    const newStatus = !todo.completed;
+    this.todoService.toggleTodoCompletion(todo._id, newStatus).then(() => {
+      this.todos = this._patchLocalTodos(newStatus, todo._id);
+    });
+  }
+
+  ngOnDestroy() {
+    this.todoSub.unsubscribe();
+  }
+
+  public setShowCompleted() {
+    this.showCompleted = true;
   }
 
   private fetchTodos(): void {
@@ -46,16 +75,15 @@ export class TodoListComponent implements OnInit, OnDestroy {
     });
   }
 
-  private observeDeletedTodos(): void {
-    this.todoDeleteSub = this.todoService.todoDeleteObservable.subscribe(
-      (todoId: string) => {
-        this.todos = this.todos.filter(todo => todo._id !== todoId);
-      }
-    );
+  private _deleteLocalTodos(todoId: string): void {
+    this.todos = this.todos.filter(todo => todo._id !== todoId);
   }
 
-  ngOnDestroy() {
-    this.todoSub.unsubscribe();
-    this.todoDeleteSub.unsubscribe();
+  private _patchLocalTodos(newState, id) {
+    const updatedTodos = [...this.todos];
+    const oldTodoIndex: number = updatedTodos.findIndex(t => t._id === id);
+    updatedTodos[oldTodoIndex].completed = newState;
+
+    return updatedTodos;
   }
 }

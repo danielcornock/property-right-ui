@@ -15,17 +15,6 @@ export class TodosPageComponent implements OnInit {
     this.getAllTodos();
   }
 
-  public deleteTodo(id: string): void {
-    this.todoService
-      .deleteTodo(id)
-      .then((msg: string) => {
-        console.log(msg);
-      })
-      .catch((err: string) => {
-        console.log(err);
-      });
-  }
-
   private getAllTodos(): void {
     this.todoService
       .getTodos('')
