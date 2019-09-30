@@ -14,6 +14,7 @@ export class TodoListComponent implements OnInit, OnDestroy {
 
   public todos: Array<ITodo>;
   public showCompleted: boolean = false;
+  public isLoading: boolean;
 
   private todoSub: Subscription;
   private todoDeleteSub: Subscription;
@@ -21,6 +22,7 @@ export class TodoListComponent implements OnInit, OnDestroy {
   constructor(private todoService: TodoService) {}
 
   ngOnInit() {
+    this.isLoading = true;
     this.fetchTodos();
     this.observeNewTodos();
   }
@@ -44,6 +46,7 @@ export class TodoListComponent implements OnInit, OnDestroy {
   }
 
   public toggleCompleted(todo: ITodo): void {
+    console.log('toggle completed');
     const newStatus = !todo.completed;
     this.todoService.toggleTodoCompletion(todo._id, newStatus).then(() => {
       this.todos = this._patchLocalTodos(newStatus, todo._id);
@@ -63,8 +66,10 @@ export class TodoListComponent implements OnInit, OnDestroy {
       .getTodos(this.propertyId)
       .then((todos: Array<ITodo>) => {
         this.todos = todos;
+        this.isLoading = false;
       })
       .catch((err: string) => {
+        this.isLoading = false;
         console.log(err);
       });
   }

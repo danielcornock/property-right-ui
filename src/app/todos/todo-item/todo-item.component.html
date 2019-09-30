@@ -1,0 +1,19 @@
+<div class="todoItem-container">
+  <span class="todoItem-title">{{ todo.title }}</span>
+  <span class="todoItem-date">{{ todo.date }}</span>
+  <span class="todoItem-severity">{{ todo.severity }}</span>
+  <span class="todoItem-propertyContainer">
+    <a
+      *ngIf="!propertyId && todo.propertyId"
+      class="todoItem-property"
+      [routerLink]="['/properties', todo.propertyId]"
+    >
+      {{ todo.propertyName }}
+    </a>
+  </span>
+  <button (click)="emitToggleCompleted()">
+    <span *ngIf="!todo.completed">Complete</span>
+    <span *ngIf="todo.completed">Make Active</span>
+  </button>
+  <button (click)="emitDeleteTodo()">Delete</button>
+</div>
