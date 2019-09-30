@@ -46,7 +46,6 @@ export class TodoListComponent implements OnInit, OnDestroy {
   }
 
   public toggleCompleted(todo: ITodo): void {
-    console.log('toggle completed');
     const newStatus = !todo.completed;
     this.todoService.toggleTodoCompletion(todo._id, newStatus).then(() => {
       this.todos = this._patchLocalTodos(newStatus, todo._id);
