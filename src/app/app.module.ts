@@ -23,6 +23,7 @@ import { PropertyCardComponent } from './properties/presentation/property-card/p
 import { TopbarComponent } from './layout/topbar/topbar.component';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { ToastrModule } from 'ngx-toastr';
+import { TodoItemComponent } from './todos/todo-item/todo-item.component';
 
 @NgModule({
   declarations: [
@@ -41,7 +42,8 @@ import { ToastrModule } from 'ngx-toastr';
     CheckboxComponent,
     UiIconComponent,
     PropertyCardComponent,
-    TopbarComponent
+    TopbarComponent,
+    TodoItemComponent
   ],
   imports: [
     BrowserModule,

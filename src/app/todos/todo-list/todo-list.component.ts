@@ -14,6 +14,7 @@ export class TodoListComponent implements OnInit, OnDestroy {
 
   public todos: Array<ITodo>;
   public showCompleted: boolean = false;
+  public isLoading: boolean;
 
   private todoSub: Subscription;
   private todoDeleteSub: Subscription;
@@ -21,6 +22,7 @@ export class TodoListComponent implements OnInit, OnDestroy {
   constructor(private todoService: TodoService) {}
 
   ngOnInit() {
+    this.isLoading = true;
     this.fetchTodos();
     this.observeNewTodos();
   }
@@ -63,8 +65,10 @@ export class TodoListComponent implements OnInit, OnDestroy {
       .getTodos(this.propertyId)
       .then((todos: Array<ITodo>) => {
         this.todos = todos;
+        this.isLoading = false;
       })
       .catch((err: string) => {
+        this.isLoading = false;
         console.log(err);
       });
   }

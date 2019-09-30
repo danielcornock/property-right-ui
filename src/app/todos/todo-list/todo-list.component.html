@@ -1,31 +1,24 @@
 <h3>Todos</h3>
+<app-loading-animation *ngIf="isLoading"></app-loading-animation>
 
-<div *ngFor="let todo of getActiveTodos()" class="flex">
-  <div class="item">{{ todo.title }}</div>
-  <div class="item">{{ todo.date }}</div>
-  <div class="item">{{ todo.severity }}</div>
-  <a
-    *ngIf="!propertyId && todo.propertyId"
-    class="item"
-    [routerLink]="['/properties', todo.propertyId]"
-    >{{ todo.propertyName }}</a
+<div *ngIf="!isLoading" class="todoList-container">
+  <app-todo-item
+    *ngFor="let todo of getActiveTodos()"
+    [todoInput]="todo"
+    [propertyId]="propertyId"
+    (deleteTodo)="deleteTodo($event)"
+    (toggleCompleted)="toggleCompleted($event)"
   >
-  <button (click)="toggleCompleted(todo)">Complete</button>
-  <button (click)="deleteTodo(todo._id)">Delete</button>
-</div>
-<button *ngIf="!showCompleted" (click)="setShowCompleted()">
-  Show completed todos
-</button>
-<div *ngFor="let todo of getCompletedTodos()" class="flex completed">
-  <div class="item">{{ todo.title }}</div>
-  <div class="item">{{ todo.date }}</div>
-  <div class="item">{{ todo.severity }}</div>
-  <a
-    *ngIf="!propertyId && todo.propertyId"
-    class="item"
-    [routerLink]="['/properties', todo.propertyId]"
-    >{{ todo.propertyName }}</a
+  </app-todo-item>
+  <button *ngIf="!showCompleted" (click)="setShowCompleted()">
+    Show completed todos
+  </button>
+  <app-todo-item
+    *ngFor="let todo of getCompletedTodos()"
+    [todoInput]="todo"
+    [propertyId]="propertyId"
+    (deleteTodo)="deleteTodo($event)"
+    (toggleCompleted)="toggleCompleted($event)"
   >
-  <button (click)="toggleCompleted(todo)">Make Active</button>
-  <button (click)="deleteTodo(todo._id)">Delete</button>
+  </app-todo-item>
 </div>
