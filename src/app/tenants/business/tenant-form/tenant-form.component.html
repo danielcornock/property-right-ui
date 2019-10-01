@@ -1,0 +1,46 @@
+<div class="tenantForm-container">
+  <h2 class="tenantForm-header">Tenant</h2>
+  <form
+    [formGroup]="tenantForm"
+    class="tenantForm-form"
+    (ngSubmit)="submitTenant()"
+  >
+    <label>Name</label>
+    <input
+      type="text"
+      placeholder="Tenant Name"
+      formControlName="name"
+      class="tenantForm-input"
+      required
+    />
+    <label>Email Address</label>
+    <input
+      type="email"
+      placeholder="Tenant Email"
+      formControlName="email"
+      class="tenantForm-input"
+    />
+    <label>Phone Number</label>
+    <input
+      type="tel"
+      placeholder="Tenant Phone number"
+      formControlName="phone"
+      class="tenantForm-input"
+    />
+    <div
+      class="tenantForm-dropdownContainer"
+      *ngIf="!propertyId && propertyOptions.length"
+    >
+      <label>Property</label>
+      <select class="tenantForm-dropdown" formControlName="propertyId">
+        <option
+          *ngFor="let option of propertyOptions"
+          value="{{ option.id }}"
+          >{{ option.name }}</option
+        >
+      </select>
+    </div>
+
+    <input type="submit" value="Save Tenant" class="tenantForm-submit" />
+  </form>
+</div>

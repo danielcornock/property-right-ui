@@ -24,6 +24,7 @@ export class TodoCreateComponent implements OnInit {
   ngOnInit() {
     this.todoForm = this._initialiseTodoForm();
     this.setPropertyDropdownOptions();
+    console.log(this.propertyId);
   }
 
   public submitTodo(): void {

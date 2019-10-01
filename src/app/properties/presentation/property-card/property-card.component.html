@@ -1,6 +1,14 @@
 <div class="propertyCard-container">
   <div class="propertyCard-imageContainer">
     <img class="propertyCard-image" [src]="property.image" />
+    <div class="propertyCard-avatarContainer">
+      <app-avatar-icon
+        routerLink="/tenants/{{ tenant._id }}"
+        class="propertyCard-avatar"
+        *ngFor="let tenant of property.tenants"
+        [avatarIcon]="tenant.avatar"
+      ></app-avatar-icon>
+    </div>
   </div>
   <div class="propertyCard-contents">
     <div class="propertyCard-income">
@@ -17,16 +25,28 @@
   <div class="propertyCard-contact">
     <div class="propertyCard-contact__tenant">
       <span class="propertyCard-contact__tenantLabel">Tenant</span>
-      <span class="propertyCard-contact__tenantName">Daniel Cornock</span>
+      <span class="propertyCard-contact__tenantName">
+        <span *ngIf="property.leadTenant">{{ property.leadTenant.name }}</span>
+        <span *ngIf="!property.leadTenant">No tenants</span>
+      </span>
     </div>
     <div class="propertyCard-contact__buttons">
-      <a href="" class="propertyCard-contact__button">
+      <a
+        href="sms://{{ property.leadTenant?.phone }}"
+        class="propertyCard-contact__button"
+      >
         <app-ui-icon size="tiny" name="message-square"></app-ui-icon>
       </a>
-      <a href="" class="propertyCard-contact__button">
+      <a
+        href="mailto:{{ property.leadTenant?.email }}"
+        class="propertyCard-contact__button"
+      >
         <app-ui-icon size="tiny" name="mail"></app-ui-icon>
       </a>
-      <a href="" class="propertyCard-contact__button">
+      <a
+        href="tel:{{ property.leadTenant?.phone }}"
+        class="propertyCard-contact__button"
+      >
         <app-ui-icon size="tiny" name="phone"></app-ui-icon>
       </a>
     </div>

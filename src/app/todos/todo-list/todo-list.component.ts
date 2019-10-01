@@ -17,7 +17,6 @@ export class TodoListComponent implements OnInit, OnDestroy {
   public isLoading: boolean;
 
   private todoSub: Subscription;
-  private todoDeleteSub: Subscription;
 
   constructor(private todoService: TodoService) {}
 
@@ -67,9 +66,8 @@ export class TodoListComponent implements OnInit, OnDestroy {
         this.todos = todos;
         this.isLoading = false;
       })
-      .catch((err: string) => {
+      .catch(() => {
         this.isLoading = false;
-        console.log(err);
       });
   }
 

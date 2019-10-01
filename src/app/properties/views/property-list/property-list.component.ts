@@ -1,7 +1,14 @@
-import { Component, OnInit, ViewChild, HostListener, OnDestroy } from '@angular/core';
+import {
+  Component,
+  OnInit,
+  ViewChild,
+  HostListener,
+  OnDestroy
+} from '@angular/core';
 import { Subscription } from 'rxjs';
 import { PropertyService } from 'src/app/properties/services/property.service';
 import { IProperty } from 'src/app/properties/interfaces/IProperty';
+import { TenantService } from 'src/app/tenants/services/tenant.service';
 
 @Component({
   selector: 'app-property-list',
@@ -15,7 +22,10 @@ export class PropertyListComponent implements OnInit, OnDestroy {
   public filteredProperties: Array<IProperty>;
   public properties: Array<IProperty>;
   private propertiesSub: Subscription;
-  constructor(private propertyService: PropertyService) {}
+  constructor(
+    private propertyService: PropertyService,
+    private tenantService: TenantService
+  ) {}
   @ViewChild('searchBar', { static: true }) searchBar;
 
   ngOnInit() {

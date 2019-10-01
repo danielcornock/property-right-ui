@@ -50,10 +50,10 @@ export class PropertyService {
 
   public getAllProperties(): Promise<IProperty | Array<IProperty>> {
     return new Promise((resolve, reject) => {
-      const cachedProperties = this.checkForCachedMultiple(this.properties);
-      if (cachedProperties) {
-        return resolve(cachedProperties);
-      }
+      // const cachedProperties = this.checkForCachedMultiple(this.properties);
+      // if (cachedProperties) {
+      //   return resolve(cachedProperties);
+      // }
 
       this.httpService.get('properties').subscribe(
         (res: IHttpResponse) => {

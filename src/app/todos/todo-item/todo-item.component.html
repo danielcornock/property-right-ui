@@ -1,10 +1,10 @@
-<div class="todoItem-container">
+<div class="todoItem-container" [class.completed]="todo.completed">
   <span class="todoItem-title">{{ todo.title }}</span>
   <span class="todoItem-date">{{ todo.date }}</span>
   <span class="todoItem-severity">{{ todo.severity }}</span>
-  <span class="todoItem-propertyContainer">
+  <span *ngIf="!propertyId" class="todoItem-propertyContainer">
     <a
-      *ngIf="!propertyId && todo.propertyId"
+      *ngIf="todo.propertyId"
       class="todoItem-property"
       [routerLink]="['/properties', todo.propertyId]"
     >

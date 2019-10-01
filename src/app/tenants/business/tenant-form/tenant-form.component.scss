@@ -1,0 +1,11 @@
+@import 'src/assets/styles/themes.scss';
+
+.tenantForm {
+  &-container {
+  }
+
+  &-form {
+    @include flex(column);
+    align-items: flex-start;
+  }
+}

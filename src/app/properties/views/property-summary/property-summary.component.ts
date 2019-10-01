@@ -31,7 +31,6 @@ export class PropertySummaryComponent implements OnInit {
 
   public deleteProperty() {
     this.propertyService.deleteProperty(this.propertyId).then(() => {
-      console.log('Property Deleted.');
       this.router.navigate('/properties');
     });
   }

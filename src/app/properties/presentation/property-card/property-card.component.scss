@@ -13,9 +13,28 @@
       @include box-shadow(feint-active);
     }
   }
+  &-imageContainer {
+    position: relative;
+  }
   &-image {
     @include image-default;
     height: 160px;
+  }
+
+  &-avatarContainer {
+    position: absolute;
+    bottom: 0;
+    transform: translateY(50%);
+    right: $spacing-small;
+    display: flex;
+  }
+
+  &-avatar {
+    cursor: pointer;
+
+    @include hover($t150) {
+      transform: scale(1.1);
+    }
   }
   &-contents {
     padding: $spacing-tiny $spacing-small;

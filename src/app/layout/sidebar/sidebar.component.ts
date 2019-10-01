@@ -23,6 +23,11 @@ export class SidebarComponent implements OnInit {
       label: 'To Do',
       link: '/todos',
       icon: 'check-square'
+    },
+    {
+      label: 'Tenants',
+      link: '/tenants',
+      icon: 'users'
     }
   ];
 

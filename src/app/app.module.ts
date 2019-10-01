@@ -24,6 +24,11 @@ import { TopbarComponent } from './layout/topbar/topbar.component';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { ToastrModule } from 'ngx-toastr';
 import { TodoItemComponent } from './todos/todo-item/todo-item.component';
+import { TenantsPageComponent } from './tenants/views/tenants-page/tenants-page.component';
+import { TenantFormComponent } from './tenants/business/tenant-form/tenant-form.component';
+import { TenantListComponent } from './tenants/business/tenant-list/tenant-list.component';
+import { TenantOverviewPageComponent } from './tenants/views/tenant-overview-page/tenant-overview-page.component';
+import { AvatarIconComponent } from './components/assets/avatar-icon/avatar-icon.component';
 
 @NgModule({
   declarations: [
@@ -43,7 +48,12 @@ import { TodoItemComponent } from './todos/todo-item/todo-item.component';
     UiIconComponent,
     PropertyCardComponent,
     TopbarComponent,
-    TodoItemComponent
+    TodoItemComponent,
+    TenantsPageComponent,
+    TenantFormComponent,
+    TenantListComponent,
+    TenantOverviewPageComponent,
+    AvatarIconComponent
   ],
   imports: [
     BrowserModule,

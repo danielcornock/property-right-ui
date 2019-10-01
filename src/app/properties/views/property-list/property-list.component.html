@@ -24,9 +24,9 @@
       Add New</a
     >
   </div>
+  <app-loading-animation *ngIf="isLoading"></app-loading-animation>
+  <p *ngIf="properties && !filteredProperties.length">No properties found.</p>
   <div class="flex-wrap">
-    <app-loading-animation *ngIf="isLoading"></app-loading-animation>
-    <p *ngIf="properties && !filteredProperties.length">No properties found.</p>
     <app-property-card
       class="list-item"
       [property]="property"

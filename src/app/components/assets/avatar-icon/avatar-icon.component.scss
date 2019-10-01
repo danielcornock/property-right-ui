@@ -1,0 +1,17 @@
+@import 'src/assets/styles/themes.scss';
+
+.avatarIcon {
+  &-container {
+    @include center-contents;
+    height: 35px;
+    width: 35px;
+    background-color: $pink;
+    border-radius: $br-max;
+    border: 2px solid white;
+  }
+  &-initials {
+    font-size: $font-tiny;
+    color: $color-text-button-highlight;
+    font-weight: $bold;
+  }
+}

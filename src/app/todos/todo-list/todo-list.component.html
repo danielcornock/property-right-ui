@@ -2,6 +2,14 @@
 <app-loading-animation *ngIf="isLoading"></app-loading-animation>
 
 <div *ngIf="!isLoading" class="todoList-container">
+  <div class="table-header">
+    <span>Todo</span>
+    <span>Due</span>
+    <span>Severity</span>
+    <span *ngIf="!propertyId">Property</span>
+    <span>Mark Completed</span>
+    <span>Delete</span>
+  </div>
   <app-todo-item
     *ngFor="let todo of getActiveTodos()"
     [todoInput]="todo"
