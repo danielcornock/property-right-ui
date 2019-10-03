@@ -1,13 +1,17 @@
 import { BrowserModule } from '@angular/platform-browser';
 import { NgModule } from '@angular/core';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
+import { HttpClientModule } from '@angular/common/http';
+import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
+
+import { ToastrModule } from 'ngx-toastr';
+import { MatDialogModule } from '@angular/material';
 
 import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
 import { LoginComponent } from './auth/login/login.component';
 import { RegisterComponent } from './auth/register/register.component';
 import { DashboardComponent } from './views/dashboard/dashboard.component';
-import { HttpClientModule } from '@angular/common/http';
 import { SidebarComponent } from './layout/sidebar/sidebar.component';
 import { PropertyFormComponent } from './properties/views/property-form/property-form.component';
 import { PropertyListComponent } from './properties/views/property-list/property-list.component';
@@ -21,8 +25,6 @@ import { CheckboxComponent } from './components/forms/checkbox/checkbox.componen
 import { UiIconComponent } from './components/assets/ui-icon/ui-icon.component';
 import { PropertyCardComponent } from './properties/presentation/property-card/property-card.component';
 import { TopbarComponent } from './layout/topbar/topbar.component';
-import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
-import { ToastrModule } from 'ngx-toastr';
 import { TodoItemComponent } from './todos/todo-item/todo-item.component';
 import { TenantsPageComponent } from './tenants/views/tenants-page/tenants-page.component';
 import { TenantFormComponent } from './tenants/business/tenant-form/tenant-form.component';
@@ -63,8 +65,10 @@ import { AvatarIconComponent } from './components/assets/avatar-icon/avatar-icon
     HttpClientModule,
     IconsModule,
     BrowserAnimationsModule,
+    MatDialogModule,
     ToastrModule.forRoot()
   ],
+  entryComponents: [TenantFormComponent],
   providers: [],
   bootstrap: [AppComponent]
 })

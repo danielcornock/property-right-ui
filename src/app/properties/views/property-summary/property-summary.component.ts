@@ -24,6 +24,9 @@ export class PropertySummaryComponent implements OnInit {
       this.propertyService
         .getProperty(this.propertyId)
         .then((property: IProperty) => {
+          if (!property) {
+            return this.router.navigate('/properties');
+          }
           this.property = property;
         });
     });

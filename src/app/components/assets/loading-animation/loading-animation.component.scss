@@ -118,6 +118,14 @@
   position: relative;
   @include center-contents;
   padding: 100px 0;
+
+  &.modal {
+    position: absolute;
+    top: 0;
+    left: 0;
+    bottom: 0;
+    right: 0;
+  }
 }
 .spinner {
   position: absolute;

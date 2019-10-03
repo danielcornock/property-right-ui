@@ -70,9 +70,4 @@ export class PropertyListComponent implements OnInit, OnDestroy {
 
     this.filteredProperties = filteredProps;
   }
-
-  @HostListener('document:keypress', ['$event'])
-  handleKeyboardEvent(event: KeyboardEvent) {
-    this.searchBar.nativeElement.focus();
-  }
 }

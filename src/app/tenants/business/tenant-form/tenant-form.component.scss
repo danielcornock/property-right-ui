@@ -8,4 +8,8 @@
     @include flex(column);
     align-items: flex-start;
   }
+
+  &-dropdownContainer {
+    @include flex(column);
+  }
 }
