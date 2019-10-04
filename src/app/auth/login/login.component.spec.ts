@@ -84,7 +84,6 @@ describe('LoginComponent', () => {
 
       it('should call login function', () => {
         let loginSpy = spyOn(component, 'login');
-        console.log(component.login());
         expect(loginSpy).toHaveBeenCalled();
       });
     });

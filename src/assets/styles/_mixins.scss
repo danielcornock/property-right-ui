@@ -33,6 +33,15 @@
   background-color: $color-bg-input;
   border-radius: 5px;
   padding: $spacing-tiny;
+  width: 100%;
+}
+
+@mixin default-input-label {
+  font-size: $font-tiny;
+  text-transform: uppercase;
+  font-weight: $semi-bold;
+  margin-bottom: $spacing-micro;
+  color: $color-text-primary;
 }
 
 @mixin media($device) {
@@ -130,4 +139,12 @@
       margin-right: 0px;
     }
   }
+}
+
+@mixin modal-header {
+  padding-bottom: $spacing-tiny;
+  border-bottom: 2px solid $color-text-highlight--inactive;
+  margin-bottom: $spacing-small;
+  color: $color-text-highlight;
+  font-weight: $medium;
 }

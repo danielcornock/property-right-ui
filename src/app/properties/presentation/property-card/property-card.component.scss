@@ -41,7 +41,7 @@
   }
 
   &-income {
-    margin-bottom: $spacing-micro;
+    margin-bottom: $spacing-smallest;
     &__amount {
       font-weight: $extra-bold;
       letter-spacing: 1px;
@@ -85,7 +85,7 @@
       font-weight: $extra-bold;
       text-transform: uppercase;
       color: $color-text-highlight;
-      margin-bottom: $spacing-micro;
+      margin-bottom: $spacing-smallest;
     }
 
     &__tenantName {

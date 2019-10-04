@@ -3,6 +3,7 @@ import { ITenant } from '../../interfaces/ITenant';
 import { TenantService } from '../../services/tenant.service';
 import { ActivatedRoute, ParamMap } from '@angular/router';
 import { RouterService } from 'src/app/core/routing/router.service';
+import { ModalService } from 'src/app/core/modal/modal.service';
 
 @Component({
   selector: 'app-tenant-overview-page',
@@ -16,7 +17,8 @@ export class TenantOverviewPageComponent implements OnInit {
   constructor(
     private tenantService: TenantService,
     private route: ActivatedRoute,
-    private router: RouterService
+    private router: RouterService,
+    private modalService: ModalService
   ) {}
 
   ngOnInit() {
@@ -35,7 +37,18 @@ export class TenantOverviewPageComponent implements OnInit {
     });
   }
 
-  public deleteTenant() {
+  public openConfirmDeleteModal() {
+    this.modalService
+      .openConfirmationModal({
+        object: 'tenant'
+      })
+      .then(() => {
+        this._deleteTenant();
+      })
+      .catch(() => {});
+  }
+
+  public _deleteTenant() {
     this.tenantService.deleteTenant(this.tenantId).then(() => {
       this.router.navigate('/tenants');
     });

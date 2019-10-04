@@ -5,7 +5,7 @@ import { HttpClientModule } from '@angular/common/http';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 
 import { ToastrModule } from 'ngx-toastr';
-import { MatDialogModule } from '@angular/material';
+import { MatDialogModule, MatDialogRef } from '@angular/material';
 
 import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
@@ -31,6 +31,7 @@ import { TenantFormComponent } from './tenants/business/tenant-form/tenant-form.
 import { TenantListComponent } from './tenants/business/tenant-list/tenant-list.component';
 import { TenantOverviewPageComponent } from './tenants/views/tenant-overview-page/tenant-overview-page.component';
 import { AvatarIconComponent } from './components/assets/avatar-icon/avatar-icon.component';
+import { ConfirmationModalComponent } from './components/confirmation-modal/confirmation-modal.component';
 
 @NgModule({
   declarations: [
@@ -55,7 +56,8 @@ import { AvatarIconComponent } from './components/assets/avatar-icon/avatar-icon
     TenantFormComponent,
     TenantListComponent,
     TenantOverviewPageComponent,
-    AvatarIconComponent
+    AvatarIconComponent,
+    ConfirmationModalComponent
   ],
   imports: [
     BrowserModule,
@@ -68,8 +70,8 @@ import { AvatarIconComponent } from './components/assets/avatar-icon/avatar-icon
     MatDialogModule,
     ToastrModule.forRoot()
   ],
-  entryComponents: [TenantFormComponent],
-  providers: [],
+  entryComponents: [TenantFormComponent, ConfirmationModalComponent],
+  providers: [{ provide: MatDialogRef, useValue: {} }],
   bootstrap: [AppComponent]
 })
 export class AppModule {}

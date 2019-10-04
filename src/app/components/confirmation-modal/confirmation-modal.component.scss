@@ -1,0 +1,12 @@
+@import 'src/assets/styles/themes.scss';
+
+.confirmationModal {
+  &-container {
+  }
+
+  &-title {
+    padding-bottom: 10px;
+    border-bottom: 2px solid $pink;
+    margin-bottom: 10px;
+  }
+}

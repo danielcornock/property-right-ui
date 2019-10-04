@@ -1,8 +1,10 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit, OnDestroy } from '@angular/core';
 import { IProperty } from 'src/app/properties/interfaces/IProperty';
 import { ActivatedRoute, ParamMap } from '@angular/router';
 import { PropertyService } from 'src/app/properties/services/property.service';
 import { RouterService } from 'src/app/core/routing/router.service';
+import { ModalService } from 'src/app/core/modal/modal.service';
+import { TenantFormComponent } from 'src/app/tenants/business/tenant-form/tenant-form.component';
 
 @Component({
   selector: 'app-property-summary',
@@ -15,7 +17,8 @@ export class PropertySummaryComponent implements OnInit {
   constructor(
     private route: ActivatedRoute,
     private propertyService: PropertyService,
-    private router: RouterService
+    private router: RouterService,
+    private modalService: ModalService
   ) {}
 
   ngOnInit() {
@@ -32,7 +35,22 @@ export class PropertySummaryComponent implements OnInit {
     });
   }
 
-  public deleteProperty() {
+  openCreateTenantModal() {
+    this.modalService.openModal(TenantFormComponent);
+  }
+
+  public openConfirmDeleteModal() {
+    this.modalService
+      .openConfirmationModal({
+        object: 'property'
+      })
+      .then(() => {
+        this._deleteProperty();
+      })
+      .catch(() => {});
+  }
+
+  private _deleteProperty() {
     this.propertyService.deleteProperty(this.propertyId).then(() => {
       this.router.navigate('/properties');
     });

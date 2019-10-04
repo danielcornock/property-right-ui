@@ -2,14 +2,38 @@
 
 .tenantForm {
   &-container {
+    padding: 15px;
+    width: 500px;
   }
 
   &-form {
     @include flex(column);
-    align-items: flex-start;
+  }
+
+  &-header {
+    @include modal-header;
   }
 
   &-dropdownContainer {
     @include flex(column);
+  }
+
+  &-label {
+    @include default-input-label;
+  }
+
+  &-input {
+    @include default-text-input;
+    margin-bottom: $spacing-small;
+  }
+
+  &-dropdown {
+    @include default-text-input;
+    margin-bottom: $spacing-small;
+    height: 48px;
+  }
+
+  &-submit {
+    @include button(primary);
   }
 }

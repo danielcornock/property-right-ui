@@ -3,13 +3,13 @@
   *ngIf="isLoading"
 ></app-loading-animation>
 <div class="tenantForm-container">
-  <h2 class="tenantForm-header">Tenant</h2>
+  <h2 class="tenantForm-header">Add New Tenant</h2>
   <form
     [formGroup]="tenantForm"
     class="tenantForm-form"
     (ngSubmit)="submitTenant()"
   >
-    <label>Name</label>
+    <label class="tenantForm-label">Name</label>
     <input
       type="text"
       placeholder="Tenant Name"
@@ -17,14 +17,14 @@
       class="tenantForm-input"
       required
     />
-    <label>Email Address</label>
+    <label class="tenantForm-label">Email Address</label>
     <input
       type="email"
       placeholder="Tenant Email"
       formControlName="email"
       class="tenantForm-input"
     />
-    <label>Phone Number</label>
+    <label class="tenantForm-label">Phone Number</label>
     <input
       type="tel"
       placeholder="Tenant Phone number"
@@ -35,7 +35,7 @@
       class="tenantForm-dropdownContainer"
       *ngIf="!propertyId && propertyOptions.length"
     >
-      <label>Property</label>
+      <label class="tenantForm-label">Property</label>
       <select class="tenantForm-dropdown" formControlName="propertyId">
         <option
           *ngFor="let option of propertyOptions"

@@ -66,7 +66,6 @@ export class PropertyListComponent implements OnInit, OnDestroy {
         .toLowerCase()
         .includes((event.target as HTMLInputElement).value.toLowerCase());
     });
-    console.log(filteredProps);
 
     this.filteredProperties = filteredProps;
   }

@@ -1,6 +1,6 @@
 import { Component, OnInit } from '@angular/core';
-import { MatDialog, MatDialogRef } from '@angular/material';
 import { TenantFormComponent } from '../../business/tenant-form/tenant-form.component';
+import { ModalService } from 'src/app/core/modal/modal.service';
 
 @Component({
   selector: 'app-tenants-page',
@@ -8,12 +8,11 @@ import { TenantFormComponent } from '../../business/tenant-form/tenant-form.comp
   styleUrls: ['./tenants-page.component.scss']
 })
 export class TenantsPageComponent implements OnInit {
-  private dialogRef: MatDialogRef<TenantFormComponent>;
-  constructor(private matDialog: MatDialog) {}
+  constructor(private modalService: ModalService) {}
 
   ngOnInit() {}
 
-  openModal() {
-    this.dialogRef = this.matDialog.open(TenantFormComponent);
+  openCreateTenantModal() {
+    this.modalService.openModal(TenantFormComponent);
   }
 }

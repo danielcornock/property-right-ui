@@ -33,7 +33,6 @@ export class PropertyFormComponent implements OnInit {
 
   private _populateFields() {
     this.propertyService.getProperty(this.activePropertyId).then(property => {
-      console.log(property);
       this.property = property;
       this.propertyForm.setValue({
         name: this.property.name,

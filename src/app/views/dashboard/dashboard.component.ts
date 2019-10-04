@@ -20,9 +20,6 @@ export class DashboardComponent implements OnInit, OnDestroy {
       .getAllProperties()
       .then((properties: Array<IProperty>) => {
         this.properties = properties;
-      })
-      .catch(err => {
-        console.log(err);
       });
 
     this.propertiesSub = this.propertyService
@@ -35,17 +32,6 @@ export class DashboardComponent implements OnInit, OnDestroy {
   getUserEmail() {
     // TODO - this is temporary
     return localStorage.getItem('email');
-  }
-
-  public deleteProperty(id: string) {
-    this.propertyService
-      .deleteProperty(id)
-      .then((msg: string) => {
-        console.log(msg);
-      })
-      .catch(err => {
-        console.log(err);
-      });
   }
 
   ngOnDestroy() {

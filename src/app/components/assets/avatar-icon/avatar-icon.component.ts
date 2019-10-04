@@ -9,7 +9,5 @@ export class AvatarIconComponent implements OnInit {
   @Input() avatarIcon: string;
   constructor() {}
 
-  ngOnInit() {
-    console.log(this.avatarIcon);
-  }
+  ngOnInit() {}
 }

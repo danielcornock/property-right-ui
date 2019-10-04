@@ -1,0 +1,14 @@
+<div class="confirmationModal-container">
+  <h2 class="confirmationModal-title">Confirm Delete</h2>
+  <span class="confirmationModal-message"
+    >Are you sure you want to delete this {{ object }}?</span
+  >
+  <div class="confirmationModal-buttons">
+    <button class="confirmationModal-button--cancel" (click)="deny()">
+      Cancel
+    </button>
+    <button class="confirmationModal-button--confirm" (click)="accept()">
+      Delete
+    </button>
+  </div>
+</div>
