@@ -57,11 +57,17 @@
   }
 }
 
-@mixin button($type) {
-  padding: 13px 40px;
-  border-radius: $br-max;
-  cursor: pointer;
+@mixin button($type, $size: large) {
+  @include button-default;
+  padding: 10px 15px;
+  border-radius: $br-small;
   font-weight: $semi-bold;
+  font-size: $font-small;
+
+  @if ($size == large) {
+    padding: 15px 40px;
+    font-size: $font-standard;
+  }
 
   @if ($type == primary) {
     color: $color-text-button-highlight;
@@ -70,11 +76,27 @@
       background-color: darken($color-bg-highlight, 5%);
     }
   }
+
+  @if ($type == danger) {
+    background-color: $color-bg-danger;
+    color: $color-text-danger;
+    @include hover($t250) {
+      background-color: darken($color-bg-danger, 5%);
+    }
+  }
+
+  @if ($type == tertiary) {
+    background-color: transparent;
+    color: $color-text-tertiary;
+    @include hover($t250) {
+      color: darken($color-text-tertiary, 10%);
+    }
+  }
 }
 
 @mixin box-shadow($strength) {
   @if ($strength == 'light') {
-    box-shadow: 0 1px 8px rgba(0, 0, 0, 0.05);
+    box-shadow: 0 1px 8px rgba(0, 0, 0, 0.1);
   }
   @if ($strength == 'feint') {
     box-shadow: 0 2px 24px rgba(0, 0, 0, 0.12);
@@ -119,7 +141,7 @@
 @mixin button-plain {
   @include button-default;
   @include border($color-bg-input);
-  color: $color-text-sidebar;
+  color: $color-text-tertiary;
   background-color: $color-bg-light;
   text-transform: uppercase;
   padding: $spacing-tiny;
@@ -144,7 +166,19 @@
 @mixin modal-header {
   padding-bottom: $spacing-tiny;
   border-bottom: 2px solid $color-text-highlight--inactive;
-  margin-bottom: $spacing-small;
+  margin-bottom: $spacing-tiny;
   color: $color-text-highlight;
   font-weight: $medium;
+}
+
+@mixin modal-content {
+  padding: $spacing-small $spacing-tiny;
+}
+
+@mixin modal-buttons {
+  @include flex(row);
+  justify-content: flex-end;
+  background-color: $color-bg-light;
+  padding: $spacing-tiny;
+  width: 100%;
 }

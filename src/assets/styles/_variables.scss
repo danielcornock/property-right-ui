@@ -6,6 +6,9 @@ $palest-grey: #fafafa;
 $pale-grey: #aaaaaa;
 $dark-grey: #808080;
 $blue: #132253;
+$almost-black: #333;
+$dark-red: hsl(360, 100%, 40%);
+$light-red: hsl(360, 100%, 94%);
 
 //* Assigned Colours - background
 $color-bg-main: $pale-blue;
@@ -14,13 +17,16 @@ $color-bg-input: $pale-blue;
 $color-bg-highlight: $pink;
 $color-bg-light: $palest-grey;
 $color-bg-hover-light: $palest-grey;
+$color-bg-danger: $light-red;
 
 //* Assigned Colours - text
 $color-text-highlight: $pink;
 $color-text-grey: $pale-grey;
 $color-text-button-highlight: $white;
 $color-text-primary: $blue;
-$color-text-sidebar: $dark-grey;
+$color-text-tertiary: $dark-grey;
+$color-text-copy: $almost-black;
+$color-text-danger: $dark-red;
 
 $color-text-highlight--inactive: rgba($pink, 0.7);
 
@@ -28,6 +34,7 @@ $color-text-highlight--inactive: rgba($pink, 0.7);
 $spacing-lrg: 70px;
 $spacing-med: 40px;
 $spacing-small: 25px;
+$spacing-smaller: 20px;
 $spacing-tiny: 15px;
 $spacing-micro: 10px;
 $spacing-smallest: 5px;
@@ -57,4 +64,5 @@ $phone: 480px;
 $font-tiny: 12px;
 $font-small: 14px;
 $font-standard: 16px;
+$font-default: 18px;
 $font-large: 24px;

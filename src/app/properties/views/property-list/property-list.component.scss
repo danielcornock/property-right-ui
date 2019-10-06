@@ -116,7 +116,7 @@
 
 .search-icon {
   padding: 0 20px;
-  color: $color-text-sidebar;
+  color: $color-text-tertiary;
 }
 .test-search {
   height: 100%;
@@ -129,7 +129,7 @@
     font-weight: $medium;
     letter-spacing: 2px;
     font-size: $font-tiny;
-    color: $color-text-sidebar;
+    color: $color-text-tertiary;
   }
 
   &:focus {

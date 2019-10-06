@@ -8,8 +8,6 @@ import { Component, OnInit, Input } from '@angular/core';
 export class UiIconComponent implements OnInit {
   @Input() size: string;
   @Input() name: string;
-  @Input() color: string;
-  @Input() activeColor: string;
 
   constructor() {}
 

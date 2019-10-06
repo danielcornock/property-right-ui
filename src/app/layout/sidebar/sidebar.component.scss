@@ -2,7 +2,7 @@
 
 @mixin sidebar-item {
   align-items: center;
-  color: $color-text-sidebar;
+  color: $color-text-tertiary;
   display: flex;
   padding: $spacing-tiny $spacing-med;
 }
