@@ -9,12 +9,12 @@
       {{ todo.title }}
       <app-ui-pill
         class="todoItem-daysLeft"
-        *ngIf="todo.date"
+        *ngIf="todo.date && !todo.completed"
         [uiPillContent]="daysLeft()"
       ></app-ui-pill>
     </div>
 
-    <div class="todoItem-meta">
+    <div class="todoItem-meta" *ngIf="todo.propertyName || todo.date">
       <div *ngIf="!propertyId" class="todoItem-propertyContainer">
         <a
           *ngIf="todo.propertyId"

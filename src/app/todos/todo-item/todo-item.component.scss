@@ -21,7 +21,6 @@
     font-size: 16px;
     font-weight: $semi-bold;
     color: $color-text-primary;
-    margin-bottom: 5px;
     line-height: 140%;
   }
 
@@ -34,6 +33,7 @@
     align-items: center;
     color: $color-text-tertiary;
     font-size: 14px;
+    margin-top: 5px;
   }
 
   &-propertyContainer {
