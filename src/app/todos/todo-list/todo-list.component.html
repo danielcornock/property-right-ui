@@ -1,32 +1,33 @@
-<h3>Todos</h3>
 <app-loading-animation *ngIf="isLoading"></app-loading-animation>
 
 <div *ngIf="!isLoading" class="todoList-container">
-  <div class="table-header">
-    <span>Todo</span>
-    <span>Due</span>
-    <span>Severity</span>
-    <span *ngIf="!propertyId">Property</span>
-    <span>Mark Completed</span>
-    <span>Delete</span>
+  <div class="todo-list-container">
+    <app-todo-item
+      class="todo-item"
+      *ngFor="let todo of getActiveTodos()"
+      [todoInput]="todo"
+      [propertyId]="propertyId"
+      (deleteTodo)="deleteTodo($event)"
+      (toggleCompleted)="toggleCompleted($event)"
+    >
+    </app-todo-item>
   </div>
-  <app-todo-item
-    *ngFor="let todo of getActiveTodos()"
-    [todoInput]="todo"
-    [propertyId]="propertyId"
-    (deleteTodo)="deleteTodo($event)"
-    (toggleCompleted)="toggleCompleted($event)"
+  <button
+    class="todoList-seeCompleted"
+    *ngIf="!showCompleted"
+    (click)="setShowCompleted()"
   >
-  </app-todo-item>
-  <button *ngIf="!showCompleted" (click)="setShowCompleted()">
     Show completed todos
   </button>
-  <app-todo-item
-    *ngFor="let todo of getCompletedTodos()"
-    [todoInput]="todo"
-    [propertyId]="propertyId"
-    (deleteTodo)="deleteTodo($event)"
-    (toggleCompleted)="toggleCompleted($event)"
-  >
-  </app-todo-item>
+  <div class="todo-list-container todo-list-container-completed">
+    <app-todo-item
+      class="todo-item"
+      *ngFor="let todo of getCompletedTodos()"
+      [todoInput]="todo"
+      [propertyId]="propertyId"
+      (deleteTodo)="deleteTodo($event)"
+      (toggleCompleted)="toggleCompleted($event)"
+    >
+    </app-todo-item>
+  </div>
 </div>

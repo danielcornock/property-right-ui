@@ -32,6 +32,7 @@ import { TenantListComponent } from './tenants/business/tenant-list/tenant-list.
 import { TenantOverviewPageComponent } from './tenants/views/tenant-overview-page/tenant-overview-page.component';
 import { AvatarIconComponent } from './components/assets/avatar-icon/avatar-icon.component';
 import { ConfirmationModalComponent } from './components/confirmation-modal/confirmation-modal.component';
+import { UiPillComponent } from './components/assets/ui-pill/ui-pill.component';
 
 @NgModule({
   declarations: [
@@ -57,7 +58,8 @@ import { ConfirmationModalComponent } from './components/confirmation-modal/conf
     TenantListComponent,
     TenantOverviewPageComponent,
     AvatarIconComponent,
-    ConfirmationModalComponent
+    ConfirmationModalComponent,
+    UiPillComponent
   ],
   imports: [
     BrowserModule,
@@ -70,7 +72,11 @@ import { ConfirmationModalComponent } from './components/confirmation-modal/conf
     MatDialogModule,
     ToastrModule.forRoot()
   ],
-  entryComponents: [TenantFormComponent, ConfirmationModalComponent],
+  entryComponents: [
+    TenantFormComponent,
+    ConfirmationModalComponent,
+    TodoCreateComponent
+  ],
   providers: [{ provide: MatDialogRef, useValue: {} }],
   bootstrap: [AppComponent]
 })

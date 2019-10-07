@@ -5,6 +5,7 @@
 @mixin card-default {
   @include card-background;
   @include box-shadow(feint);
+  border-radius: $br-small;
   overflow: hidden;
 }
 
@@ -23,9 +24,7 @@
 
 @mixin flex($orientation: row) {
   display: flex;
-  @if ($orientation) {
-    flex-direction: $orientation;
-  }
+  flex-direction: $orientation;
 }
 
 @mixin default-text-input {
@@ -177,6 +176,7 @@
 
 @mixin modal-buttons {
   @include flex(row);
+  border-radius: 0 0 $br-small $br-small;
   justify-content: flex-end;
   background-color: $color-bg-light;
   padding: $spacing-tiny;

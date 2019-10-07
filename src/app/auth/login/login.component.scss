@@ -65,5 +65,9 @@
     &__submit {
       @include button(primary);
     }
+
+    &__checkbox {
+      margin-bottom: 30px;
+    }
   }
 }

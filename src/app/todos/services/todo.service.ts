@@ -19,6 +19,7 @@ export class TodoService {
       this.httpService.post('todos', todo).subscribe(
         (res: IHttpResponse) => {
           const todoResponse: ITodo = res.data.todo;
+          console.log(todoResponse.date);
           this.todoObservable.next(todoResponse);
           this.toast.success('Todo item successfully added.');
           resolve();

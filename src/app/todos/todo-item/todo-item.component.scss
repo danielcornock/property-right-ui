@@ -1,10 +1,81 @@
+@import 'src/assets/styles/themes.scss';
+
 .todoItem {
   &-container {
+    padding: $spacing-small;
+    @include card-default;
     display: grid;
-    grid-template-columns: 1fr 1fr 1fr 1fr 1fr 1fr;
+    grid-template-columns: auto 1fr auto auto;
+    align-items: center;
   }
-}
 
-.completed {
-  background-color: rgba(0, 255, 0, 0.1);
+  &-checkbox {
+    margin-right: $spacing-med;
+  }
+
+  &-content {
+  }
+
+  &-heading {
+    align-items: center;
+    font-size: 16px;
+    font-weight: $semi-bold;
+    color: $color-text-primary;
+    margin-bottom: 5px;
+    line-height: 140%;
+  }
+
+  &-severity {
+    margin: 0 15px;
+  }
+
+  &-meta {
+    @include flex(row);
+    align-items: center;
+    color: $color-text-tertiary;
+    font-size: 14px;
+  }
+
+  &-propertyContainer {
+  }
+
+  &-property {
+    color: $pink;
+    @include flex(row);
+    align-items: center;
+    line-height: 100%;
+
+    @include hover($t250) {
+      text-decoration: underline;
+    }
+  }
+
+  &-date {
+    @include flex(row);
+    align-items: center;
+    line-height: 100%;
+  }
+
+  &-menu {
+    @include button-default;
+  }
+
+  &-inlineIcon {
+    display: inline;
+    margin-right: 5px;
+  }
+
+  &-daysLeft {
+    margin-left: 5px;
+    vertical-align: baseline;
+    display: inline-block;
+    //! Hacky way to align them
+    position: relative;
+    top: -2px;
+  }
+
+  &-metaDivider {
+    display: inline-block;
+    margin: 0 10px;
+  }
 }

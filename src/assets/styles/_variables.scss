@@ -9,6 +9,12 @@ $blue: #132253;
 $almost-black: #333;
 $dark-red: hsl(360, 100%, 40%);
 $light-red: hsl(360, 100%, 94%);
+$dark-green: hsl(120, 58%, 30%);
+$light-green: hsl(120, 58%, 90%);
+$dark-default: hsl(240, 58%, 30%);
+$light-default: hsl(240, 58%, 90%);
+$light-yellow: hsl(55, 92%, 90%);
+$dark-yellow: hsl(55, 92%, 25%);
 
 //* Assigned Colours - background
 $color-bg-main: $pale-blue;
@@ -18,6 +24,9 @@ $color-bg-highlight: $pink;
 $color-bg-light: $palest-grey;
 $color-bg-hover-light: $palest-grey;
 $color-bg-danger: $light-red;
+$color-bg-success: $light-green;
+$color-bg-warning: $light-yellow;
+$color-bg-default: $light-default;
 
 //* Assigned Colours - text
 $color-text-highlight: $pink;
@@ -27,6 +36,9 @@ $color-text-primary: $blue;
 $color-text-tertiary: $dark-grey;
 $color-text-copy: $almost-black;
 $color-text-danger: $dark-red;
+$color-text-success: $dark-green;
+$color-text-warning: $dark-yellow;
+$color-text-default: $dark-default;
 
 $color-text-highlight--inactive: rgba($pink, 0.7);
 

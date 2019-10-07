@@ -26,4 +26,25 @@ export class TodoItemComponent implements OnInit {
   public emitToggleCompleted(): void {
     this.toggleCompleted.emit(this.todo);
   }
+
+  public formatDate(): string {
+    const date = new Date(this.todoInput.date);
+    return date.toLocaleString('en-gb', {
+      month: 'short',
+      day: 'numeric'
+    });
+  }
+
+  public daysLeft(): string {
+    const dateDue = new Date(this.todo.date).getTime();
+    const today = Date.now();
+    const difference = Math.floor((dateDue - today) / (1000 * 3600 * 24));
+    return difference < -1
+      ? 'overdue'
+      : difference === -1
+      ? 'today'
+      : difference === 0
+      ? 'tomorrow'
+      : `${difference + 1} days`;
+  }
 }

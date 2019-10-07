@@ -1,32 +1,41 @@
-<h3>Add todo item</h3>
-<form [formGroup]="todoForm" class="todo-form" (ngSubmit)="submitTodo()">
-  <input
-    placeholder="Title"
-    type="text"
-    formControlName="title"
-    class="todo-form__input"
-    required
-  />
-  <input
-    placeholder="Date"
-    type="date"
-    formControlName="date"
-    class="todo-form__input"
-  />
-  <select formControlName="severity">
-    <option value="easy">Easy</option>
-    <option value="moderate">Moderate</option>
-    <option value="severe">Severe</option>
-  </select>
-
-  <select
-    *ngIf="!propertyId && propertyOptions.length"
-    formControlName="propertyId"
+<div class="todoCreate-container">
+  <form
+    [formGroup]="todoForm"
+    class="todoCreate-form"
+    (ngSubmit)="submitTodo()"
   >
-    <option *ngFor="let option of propertyOptions" value="{{ option.id }}">{{
-      option.name
-    }}</option>
-  </select>
+    <input
+      placeholder="Title"
+      type="text"
+      formControlName="title"
+      class="todoCreate-input"
+      required
+    />
+    <input
+      placeholder="Date"
+      type="date"
+      formControlName="date"
+      class="todoCreate-input"
+    />
+    <select formControlName="severity" class="todoCreate-dropdown">
+      <option value="" disabled selected>Severity</option>
+      <option value="easy">Easy</option>
+      <option value="moderate">Moderate</option>
+      <option value="severe">Severe</option>
+    </select>
 
-  <input type="submit" value="Add Todo" class="todo-form__submit" />
-</form>
+    <select
+      *ngIf="!propertyId"
+      formControlName="propertyId"
+      class="todoCreate-dropdown"
+      placeholder="Property"
+    >
+      <option value="" disabled selected>Property</option>
+      <option *ngFor="let option of propertyOptions" value="{{ option.id }}">{{
+        option.name
+      }}</option>
+    </select>
+
+    <input type="submit" value="Add Todo" class="todoCreate-submit" />
+  </form>
+</div>

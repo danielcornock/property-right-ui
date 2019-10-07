@@ -1,0 +1,32 @@
+@import 'src/assets/styles/themes.scss';
+
+.uiPill {
+  &-container {
+    padding: 5px 10px;
+    font-size: 10px;
+    border-radius: $br-max;
+    font-weight: $semi-bold;
+    text-transform: uppercase;
+    display: inline;
+
+    &--danger {
+      background-color: $color-bg-danger;
+      color: $color-text-danger;
+    }
+
+    &--success {
+      background-color: $color-bg-success;
+      color: $color-text-success;
+    }
+
+    &--warning {
+      background-color: $color-bg-warning;
+      color: $color-text-warning;
+    }
+
+    &--default {
+      background-color: $color-bg-default;
+      color: $color-text-default;
+    }
+  }
+}

@@ -1,7 +1,6 @@
 @import 'src/assets/styles/themes.scss';
 
 .checkbox {
-  margin-right: 30px;
   appearance: none;
   position: relative;
 
@@ -39,11 +38,11 @@
   }
   &-container {
     display: flex;
-    margin-bottom: 30px;
     align-items: center;
     align-self: flex-start;
   }
   &-label {
+    margin-left: 30px;
     font-size: $font-small;
     font-weight: $medium;
     color: #666;

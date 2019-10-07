@@ -1,5 +1,12 @@
 @import 'src/assets/styles/themes.scss';
 
+.todoList {
+  &-seeCompleted {
+    @include button-default;
+    color: $color-text-tertiary;
+    margin-top: $spacing-small;
+  }
+}
 .flex {
   display: flex;
   align-items: center;
@@ -18,16 +25,17 @@
 }
 
 .completed {
-  background-color: rgba(green, 0.3);
-  text-decoration: strikethrough;
-  & > .item {
-    @include pseudo(after) {
-      left: 0;
-      width: 100%;
-      top: 50%;
-      transform: translateY(-50%);
-      height: 2px;
-      background-color: grey;
-    }
+}
+
+.todo-list-container {
+  display: grid;
+  grid-template-columns: 1fr;
+  grid-gap: 10px;
+
+  &-completed {
+    margin-top: 10px;
   }
+}
+
+.todo-item {
 }

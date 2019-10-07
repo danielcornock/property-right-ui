@@ -18,7 +18,9 @@ import {
   Filter,
   Search,
   Users,
-  Trash2
+  Trash2,
+  MoreVertical,
+  Calendar
 } from 'angular-feather/icons';
 
 const icons = {
@@ -37,7 +39,9 @@ const icons = {
   Filter,
   Search,
   Users,
-  Trash2
+  Trash2,
+  MoreVertical,
+  Calendar
 };
 
 @NgModule({

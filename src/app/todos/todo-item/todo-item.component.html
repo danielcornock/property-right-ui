@@ -1,19 +1,55 @@
 <div class="todoItem-container" [class.completed]="todo.completed">
-  <span class="todoItem-title">{{ todo.title }}</span>
-  <span class="todoItem-date">{{ todo.date }}</span>
-  <span class="todoItem-severity">{{ todo.severity }}</span>
-  <span *ngIf="!propertyId" class="todoItem-propertyContainer">
-    <a
-      *ngIf="todo.propertyId"
-      class="todoItem-property"
-      [routerLink]="['/properties', todo.propertyId]"
-    >
-      {{ todo.propertyName }}
-    </a>
-  </span>
-  <button (click)="emitToggleCompleted()">
-    <span *ngIf="!todo.completed">Complete</span>
-    <span *ngIf="todo.completed">Make Active</span>
+  <app-checkbox
+    class="todoItem-checkbox"
+    [checkboxDefault]="todo.completed"
+    (click)="emitToggleCompleted()"
+  ></app-checkbox>
+  <div class="todoItem-content">
+    <div class="todoItem-heading">
+      {{ todo.title }}
+      <app-ui-pill
+        class="todoItem-daysLeft"
+        *ngIf="todo.date"
+        [uiPillContent]="daysLeft()"
+      ></app-ui-pill>
+    </div>
+
+    <div class="todoItem-meta">
+      <div *ngIf="!propertyId" class="todoItem-propertyContainer">
+        <a
+          *ngIf="todo.propertyId"
+          class="todoItem-property"
+          [routerLink]="['/properties', todo.propertyId]"
+        >
+          <app-ui-icon
+            class="todoItem-inlineIcon"
+            name="home"
+            size="micro"
+          ></app-ui-icon>
+          {{ todo.propertyName }}
+        </a>
+      </div>
+      <span
+        class="todoItem-metaDivider"
+        *ngIf="todo.propertyName && todo.date && !propertyId"
+      >
+      </span>
+      <span *ngIf="todo.date" class="todoItem-date">
+        <app-ui-icon
+          class="todoItem-inlineIcon"
+          name="calendar"
+          size="micro"
+        ></app-ui-icon
+        >{{ formatDate() }}</span
+      >
+    </div>
+  </div>
+  <app-ui-pill
+    [uiPillContent]="todo.severity"
+    *ngIf="todo.severity"
+    class="todoItem-severity"
+  ></app-ui-pill>
+  <button class="todoItem-menu" (click)="emitDeleteTodo()">
+    <app-ui-icon name="more-vertical"></app-ui-icon>
   </button>
-  <button (click)="emitDeleteTodo()">Delete</button>
 </div>

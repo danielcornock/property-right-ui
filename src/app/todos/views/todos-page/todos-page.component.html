@@ -1,3 +1,31 @@
-<h2>All Todos</h2>
-<app-todo-create></app-todo-create>
-<app-todo-list></app-todo-list>
+<div class="todosPage-container">
+  <h2 class="todosPage-title">All Todos</h2>
+  <div class="todosPage-header">
+    <div
+      class="todosPage-searchContainer"
+      [class.todosPage-searchContainer--active]="searchFocus"
+    >
+      <div class="todosPage-search__icon">
+        <app-ui-icon name="search" size="tiny"></app-ui-icon>
+      </div>
+      <input
+        type="text"
+        #searchBar
+        (keyup)="searchTodos($event)"
+        (focus)="setSearchFocus(true)"
+        (blur)="setSearchFocus(false)"
+        class="todosPage-search"
+        placeholder="START TYPING TO SEARCH..."
+      />
+    </div>
+    <button (click)="openCreateTodoModal()" class="todosPage-addNew">
+      <app-ui-icon
+        size="tiny"
+        name="plus"
+        class="todosPage-addNew__icon"
+      ></app-ui-icon>
+      Add New
+    </button>
+  </div>
+  <app-todo-list [todoListFilteredTodos]="filteredTodos"></app-todo-list>
+</div>

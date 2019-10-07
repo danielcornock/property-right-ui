@@ -1,0 +1,27 @@
+@import 'src/assets/styles/themes.scss';
+
+.todoCreate {
+  &-container {
+    background-color: white;
+    padding: 25px;
+    width: 600px;
+  }
+  &-input {
+    @include default-text-input;
+    margin-bottom: $spacing-small;
+  }
+
+  &-form {
+    display: grid;
+  }
+
+  &-submit {
+    @include button(primary);
+  }
+
+  &-dropdown {
+    @include default-text-input;
+    margin-bottom: $spacing-small;
+    height: 48px;
+  }
+}
