@@ -1,9 +1,10 @@
-import { Component, OnInit, Input } from '@angular/core';
+import { Component, OnInit, Input, Inject } from '@angular/core';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { TodoService } from '../services/todo.service';
 import { PropertyService } from '../../properties/services/property.service';
 import { IProperty } from '../../properties/interfaces/IProperty';
 import { IPropertyDropdownOption } from './interfaces/IPropertyDropdownOption';
+import { MatDialogRef, MAT_DIALOG_DATA } from '@angular/material';
 
 @Component({
   selector: 'app-todo-create',
@@ -11,15 +12,21 @@ import { IPropertyDropdownOption } from './interfaces/IPropertyDropdownOption';
   styleUrls: ['./todo-create.component.scss']
 })
 export class TodoCreateComponent implements OnInit {
-  @Input() propertyId: string;
-  todoForm: FormGroup;
-  propertyOptions: Array<IPropertyDropdownOption> = [];
+  public propertyId: string;
+  public todoForm: FormGroup;
+  public propertyOptions: Array<IPropertyDropdownOption> = [];
 
   constructor(
+    @Inject(MAT_DIALOG_DATA) public data: any,
     private formBuilder: FormBuilder,
     private todoService: TodoService,
-    private propertyService: PropertyService
-  ) {}
+    private propertyService: PropertyService,
+    private matDialogRef: MatDialogRef<TodoCreateComponent>
+  ) {
+    if (data.data && data.data.propertyId) {
+      this.propertyId = data.data.propertyId;
+    }
+  }
 
   ngOnInit() {
     this.todoForm = this._initialiseTodoForm();
@@ -35,6 +42,7 @@ export class TodoCreateComponent implements OnInit {
     }
     this.todoService.addTodo(this.todoForm.value).then(() => {
       this.todoForm.reset();
+      this.matDialogRef.close();
       this.todoForm = this._initialiseTodoForm();
     });
   }

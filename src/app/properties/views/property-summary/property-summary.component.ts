@@ -5,6 +5,7 @@ import { PropertyService } from 'src/app/properties/services/property.service';
 import { RouterService } from 'src/app/core/routing/router.service';
 import { ModalService } from 'src/app/core/modal/modal.service';
 import { TenantFormComponent } from 'src/app/tenants/business/tenant-form/tenant-form.component';
+import { TodoCreateComponent } from 'src/app/todos/todo-create/todo-create.component';
 
 @Component({
   selector: 'app-property-summary',
@@ -35,8 +36,16 @@ export class PropertySummaryComponent implements OnInit {
     });
   }
 
-  openCreateTenantModal() {
-    this.modalService.openModal(TenantFormComponent);
+  public openCreateTenantModal() {
+    this.modalService.openModal(TenantFormComponent, {
+      propertyId: this.propertyId
+    });
+  }
+
+  public openCreateTodoModal() {
+    this.modalService.openModal(TodoCreateComponent, {
+      propertyId: this.propertyId
+    });
   }
 
   public openConfirmDeleteModal() {

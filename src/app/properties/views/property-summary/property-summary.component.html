@@ -6,7 +6,7 @@
   <a routerLink="/properties/edit/{{ property._id }}">Edit Property</a>
   <button (click)="openConfirmDeleteModal()">Delete Property</button>
 </div>
-<app-todo-create [propertyId]="propertyId"></app-todo-create>
+<button (click)="openCreateTodoModal()">Add new todo</button>
 <app-todo-list [propertyId]="propertyId"></app-todo-list>
 <button (click)="openCreateTenantModal()">Add new tenant</button>
 <app-tenant-list [propertyId]="propertyId"></app-tenant-list>

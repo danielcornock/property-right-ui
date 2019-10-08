@@ -9,6 +9,11 @@
     align-items: center;
   }
 
+  &--completed {
+    background-color: lighten($color-bg-success, 5%);
+    color: grey;
+  }
+
   &-checkbox {
     margin-right: $spacing-med;
   }

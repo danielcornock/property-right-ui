@@ -24,7 +24,11 @@ export class ModalService {
     });
   }
 
-  public openModal(component) {
-    this.dialogRef = this.matDialog.open(component);
+  public openModal(component, data: any) {
+    this.dialogRef = this.matDialog.open(component, {
+      data: {
+        data
+      }
+    });
   }
 }

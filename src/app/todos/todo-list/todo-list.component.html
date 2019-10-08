@@ -12,12 +12,8 @@
     >
     </app-todo-item>
   </div>
-  <button
-    class="todoList-seeCompleted"
-    *ngIf="!showCompleted"
-    (click)="setShowCompleted()"
-  >
-    Show completed todos
+  <button class="todoList-seeCompleted" (click)="toggleShowCompleted()">
+    {{ showCompleted ? 'Hide' : 'Show' }} completed todos
   </button>
   <div class="todo-list-container todo-list-container-completed">
     <app-todo-item

@@ -63,8 +63,8 @@ export class TodoListComponent implements OnInit, OnDestroy, OnChanges {
     this.todoSub.unsubscribe();
   }
 
-  public setShowCompleted() {
-    this.showCompleted = true;
+  public toggleShowCompleted() {
+    this.showCompleted = !this.showCompleted;
   }
 
   private fetchTodos(): void {

@@ -1,10 +1,10 @@
-import { Component, OnInit, Input } from '@angular/core';
+import { Component, OnInit, Inject } from '@angular/core';
 import { FormGroup, FormBuilder, Validators } from '@angular/forms';
 import { IPropertyDropdownOption } from 'src/app/todos/todo-create/interfaces/IPropertyDropdownOption';
 import { TenantService } from '../../services/tenant.service';
 import { PropertyService } from 'src/app/properties/services/property.service';
 import { IProperty } from 'src/app/properties/interfaces/IProperty';
-import { MatDialogRef } from '@angular/material';
+import { MatDialogRef, MAT_DIALOG_DATA } from '@angular/material';
 
 @Component({
   selector: 'app-tenant-form',
@@ -12,23 +12,31 @@ import { MatDialogRef } from '@angular/material';
   styleUrls: ['./tenant-form.component.scss']
 })
 export class TenantFormComponent implements OnInit {
-  @Input() propertyId: string;
   private tenantForm: FormGroup;
   public propertyOptions: Array<IPropertyDropdownOption> = [];
   public isLoading: boolean;
   public isModal: boolean = true;
+  public propertyId: string;
 
   constructor(
+    @Inject(MAT_DIALOG_DATA) public data: any,
     private formBuilder: FormBuilder,
     private tenantService: TenantService,
     private propertyService: PropertyService,
     private matDialogRef: MatDialogRef<TenantFormComponent>
-  ) {}
+  ) {
+    console.log(data);
+    if (data.data && data.data.propertyId) {
+      this.propertyId = data.data.propertyId;
+    }
+  }
 
   ngOnInit() {
     this.isLoading = false;
     this.tenantForm = this._initialiseTenantForm();
-    this._setPropertyDropdownOptions();
+    if (!this.propertyId) {
+      this._setPropertyDropdownOptions();
+    }
   }
 
   public submitTenant() {

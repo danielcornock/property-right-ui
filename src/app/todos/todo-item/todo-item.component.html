@@ -1,4 +1,4 @@
-<div class="todoItem-container" [class.completed]="todo.completed">
+<div class="todoItem-container" [class.todoItem--completed]="todo.completed">
   <app-checkbox
     class="todoItem-checkbox"
     [checkboxDefault]="todo.completed"
@@ -14,7 +14,10 @@
       ></app-ui-pill>
     </div>
 
-    <div class="todoItem-meta" *ngIf="todo.propertyName || todo.date">
+    <div
+      class="todoItem-meta"
+      *ngIf="(todo.propertyName || todo.date) && !propertyId"
+    >
       <div *ngIf="!propertyId" class="todoItem-propertyContainer">
         <a
           *ngIf="todo.propertyId"

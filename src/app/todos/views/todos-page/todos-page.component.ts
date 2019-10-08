@@ -51,9 +51,17 @@ export class TodosPageComponent implements OnInit {
     }
     console.log(event.target.value);
     const filteredTodos = this.todos.filter(todo => {
-      return todo.title
-        .toLowerCase()
-        .includes((event.target as HTMLInputElement).value.toLowerCase());
+      if (
+        todo.title
+          .toLowerCase()
+          .includes((event.target as HTMLInputElement).value.toLowerCase()) ||
+        (todo.propertyName &&
+          todo.propertyName
+            .toLowerCase()
+            .includes((event.target as HTMLInputElement).value.toLowerCase()))
+      ) {
+        return true;
+      }
     });
     this.filteredTodos = filteredTodos;
   }
