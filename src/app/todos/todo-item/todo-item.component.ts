@@ -9,6 +9,7 @@ import { EventEmitter } from '@angular/core';
 })
 export class TodoItemComponent implements OnInit {
   public todo: ITodo;
+  public contextMenuConfig: object;
   @Input() todoInput: ITodo;
   @Input() propertyId: string;
   constructor() {}
@@ -18,6 +19,11 @@ export class TodoItemComponent implements OnInit {
 
   ngOnInit() {
     this.todo = this.todoInput;
+    this.contextMenuConfig = this._createContextMenuConfig();
+  }
+
+  public onActionSelect(event) {
+    eval(event);
   }
 
   public emitDeleteTodo(): void {
@@ -46,5 +52,24 @@ export class TodoItemComponent implements OnInit {
       : difference === 0
       ? 'tomorrow'
       : `${difference + 1} days`;
+  }
+
+  private _createContextMenuConfig(): object {
+    return {
+      position: {
+        x: 'before',
+        y: 'below'
+      },
+      items: [
+        {
+          label: 'Delete',
+          action: 'this.emitDeleteTodo()'
+        },
+        {
+          label: 'Edit',
+          action: 'console.log(this)'
+        }
+      ]
+    };
   }
 }

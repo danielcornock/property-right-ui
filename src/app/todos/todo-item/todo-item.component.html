@@ -16,7 +16,7 @@
 
     <div
       class="todoItem-meta"
-      *ngIf="(todo.propertyName || todo.date) && !propertyId"
+      *ngIf="(todo.propertyName && !propertyId) || todo.date"
     >
       <div *ngIf="!propertyId" class="todoItem-propertyContainer">
         <a
@@ -52,7 +52,12 @@
     *ngIf="todo.severity"
     class="todoItem-severity"
   ></app-ui-pill>
-  <button class="todoItem-menu" (click)="emitDeleteTodo()">
+  <app-context-menu
+    class="todoItem-menu"
+    [contextMenuConfig]="contextMenuConfig"
+    (contextMenuOnSelect)="onActionSelect($event)"
+  ></app-context-menu>
+  <!-- <button class="todoItem-menu" (click)="emitDeleteTodo()">
     <app-ui-icon name="more-vertical"></app-ui-icon>
-  </button>
+  </button> -->
 </div>

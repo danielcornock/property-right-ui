@@ -1,0 +1,21 @@
+<div class="contextMenu-container">
+  <mat-menu
+    class="contextMenu-list"
+    #appMenu="matMenu"
+    yPosition="{{ yPosition }}"
+    xPosition="{{ xPosition }}"
+  >
+    <button
+      mat-menu-item
+      class="contextMenu-item"
+      *ngFor="let item of contextItems"
+      (click)="onSelect(item.action)"
+    >
+      <span class="contextMenu-itemText">{{ item.label }}</span>
+    </button>
+  </mat-menu>
+
+  <button class="contextMenu-button" [matMenuTriggerFor]="appMenu">
+    <app-ui-icon size="small" name="more-vertical"></app-ui-icon>
+  </button>
+</div>

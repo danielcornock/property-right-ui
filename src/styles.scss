@@ -1,6 +1,7 @@
 @import '~normalize.css';
 @import 'src/assets/styles/themes.scss';
 @import url('https://fonts.googleapis.com/css?family=Montserrat:300,400,500,600,700,800&display=swap');
+@import 'src/assets/styles/classes/animations';
 
 *,
 *::after,
@@ -14,6 +15,13 @@ html {
 
 body {
   background-color: $color-bg-main;
+}
+
+body:not(.user-is-tabbing) button:focus,
+body:not(.user-is-tabbing) input:focus,
+body:not(.user-is-tabbing) select:focus,
+body:not(.user-is-tabbing) textarea:focus {
+  outline: none;
 }
 
 *:focus {

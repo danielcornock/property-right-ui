@@ -37,7 +37,7 @@ export class TodosPageComponent implements OnInit {
   }
 
   public openCreateTodoModal(): void {
-    this.modalService.openModal(TodoCreateComponent);
+    this.modalService.openModal(TodoCreateComponent, {});
   }
 
   public setSearchFocus(active: boolean) {

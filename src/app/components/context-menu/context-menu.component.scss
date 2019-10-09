@@ -1,0 +1,43 @@
+@import 'src/assets/styles/themes.scss';
+
+.contextMenu {
+  &-container {
+  }
+
+  &-button {
+    @include button-default;
+    @include center-contents;
+    color: $color-text-tertiary;
+    background-color: $color-bg-light;
+    border-radius: $br-max;
+    height: 35px;
+    width: 35px;
+
+    @include hover($t250) {
+      background-color: darken($color-bg-light, 5%);
+    }
+  }
+
+  &-item {
+    min-width: 150px;
+    @include pseudo(after) {
+      bottom: 0;
+      left: $spacing-micro;
+      right: $spacing-micro;
+      height: 1px;
+      background-color: $color-bg-input;
+    }
+  }
+
+  &-itemText {
+    font-family: 'Montserrat';
+    font-weight: $medium;
+    color: $color-text-copy;
+    width: 100%;
+    text-align: center;
+  }
+
+  &-list {
+    background-color: blue !important;
+  }
+}

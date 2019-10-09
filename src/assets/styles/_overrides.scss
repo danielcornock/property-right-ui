@@ -3,3 +3,21 @@
   border-radius: $br-small !important;
   overflow: initial !important;
 }
+
+.mat-menu-panel {
+  border-radius: $br-small !important;
+  min-height: initial !important;
+}
+
+.mat-menu-content {
+  padding: 0 !important;
+}
+
+.mat-menu-item {
+  text-align: center !important;
+  line-height: 40px !important;
+  height: initial !important;
+  @include hover(0) {
+    background-color: $color-bg-hover-light !important;
+  }
+}

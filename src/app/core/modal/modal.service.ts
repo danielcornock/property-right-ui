@@ -24,7 +24,7 @@ export class ModalService {
     });
   }
 
-  public openModal(component, data: any) {
+  public openModal(component, data?: any) {
     this.dialogRef = this.matDialog.open(component, {
       data: {
         data

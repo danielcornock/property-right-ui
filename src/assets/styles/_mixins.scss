@@ -50,7 +50,9 @@
 }
 
 @mixin hover($speed) {
-  transition: $speed;
+  @if ($speed != 0) {
+    transition: $speed;
+  }
   &:hover {
     @content;
   }

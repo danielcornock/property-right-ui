@@ -28,7 +28,7 @@
   <p *ngIf="properties && !filteredProperties.length">No properties found.</p>
   <div class="flex-wrap">
     <app-property-card
-      class="list-item"
+      class="list-item anim-iterative-in"
       [property]="property"
       *ngFor="let property of filteredProperties"
     ></app-property-card>

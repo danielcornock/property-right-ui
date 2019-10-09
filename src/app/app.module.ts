@@ -6,6 +6,7 @@ import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 
 import { ToastrModule } from 'ngx-toastr';
 import { MatDialogModule, MatDialogRef } from '@angular/material';
+import { MatMenuModule } from '@angular/material/menu';
 
 import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
@@ -33,6 +34,7 @@ import { TenantOverviewPageComponent } from './tenants/views/tenant-overview-pag
 import { AvatarIconComponent } from './components/assets/avatar-icon/avatar-icon.component';
 import { ConfirmationModalComponent } from './components/confirmation-modal/confirmation-modal.component';
 import { UiPillComponent } from './components/assets/ui-pill/ui-pill.component';
+import { ContextMenuComponent } from './components/context-menu/context-menu.component';
 
 @NgModule({
   declarations: [
@@ -59,7 +61,8 @@ import { UiPillComponent } from './components/assets/ui-pill/ui-pill.component';
     TenantOverviewPageComponent,
     AvatarIconComponent,
     ConfirmationModalComponent,
-    UiPillComponent
+    UiPillComponent,
+    ContextMenuComponent
   ],
   imports: [
     BrowserModule,
@@ -70,6 +73,7 @@ import { UiPillComponent } from './components/assets/ui-pill/ui-pill.component';
     IconsModule,
     BrowserAnimationsModule,
     MatDialogModule,
+    MatMenuModule,
     ToastrModule.forRoot()
   ],
   entryComponents: [
