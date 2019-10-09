@@ -1,6 +1,8 @@
 @import 'src/assets/styles/themes.scss';
 
 .todoItem {
+  $cmp: &;
+
   &-container {
     padding: $spacing-small;
     @include card-default;
@@ -31,6 +33,10 @@
 
   &-severity {
     margin: 0 15px;
+
+    @include media($tablet) {
+      display: none;
+    }
   }
 
   &-meta {
@@ -42,6 +48,9 @@
   }
 
   &-propertyContainer {
+    @include media($tablet) {
+      display: none;
+    }
   }
 
   &-property {
@@ -49,16 +58,28 @@
     @include flex(row);
     align-items: center;
     line-height: 100%;
+    margin-right: $spacing-tiny;
 
-    @include hover($t250) {
+    @include hover(0) {
       text-decoration: underline;
     }
   }
 
+  &-addProperty {
+    @include button-default;
+    @extend #{$cmp}-property;
+  }
+
   &-date {
+    @include button-default;
     @include flex(row);
     align-items: center;
     line-height: 100%;
+    color: $color-text-tertiary;
+
+    @include hover(0) {
+      text-decoration: underline;
+    }
   }
 
   &-menu {
@@ -77,10 +98,5 @@
     //! Hacky way to align them
     position: relative;
     top: -2px;
-  }
-
-  &-metaDivider {
-    display: inline-block;
-    margin: 0 10px;
   }
 }

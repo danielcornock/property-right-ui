@@ -13,6 +13,10 @@
     @include box-shadow(light);
     background-color: $color-bg-card;
     height: 100vh;
+
+    @include media($phone) {
+      display: none;
+    }
   }
 
   &-branding {

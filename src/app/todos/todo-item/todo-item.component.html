@@ -14,11 +14,11 @@
       ></app-ui-pill>
     </div>
 
-    <div
-      class="todoItem-meta"
-      *ngIf="(todo.propertyName && !propertyId) || todo.date"
-    >
-      <div *ngIf="!propertyId" class="todoItem-propertyContainer">
+    <div class="todoItem-meta" *ngIf="hasMeta || showMeta">
+      <div
+        *ngIf="!propertyId && (todo.propertyId || showMeta)"
+        class="todoItem-propertyContainer"
+      >
         <a
           *ngIf="todo.propertyId"
           class="todoItem-property"
@@ -31,20 +31,28 @@
           ></app-ui-icon>
           {{ todo.propertyName }}
         </a>
+
+        <button
+          *ngIf="!todo.propertyId && showMeta"
+          class="todoItem-addProperty"
+          [routerLink]="['/properties', todo.propertyId]"
+        >
+          <app-ui-icon
+            class="todoItem-inlineIcon"
+            name="home"
+            size="micro"
+          ></app-ui-icon>
+          Attach Property
+        </button>
       </div>
-      <span
-        class="todoItem-metaDivider"
-        *ngIf="todo.propertyName && todo.date && !propertyId"
-      >
-      </span>
-      <span *ngIf="todo.date" class="todoItem-date">
+      <button class="todoItem-date" *ngIf="showMeta || todo.date">
         <app-ui-icon
           class="todoItem-inlineIcon"
           name="calendar"
           size="micro"
         ></app-ui-icon
-        >{{ formatDate() }}</span
-      >
+        >{{ todo.date ? formatDate() : 'Add Date' }}
+      </button>
     </div>
   </div>
   <app-ui-pill
@@ -57,7 +65,4 @@
     [contextMenuConfig]="contextMenuConfig"
     (contextMenuOnSelect)="onActionSelect($event)"
   ></app-context-menu>
-  <!-- <button class="todoItem-menu" (click)="emitDeleteTodo()">
-    <app-ui-icon name="more-vertical"></app-ui-icon>
-  </button> -->
 </div>

@@ -17,8 +17,14 @@
   display: grid;
   grid-template-columns: 1fr 1fr 1fr;
   grid-gap: 20px;
-  // flex-wrap: wrap;
-  // justify-content: space-between;
+
+  @include media($ld) {
+    grid-template-columns: 1fr 1fr;
+  }
+
+  @include media($tablet) {
+    grid-template-columns: 1fr;
+  }
 }
 
 .flex-between {

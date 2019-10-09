@@ -17,16 +17,15 @@ export class AppComponent implements OnInit {
     this.listenForTabbing();
   }
 
-  private handleFirstTab(e) {
-    console.log(e);
-    if (e.keyCode === 9) {
-      // the "I am a keyboard user" key
-      document.body.classList.add('user-is-tabbing');
-      window.removeEventListener('keydown', this.handleFirstTab);
-    }
-  }
-
   private listenForTabbing() {
-    window.addEventListener('keydown', this.handleFirstTab);
+    window.addEventListener('keydown', handleFirstTab);
+
+    function handleFirstTab(e) {
+      if (e.keyCode === 9) {
+        // the "I am a keyboard user" key
+        document.body.classList.add('user-is-tabbing');
+        window.removeEventListener('keydown', handleFirstTab);
+      }
+    }
   }
 }

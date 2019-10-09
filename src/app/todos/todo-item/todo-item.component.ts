@@ -1,4 +1,4 @@
-import { Component, OnInit, Input, OnChanges, Output } from '@angular/core';
+import { Component, OnInit, Input, Output, HostListener } from '@angular/core';
 import { ITodo } from '../interfaces/ITodo';
 import { EventEmitter } from '@angular/core';
 
@@ -10,6 +10,8 @@ import { EventEmitter } from '@angular/core';
 export class TodoItemComponent implements OnInit {
   public todo: ITodo;
   public contextMenuConfig: object;
+  public showMeta;
+  public hasMeta: boolean = false;
   @Input() todoInput: ITodo;
   @Input() propertyId: string;
   constructor() {}
@@ -17,9 +19,22 @@ export class TodoItemComponent implements OnInit {
   @Output() deleteTodo = new EventEmitter();
   @Output() toggleCompleted = new EventEmitter();
 
+  @HostListener('mouseenter') mouseover(event: Event) {
+    this.showMeta = true;
+  }
+  @HostListener('mouseleave') mouseleave(event: Event) {
+    this.showMeta = false;
+  }
+
   ngOnInit() {
     this.todo = this.todoInput;
     this.contextMenuConfig = this._createContextMenuConfig();
+    this.showMeta = false;
+    this.hasMeta =
+      (this.todo.propertyName && !this.propertyId) || this.todo.date
+        ? true
+        : false;
+    // this.showMeta = this.hasMeta;
   }
 
   public onActionSelect(event) {
