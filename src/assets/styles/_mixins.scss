@@ -70,6 +70,21 @@
     font-size: $font-standard;
   }
 
+  @if ($type == default) {
+    @include box-shadow(light);
+
+    padding: 10px 15px;
+    font-size: $font-small;
+    background-color: $color-bg-card;
+    display: flex;
+    align-items: center;
+    color: $color-text-highlight;
+
+    @include hover($t250) {
+      box-shadow: 0px 1px 4px rgba(0, 0, 0, 0.2);
+    }
+  }
+
   @if ($type == primary) {
     color: $color-text-button-highlight;
     background-color: $color-bg-highlight;
@@ -161,6 +176,13 @@
     margin-right: $spacing;
     &:last-of-type {
       margin-right: 0px;
+    }
+  }
+
+  @if ($direction == 'down') {
+    margin-bottom: $spacing;
+    &:last-of-type {
+      margin-bottom: 0px;
     }
   }
 }

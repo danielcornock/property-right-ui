@@ -35,6 +35,7 @@ import { AvatarIconComponent } from './components/assets/avatar-icon/avatar-icon
 import { ConfirmationModalComponent } from './components/confirmation-modal/confirmation-modal.component';
 import { UiPillComponent } from './components/assets/ui-pill/ui-pill.component';
 import { ContextMenuComponent } from './components/context-menu/context-menu.component';
+import { TenantCardComponent } from './tenants/presentation/tenant-card/tenant-card.component';
 
 @NgModule({
   declarations: [
@@ -62,7 +63,8 @@ import { ContextMenuComponent } from './components/context-menu/context-menu.com
     AvatarIconComponent,
     ConfirmationModalComponent,
     UiPillComponent,
-    ContextMenuComponent
+    ContextMenuComponent,
+    TenantCardComponent
   ],
   imports: [
     BrowserModule,

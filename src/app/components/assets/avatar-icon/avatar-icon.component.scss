@@ -3,15 +3,25 @@
 .avatarIcon {
   &-container {
     @include center-contents;
+    @include box-shadow(light);
     height: 35px;
     width: 35px;
     background-color: $pink;
     border-radius: $br-max;
     border: 2px solid white;
+
+    &--med {
+      height: 50px;
+      width: 50px;
+    }
   }
   &-initials {
     font-size: $font-tiny;
     color: $color-text-button-highlight;
     font-weight: $bold;
+
+    &--med {
+      font-size: $font-default;
+    }
   }
 }

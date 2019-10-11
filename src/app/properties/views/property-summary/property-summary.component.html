@@ -3,7 +3,7 @@
   <div>Price</div>
   <div>{{ property.monthlyRent }}</div>
   <img class="preview-image" [src]="property.image" alt="" />
-  <a routerLink="/properties/edit/{{ property._id }}">Edit Property</a>
+  <a routerLink="/properties/{{ property._id }}/edit">Edit Property</a>
   <button (click)="openConfirmDeleteModal()">Delete Property</button>
 </div>
 <button (click)="openCreateTodoModal()">Add new todo</button>

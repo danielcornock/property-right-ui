@@ -1,0 +1,15 @@
+@import 'src/assets/styles/themes.scss';
+
+.tenantsPage {
+  &-header {
+    @include flex(row);
+    align-items: flex-end;
+    justify-content: space-between;
+    margin-bottom: $spacing-smaller;
+    color: $blue;
+  }
+
+  &-addNewButton {
+    @include button(default, small);
+  }
+}

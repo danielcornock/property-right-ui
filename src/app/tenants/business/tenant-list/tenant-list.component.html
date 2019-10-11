@@ -1,19 +1,10 @@
-<h2>Tenant List</h2>
-
 <app-loading-animation *ngIf="isLoading"></app-loading-animation>
 <div *ngIf="!isLoading" class="loaded">
-  <div class="grid table-header">
-    <span>Name</span>
-    <span>Email</span>
-    <span>Phone</span>
-    <span *ngIf="!propertyId">Property</span>
-  </div>
-  <div class="grid" *ngFor="let tenant of tenants">
-    <a routerLink="/tenants/{{ tenant._id }}">{{ tenant.name }}</a>
-    <span>{{ tenant.email }}</span>
-    <span>{{ tenant.phone }}</span>
-    <a *ngIf="!propertyId" routerLink="/properties/{{ tenant.propertyId }}">{{
-      tenant.propertyName
-    }}</a>
+  <div class="grid">
+    <app-tenant-card
+      class="anim-iterative-in"
+      *ngFor="let tenant of tenants"
+      [tenantCardTenant]="tenant"
+    ></app-tenant-card>
   </div>
 </div>

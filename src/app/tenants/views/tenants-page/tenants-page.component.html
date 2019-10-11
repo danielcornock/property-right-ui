@@ -1,5 +1,15 @@
-<button (click)="openCreateTenantModal()" class="add-new">
-  <app-ui-icon size="tiny" name="plus" class="button-icon"></app-ui-icon>
-  Add New
-</button>
-<app-tenant-list></app-tenant-list>
+<div class="tenantsPage-container">
+  <div class="tenantsPage-header">
+    <h2 class="tenantsPage-title">Tenant List</h2>
+    <button (click)="openCreateTenantModal()" class="tenantsPage-addNewButton">
+      <app-ui-icon
+        class="tenantsPage-addNewIcon"
+        size="tiny"
+        name="plus"
+        class="button-icon"
+      ></app-ui-icon>
+      Add new
+    </button>
+  </div>
+  <app-tenant-list></app-tenant-list>
+</div>

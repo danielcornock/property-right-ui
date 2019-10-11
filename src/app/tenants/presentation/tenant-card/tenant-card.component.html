@@ -1,0 +1,60 @@
+<div class="tenantCard-container">
+  <div
+    class="tenantCard-header"
+    [style.borderColor]="bgColor"
+    [style.backgroundColor]="lightestColor"
+  >
+    <div class="tenantCard-avatarContainer">
+      <app-avatar-icon
+        routerLink="/tenants/{{ tenant._id }}"
+        [avatarIcon]="tenant.avatar"
+        avatarSize="med"
+        class="tenantCard-avatar"
+      ></app-avatar-icon>
+    </div>
+    <div class="tenantCard-headerDetails">
+      <a
+        [style.color]="textColor"
+        class="tenantCard-name"
+        routerLink="/tenants/{{ tenant._id }}"
+        >{{ tenant.name }}</a
+      >
+      <span class="tenantCard-address" *ngIf="!propertyId">
+        <a
+          [style.color]="subtextColor"
+          routerLink="/properties/{{ tenant.propertyId }}"
+          >{{ tenant.propertyName }}</a
+        ></span
+      >
+    </div>
+  </div>
+  <div class="tenantCard-content" *ngIf="tenant.email || tenant.phone">
+    <div class="tenantCard-contactContainer">
+      <h3 class="tenantCard-contactTitle">Contact Information</h3>
+      <div class="tenantCard-contactItem" *ngIf="tenant.email">
+        <div class="tenantCard-contactIconContainer">
+          <app-ui-icon
+            size="micro"
+            name="mail"
+            class="tenantCard-contactIcon"
+          ></app-ui-icon>
+        </div>
+        <a href="mailto:{{ tenant.email }}" class="tenantCard-contactDetail">{{
+          tenant.email
+        }}</a>
+      </div>
+      <div class="tenantCard-contactItem" *ngIf="tenant.phone">
+        <div class="tenantCard-contactIconContainer">
+          <app-ui-icon
+            size="micro"
+            name="phone"
+            class="tenantCard-contactIcon"
+          ></app-ui-icon>
+        </div>
+        <a href="tel:{{ tenant.phone }}" class="tenantCard-contactDetail">{{
+          tenant.phone
+        }}</a>
+      </div>
+    </div>
+  </div>
+</div>

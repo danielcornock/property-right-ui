@@ -1,0 +1,94 @@
+@import 'src/assets/styles/themes.scss';
+
+.tenantCard {
+  $cmp: &;
+  &-container {
+    @include card-default;
+    overflow: hidden;
+  }
+
+  &-header {
+    @include flex(row);
+    align-items: center;
+    border-top: 4px solid $blue;
+
+    padding: $spacing-smaller $spacing-small;
+  }
+
+  &-avatarContainer {
+    margin-right: $spacing-micro;
+    cursor: pointer;
+
+    @include hover($t250) {
+      transform: scale(1.1);
+    }
+  }
+
+  &-avatar {
+  }
+
+  &-headerDetails {
+  }
+
+  &-name {
+    display: block;
+    font-size: $font-default;
+    font-weight: $semi-bold;
+
+    @include hover(0) {
+      text-decoration: underline;
+    }
+  }
+
+  &-address {
+    font-size: $font-standard;
+    margin-top: 3px;
+    display: block;
+    @include hover(0) {
+      text-decoration: underline;
+    }
+  }
+
+  &-content {
+    padding: $spacing-smaller $spacing-small;
+  }
+
+  &-contactTitle {
+    font-size: $font-default;
+    color: $color-text-primary;
+    font-weight: $medium;
+    margin-bottom: $spacing-smallest;
+  }
+
+  &-contactItem {
+    @include flex();
+    @include space-by(down, 2px);
+    align-items: center;
+    font-size: $font-small;
+    color: $color-text-tertiary;
+
+    cursor: pointer;
+
+    @include hover(0) {
+      text-decoration: underline;
+      color: $color-text-highlight;
+
+      #{$cmp}-contactIcon {
+        color: $color-text-highlight;
+      }
+    }
+  }
+
+  &-contactIconContainer {
+    margin-right: $spacing-micro;
+    border-radius: $br-max;
+    padding: $spacing-micro;
+    background-color: $color-bg-light;
+  }
+  &-contactIcon {
+    color: $color-text-tertiary;
+  }
+
+  &-contactDetail {
+  }
+}

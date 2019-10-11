@@ -7,6 +7,7 @@ import { Component, OnInit, Input } from '@angular/core';
 })
 export class AvatarIconComponent implements OnInit {
   @Input() avatarIcon: string;
+  @Input() avatarSize: string;
   constructor() {}
 
   ngOnInit() {}

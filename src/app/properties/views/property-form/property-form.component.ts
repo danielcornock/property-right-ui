@@ -25,7 +25,9 @@ export class PropertyFormComponent implements OnInit {
 
   ngOnInit() {
     this.propertyForm = this._initialiseForm();
-    this.editMode = this.router.url.includes('/properties/edit');
+    this.editMode =
+      this.router.url.includes('/edit') &&
+      this.router.url.includes('/properties');
     this._checkForEditMode(this.editMode).then(() => {
       this._populateFields();
     });

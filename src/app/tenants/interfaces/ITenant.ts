@@ -5,4 +5,11 @@ export interface ITenant {
   phone?: string;
   propertyId?: string;
   propertyName?: string;
+  avatar?: IAvatar;
+}
+
+export interface IAvatar {
+  initials: string;
+  bgColor: string;
+  textColor: string;
 }

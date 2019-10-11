@@ -1,9 +1,11 @@
 <div
-  class="avatarIcon-container"
+  class="avatarIcon-container avatarIcon-container--{{ avatarSize }}"
   [style.backgroundColor]="avatarIcon.bgColor"
   *ngIf="avatarIcon"
 >
-  <span class="avatarIcon-initials" [style.color]="avatarIcon.textColor">{{
-    avatarIcon.initials
-  }}</span>
+  <span
+    class="avatarIcon-initials avatarIcon-initials--{{ avatarSize }}"
+    [style.color]="avatarIcon.textColor"
+    >{{ avatarIcon.initials }}</span
+  >
 </div>
