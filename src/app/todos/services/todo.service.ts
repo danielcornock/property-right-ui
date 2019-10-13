@@ -81,6 +81,20 @@ export class TodoService {
     });
   }
 
+  public getTodoAlerts(): Promise<Array<object>> {
+    return new Promise((resolve, reject) => {
+      this.httpService.get('todos/todos-per-property').subscribe(
+        (res: IHttpResponse) => {
+          resolve(res.data.propertyTodos);
+        },
+        error => {
+          console.log(error);
+          reject();
+        }
+      );
+    });
+  }
+
   private setTodoRoute(propertyId: string) {
     if (propertyId) {
       return `properties/${propertyId}/todos`;

@@ -8,6 +8,8 @@
     font-weight: $semi-bold;
     text-transform: uppercase;
     display: inline;
+    @include flex(row);
+    align-items: center;
 
     &--danger {
       background-color: $color-bg-danger;
@@ -28,5 +30,9 @@
       background-color: $color-bg-default;
       color: $color-text-default;
     }
+  }
+
+  &-icon {
+    margin-right: $spacing-smallest;
   }
 }

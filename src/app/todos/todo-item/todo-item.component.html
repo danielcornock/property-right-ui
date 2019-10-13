@@ -10,7 +10,8 @@
       <app-ui-pill
         class="todoItem-daysLeft"
         *ngIf="todo.date && !todo.completed"
-        [uiPillContent]="daysLeft()"
+        [uiPillContent]="daysLeftToString()"
+        [uiPillColor]="getDaysLeftColor()"
       ></app-ui-pill>
     </div>
 

@@ -1,6 +1,13 @@
 <div class="propertyCard-container">
   <div class="propertyCard-imageContainer">
     <img class="propertyCard-image" [src]="property.image" />
+    <app-ui-pill
+      uiPillIcon="check-square"
+      routerLink="/properties/{{ property._id }}"
+      *ngIf="property.todoCount"
+      class="propertyCard-todoCount"
+      [uiPillContent]="property.todoCount"
+    ></app-ui-pill>
     <div class="propertyCard-avatarContainer">
       <app-avatar-icon
         routerLink="/tenants/{{ tenant._id }}"

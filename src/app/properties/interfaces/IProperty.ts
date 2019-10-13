@@ -5,4 +5,5 @@ export interface IProperty {
   user: string;
   __v: string;
   image: File | string;
+  todoCount: number;
 }

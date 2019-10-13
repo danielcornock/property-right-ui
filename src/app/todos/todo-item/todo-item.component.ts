@@ -48,6 +48,14 @@ export class TodoItemComponent implements OnInit {
     this.toggleCompleted.emit(this.todo);
   }
 
+  public getDaysLeftColor(): string {
+    return this.daysLeft() < 0
+      ? 'severe'
+      : this.daysLeft() == 0
+      ? 'moderate'
+      : null;
+  }
+
   public formatDate(): string {
     const date = new Date(this.todoInput.date);
     return date.toLocaleString('en-gb', {
@@ -56,17 +64,20 @@ export class TodoItemComponent implements OnInit {
     });
   }
 
-  public daysLeft(): string {
+  private daysLeft(): number {
     const dateDue = new Date(this.todo.date).getTime();
     const today = Date.now();
-    const difference = Math.floor((dateDue - today) / (1000 * 3600 * 24));
-    return difference < -1
+    return Math.floor((dateDue - today) / (1000 * 3600 * 24));
+  }
+
+  public daysLeftToString(): string {
+    return this.daysLeft() < -1
       ? 'overdue'
-      : difference === -1
+      : this.daysLeft() === -1
       ? 'today'
-      : difference === 0
+      : this.daysLeft() === 0
       ? 'tomorrow'
-      : `${difference + 1} days`;
+      : `${this.daysLeft() + 1} days`;
   }
 
   private _createContextMenuConfig(): object {

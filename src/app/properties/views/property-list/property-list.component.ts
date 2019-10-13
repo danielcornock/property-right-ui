@@ -1,14 +1,9 @@
-import {
-  Component,
-  OnInit,
-  ViewChild,
-  HostListener,
-  OnDestroy
-} from '@angular/core';
+import { Component, OnInit, ViewChild, OnDestroy } from '@angular/core';
 import { Subscription } from 'rxjs';
 import { PropertyService } from 'src/app/properties/services/property.service';
 import { IProperty } from 'src/app/properties/interfaces/IProperty';
-import { TenantService } from 'src/app/tenants/services/tenant.service';
+import { TodoService } from 'src/app/todos/services/todo.service';
+import { ITodoCount } from '../../interfaces/ITodoCount';
 
 @Component({
   selector: 'app-property-list',
@@ -21,25 +16,25 @@ export class PropertyListComponent implements OnInit, OnDestroy {
   public isLoading: boolean;
   public filteredProperties: Array<IProperty>;
   public properties: Array<IProperty>;
+  private propertiesTodos;
   private propertiesSub: Subscription;
   constructor(
     private propertyService: PropertyService,
-    private tenantService: TenantService
+    private todoService: TodoService
   ) {}
   @ViewChild('searchBar', { static: true }) searchBar;
 
   ngOnInit() {
     this.isLoading = true;
-    this.propertyService
-      .getAllProperties()
-      .then((properties: Array<IProperty>) => {
-        this.properties = properties;
-        this.filteredProperties = properties;
-        this.isLoading = false;
-      })
-      .catch(() => {
-        this.isLoading = false;
-      });
+    Promise.all([
+      this.propertyService.getAllProperties(),
+      this.todoService.getTodoAlerts()
+    ]).then(results => {
+      this.properties = this._joinPropertiesAndTodos(results[0], results[1]);
+      this.filteredProperties = this.properties;
+      console.log(this.properties);
+      this.isLoading = false;
+    });
 
     this.propertiesSub = this.propertyService
       .getPostUpdateListener()
@@ -68,5 +63,21 @@ export class PropertyListComponent implements OnInit, OnDestroy {
     });
 
     this.filteredProperties = filteredProps;
+  }
+
+  private _joinPropertiesAndTodos(
+    properties: Array<IProperty>,
+    todos: Array<object>
+  ) {
+    const updatedProperties: Array<IProperty> = properties;
+    todos.forEach((todo: ITodoCount) => {
+      properties.forEach((property, index) => {
+        if (todo._id === property._id) {
+          updatedProperties[index].todoCount = todo.count;
+        }
+      });
+    });
+
+    return updatedProperties;
   }
 }

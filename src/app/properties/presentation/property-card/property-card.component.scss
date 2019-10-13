@@ -14,11 +14,27 @@
     }
   }
   &-imageContainer {
+    height: 160px;
     position: relative;
   }
   &-image {
     @include image-default;
-    height: 160px;
+    height: 100%;
+  }
+
+  &-todoCount {
+    position: absolute;
+    bottom: 0;
+    left: $spacing-small;
+    transform: translateY(50%);
+    cursor: pointer;
+    border: 2px solid $color-text-button-highlight;
+    border-radius: $br-max;
+    transform-origin: bottom;
+
+    @include hover($t250) {
+      transform: scale(1.1) translateY(50%);
+    }
   }
 
   &-avatarContainer {
@@ -37,7 +53,7 @@
     }
   }
   &-contents {
-    padding: $spacing-tiny $spacing-small;
+    padding: $spacing-smaller $spacing-smaller $spacing-tiny;
   }
 
   &-income {

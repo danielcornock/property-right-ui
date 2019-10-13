@@ -48,7 +48,7 @@ export class PropertyService {
     });
   }
 
-  public getAllProperties(): Promise<IProperty | Array<IProperty>> {
+  public getAllProperties(): Promise<Array<IProperty>> {
     return new Promise((resolve, reject) => {
       // const cachedProperties = this.checkForCachedMultiple(this.properties);
       // if (cachedProperties) {

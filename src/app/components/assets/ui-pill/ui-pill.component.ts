@@ -8,13 +8,15 @@ import { Component, OnInit, Input } from '@angular/core';
 export class UiPillComponent implements OnInit {
   @Input() uiPillContent: string;
   @Input() uiPillColor: string;
+  @Input() uiPillIcon: string;
   public pillType: string;
 
   constructor() {}
 
   ngOnInit() {
+    console.log(this.uiPillColor);
     if (this.uiPillColor) {
-      return this.getColorFromContent(this.uiPillColor);
+      return (this.pillType = this.getColorFromContent(this.uiPillColor));
     }
     this.pillType = this.getColorFromContent(this.uiPillContent);
   }
