@@ -22,10 +22,13 @@ export class TodoListComponent implements OnInit, OnDestroy, OnChanges {
 
   constructor(private todoService: TodoService) {}
 
-  ngOnInit() {
+  async ngOnInit() {
     this.isLoading = true;
-    this.fetchTodos();
-    this.observeNewTodos();
+    await this.fetchTodos();
+    await this.observeNewTodos();
+    await this.todoService.todoRefresh.subscribe(() => {
+      this.fetchTodos();
+    });
   }
 
   ngOnChanges() {

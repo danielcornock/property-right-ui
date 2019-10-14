@@ -1,6 +1,8 @@
 import { Component, OnInit, Input, Output, HostListener } from '@angular/core';
 import { ITodo } from '../interfaces/ITodo';
 import { EventEmitter } from '@angular/core';
+import { ModalService } from 'src/app/core/modal/modal.service';
+import { TodoCreateComponent } from '../todo-create/todo-create.component';
 
 @Component({
   selector: 'app-todo-item',
@@ -14,7 +16,7 @@ export class TodoItemComponent implements OnInit {
   public hasMeta: boolean = false;
   @Input() todoInput: ITodo;
   @Input() propertyId: string;
-  constructor() {}
+  constructor(private modalService: ModalService) {}
 
   @Output() deleteTodo = new EventEmitter();
   @Output() toggleCompleted = new EventEmitter();
@@ -34,7 +36,6 @@ export class TodoItemComponent implements OnInit {
       (this.todo.propertyName && !this.propertyId) || this.todo.date
         ? true
         : false;
-    // this.showMeta = this.hasMeta;
   }
 
   public onActionSelect(event) {
@@ -61,6 +62,12 @@ export class TodoItemComponent implements OnInit {
     return date.toLocaleString('en-gb', {
       month: 'short',
       day: 'numeric'
+    });
+  }
+
+  private editTodo(): void {
+    this.modalService.openModal(TodoCreateComponent, {
+      todoId: this.todo._id
     });
   }
 
@@ -93,7 +100,7 @@ export class TodoItemComponent implements OnInit {
         },
         {
           label: 'Edit',
-          action: 'console.log(this)'
+          action: 'this.editTodo()'
         }
       ]
     };

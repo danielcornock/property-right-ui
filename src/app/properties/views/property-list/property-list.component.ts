@@ -69,6 +69,7 @@ export class PropertyListComponent implements OnInit, OnDestroy {
     properties: Array<IProperty>,
     todos: Array<object>
   ) {
+    if (!todos) return properties;
     const updatedProperties: Array<IProperty> = properties;
     todos.forEach((todo: ITodoCount) => {
       properties.forEach((property, index) => {

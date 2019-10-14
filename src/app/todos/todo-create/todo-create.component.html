@@ -1,4 +1,5 @@
-<div class="todoCreate-container">
+<app-loading-animation *ngIf="isLoading"></app-loading-animation>
+<div class="todoCreate-container" *ngIf="!isLoading">
   <form
     [formGroup]="todoForm"
     class="todoCreate-form"

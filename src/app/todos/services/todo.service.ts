@@ -11,6 +11,7 @@ import { ITodo } from '../interfaces/ITodo';
 })
 export class TodoService {
   public todoObservable = new Subject<ITodo>();
+  public todoRefresh: Subject<void> = new Subject<void>();
 
   constructor(private httpService: HttpService, private toast: ToastService) {}
 
@@ -49,6 +50,22 @@ export class TodoService {
     });
   }
 
+  public getTodo(todoId: string): Promise<ITodo> {
+    return new Promise((resolve, reject) => {
+      this.httpService.get(`todos/${todoId}`).subscribe(
+        (res: IHttpResponse) => {
+          const todo: ITodo = res.data.todo;
+          resolve(todo);
+        },
+        (error: IHttpErrorResponse) => {
+          console.log(error);
+          this.toast.error('Not able to fetch todo at this time!');
+          reject();
+        }
+      );
+    });
+  }
+
   public deleteTodo(id: string): Promise<void> {
     return new Promise((resolve, reject) => {
       this.httpService.delete(`todos/${id}`).subscribe(
@@ -59,6 +76,22 @@ export class TodoService {
         (error: IHttpErrorResponse) => {
           console.log(error);
           this.toast.error('Not able to delete todo at this time.');
+          reject();
+        }
+      );
+    });
+  }
+
+  public updateTodo(todo: Partial<ITodo>, todoId: string) {
+    return new Promise((resolve, reject) => {
+      this.httpService.put(`todos/${todoId}`, todo).subscribe(
+        (res: IHttpResponse) => {
+          const updatedTodo = res.data.todo;
+          resolve();
+        },
+        (error: IHttpErrorResponse) => {
+          console.log(error);
+          this.toast.error('Not able to update todo at this time.');
           reject();
         }
       );

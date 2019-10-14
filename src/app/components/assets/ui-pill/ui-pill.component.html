@@ -1,4 +1,8 @@
-<div class="uiPill-container uiPill-container--{{ pillType }}">
+<div
+  class="uiPill-container uiPill-container--{{ pillType }} {{
+    uiPillIcon ? 'uiPill-container--hasIcon' : ''
+  }}"
+>
   <app-ui-icon
     class="uiPill-icon"
     *ngIf="uiPillIcon"
