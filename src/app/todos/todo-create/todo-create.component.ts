@@ -82,9 +82,13 @@ export class TodoCreateComponent implements OnInit {
   private _populateFields() {
     this.todoService.getTodo(this.todoId).then(todo => {
       this.todo = todo;
+      let modifiedDate: string = '';
+      if (this.todo.date) {
+        modifiedDate = this.todo.date.toString().slice(0, 10);
+      }
       this.todoForm.setValue({
         title: this.todo.title,
-        date: this.todo.date.toString().slice(0, 10),
+        date: modifiedDate,
         propertyId: this.todo.propertyId,
         severity: this.todo.severity
       });

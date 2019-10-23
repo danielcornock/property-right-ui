@@ -26,15 +26,18 @@ export class PropertyListComponent implements OnInit, OnDestroy {
 
   ngOnInit() {
     this.isLoading = true;
-    Promise.all([
-      this.propertyService.getAllProperties(),
-      this.todoService.getTodoAlerts()
-    ]).then(results => {
-      this.properties = this._joinPropertiesAndTodos(results[0], results[1]);
-      this.filteredProperties = this.properties;
-      console.log(this.properties);
-      this.isLoading = false;
-    });
+
+    this.propertyService
+      .getAllProperties()
+      .then(results => {
+        this.properties = results;
+        this.filteredProperties = this.properties;
+        console.log(this.properties);
+        this.isLoading = false;
+      })
+      .catch(() => {
+        this.isLoading = false;
+      });
 
     this.propertiesSub = this.propertyService
       .getPostUpdateListener()
@@ -63,22 +66,5 @@ export class PropertyListComponent implements OnInit, OnDestroy {
     });
 
     this.filteredProperties = filteredProps;
-  }
-
-  private _joinPropertiesAndTodos(
-    properties: Array<IProperty>,
-    todos: Array<object>
-  ) {
-    if (!todos) return properties;
-    const updatedProperties: Array<IProperty> = properties;
-    todos.forEach((todo: ITodoCount) => {
-      properties.forEach((property, index) => {
-        if (todo._id === property._id) {
-          updatedProperties[index].todoCount = todo.count;
-        }
-      });
-    });
-
-    return updatedProperties;
   }
 }

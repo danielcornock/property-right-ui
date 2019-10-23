@@ -49,7 +49,7 @@ export class TodosPageComponent implements OnInit {
       this.searchBar.nativeElement.value = '';
       this.searchBar.nativeElement.blur();
     }
-    console.log(event.target.value);
+
     const filteredTodos = this.todos.filter(todo => {
       if (
         todo.title
