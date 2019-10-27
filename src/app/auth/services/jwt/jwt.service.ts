@@ -10,6 +10,7 @@ export class JwtService {
 
   public setToken(token: string) {
     localStorage.setItem('jwt_token', token);
+    localStorage.setItem('name', this.jwtHelper.decodeToken(token).name);
   }
 
   public logOut() {

@@ -33,7 +33,7 @@ export class AuthService {
           if (res.token) {
             this.jwt.setToken(res.token);
             this.toast.blankSuccess(
-              `Welcome back, ${localStorage.getItem('email')}`
+              `Welcome back, ${localStorage.getItem('name')}!`
             );
             return resolve();
           } else {
