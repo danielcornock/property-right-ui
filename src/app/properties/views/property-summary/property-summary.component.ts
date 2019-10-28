@@ -36,6 +36,10 @@ export class PropertySummaryComponent implements OnInit {
     });
   }
 
+  public getPropertyUrl() {
+    return `https://www.google.com/maps${this.property.url}&output=embed`;
+  }
+
   public openCreateTenantModal() {
     this.modalService.openModal(TenantFormComponent, {
       propertyId: this.propertyId

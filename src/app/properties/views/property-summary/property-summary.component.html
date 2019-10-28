@@ -5,7 +5,22 @@
   <img class="preview-image" [src]="property.image" alt="" />
   <a routerLink="/properties/{{ property._id }}/edit">Edit Property</a>
   <button (click)="openConfirmDeleteModal()">Delete Property</button>
+  <div class="mapouter" *ngIf="property.url">
+    <div class="gmap_canvas">
+      <iframe
+        width="100%"
+        height="200"
+        id="gmap_canvas"
+        [src]="getPropertyUrl() | safeUrl"
+        frameborder="0"
+        scrolling="no"
+        marginheight="0"
+        marginwidth="0"
+      ></iframe>
+    </div>
+  </div>
 </div>
+
 <button (click)="openCreateTodoModal()">Add new todo</button>
 <app-todo-list [propertyId]="propertyId"></app-todo-list>
 <button (click)="openCreateTenantModal()">Add new tenant</button>

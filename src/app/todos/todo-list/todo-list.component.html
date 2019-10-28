@@ -3,7 +3,8 @@
 <div *ngIf="!isLoading" class="todoList-container">
   <div class="todo-list-container">
     <app-todo-item
-      class="todo-item anim-iterative-in"
+      class="todo-item"
+      [class.anim-iterative-in]="!isEdited"
       *ngFor="let todo of getActiveTodos()"
       [todoInput]="todo"
       [propertyId]="propertyId"
@@ -17,7 +18,7 @@
   </button>
   <div class="todo-list-container todo-list-container-completed">
     <app-todo-item
-      class="todo-item anim-iterative-in"
+      class="todo-item"
       *ngFor="let todo of getCompletedTodos()"
       [todoInput]="todo"
       [propertyId]="propertyId"

@@ -17,6 +17,7 @@ export class TodoListComponent implements OnInit, OnDestroy, OnChanges {
   public todos: Array<ITodo>;
   public showCompleted: boolean = false;
   public isLoading: boolean;
+  public isEdited: boolean;
 
   private todoSub: Subscription;
 
@@ -24,6 +25,7 @@ export class TodoListComponent implements OnInit, OnDestroy, OnChanges {
 
   async ngOnInit() {
     this.isLoading = true;
+    this.isEdited = false;
     await this.fetchTodos();
     await this.observeNewTodos();
     await this.todoService.todoRefresh.subscribe(() => {

@@ -18,9 +18,9 @@ export class PropertyService {
 
   private setPropertyData(property: IProperty | IPropertyPatch): FormData {
     const propertyForm = new FormData();
-    propertyForm.append('name', property.name);
-    propertyForm.append('monthlyRent', property.monthlyRent);
-    propertyForm.append('image', property.image);
+    Object.entries(property).forEach(entry => {
+      propertyForm.append(entry[0], entry[1]);
+    });
 
     return propertyForm;
   }
@@ -32,10 +32,10 @@ export class PropertyService {
       this.httpService.post('properties', propertyData).subscribe(
         (res: IHttpResponse) => {
           const propertyResponse: IProperty = res.data.property;
-          if (this.properties) {
-            this.properties.push(propertyResponse);
-          }
-          this.propertyObservable.next(this.properties);
+          // if (this.properties) {
+          //   this.properties.push(propertyResponse);
+          // }
+          // this.propertyObservable.next(this.properties);
           this.toast.success('Property successfully added.');
           resolve(propertyResponse._id);
         },
@@ -73,10 +73,10 @@ export class PropertyService {
     return new Promise((resolve, reject) => {
       this.httpService.delete(`properties/${id}`).subscribe(
         () => {
-          this.properties = this.properties.filter(
-            property => property._id !== id
-          );
-          this.propertyObservable.next([...this.properties]);
+          // this.properties = this.properties.filter(
+          //   property => property._id !== id
+          // );
+          // this.propertyObservable.next([...this.properties]);
           this.toast.success('Property successfully deleted');
           resolve();
         },
@@ -91,11 +91,6 @@ export class PropertyService {
 
   public getProperty(id: string): Promise<IProperty> {
     return new Promise((resolve, reject) => {
-      const cachedProperty = this.checkForCachedSingle(this.properties, id);
-      if (cachedProperty) {
-        return resolve(cachedProperty);
-      }
-
       this.httpService.get(`properties/${id}`).subscribe(
         (res: IHttpResponse) => {
           const property: IProperty = res.data.property;
@@ -117,21 +112,21 @@ export class PropertyService {
         propertyData = this.setPropertyData(property);
       } else {
         propertyData = property;
-
-        this.httpService.put(`properties/${id}`, propertyData).subscribe(
-          (res: IHttpResponse) => {
-            this.properties = this._patchLocalProperty(res.data.property, id);
-            this.propertyObservable.next([...this.properties]);
-            this.toast.success('Property successfully updated.');
-            resolve();
-          },
-          error => {
-            console.log(error);
-            this.toast.error('Unable to update property at this time.');
-            reject();
-          }
-        );
+        console.log('hereee');
       }
+      this.httpService.put(`properties/${id}`, propertyData).subscribe(
+        (res: IHttpResponse) => {
+          // this.properties = this._patchLocalProperty(res.data.property, id);
+          // this.propertyObservable.next([...this.properties]);
+          this.toast.success('Property successfully updated.');
+          resolve();
+        },
+        error => {
+          console.log(error);
+          this.toast.error('Unable to update property at this time.');
+          reject();
+        }
+      );
     });
   }
 

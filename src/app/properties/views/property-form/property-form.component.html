@@ -2,11 +2,37 @@
 <form [formGroup]="propertyForm" class="property-form" (ngSubmit)="submit()">
   <label>Property Name</label>
   <input
-    placeholder="Property Name"
+    ngx-google-places-autocomplete
+    [options]="options"
+    #placesRef="ngx-places"
+    (onAddressChange)="handleAddressChange($event)"
+  />
+  <input
+    placeholder="Street Address"
     type="text"
     formControlName="name"
     class="property-form__input"
     required
+  />
+  <input
+    placeholder="Town"
+    type="text"
+    formControlName="town"
+    class="property-form__input"
+  />
+  <input
+    placeholder="Country"
+    type="text"
+    formControlName="country"
+    class="property-form__input"
+  />
+  <input
+    placeholder="Country"
+    type="text"
+    formControlName="url"
+    class="property-form__input"
+    disabled
+    hidden
   />
   <label>Monthly Rent Income</label>
   <input

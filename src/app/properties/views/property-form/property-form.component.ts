@@ -11,7 +11,9 @@ import { IProperty } from 'src/app/properties/interfaces/IProperty';
 })
 export class PropertyFormComponent implements OnInit {
   private propertyForm: FormGroup;
+  private hiddenForm: FormGroup;
   public property: IProperty;
+  public address: any;
   imagePreview: string;
   uploadedImage: File;
   editMode: boolean;
@@ -25,12 +27,51 @@ export class PropertyFormComponent implements OnInit {
 
   ngOnInit() {
     this.propertyForm = this._initialiseForm();
-    this.editMode =
-      this.router.url.includes('/edit') &&
-      this.router.url.includes('/properties');
+    this.editMode = !this.router.url.includes('/create');
     this._checkForEditMode(this.editMode).then(() => {
       this._populateFields();
     });
+  }
+
+  public handleAddressChange(address: any) {
+    console.log(address);
+    this.address = address;
+    this.propertyForm.setValue({
+      name: address.name,
+      monthlyRent: this.propertyForm.value.monthlyRent,
+      town: this._findTown(address.address_components),
+      country: this._findCountry(address.address_components),
+      image: this.propertyForm.value.image,
+      url: address.url
+    });
+
+    console.log(this.propertyForm);
+  }
+
+  private _completePropertyForm(): IProperty {
+    return {
+      name: this.propertyForm.value.name,
+      town: this.propertyForm.value.town,
+      country: this.propertyForm.value.country,
+      url: this.propertyForm.value.url,
+      monthlyRent: this.propertyForm.value.monthlyRent,
+      image: this.propertyForm.value.image
+    };
+  }
+
+  private _findTown(addressComponents: any) {
+    return addressComponents.find(component => {
+      return (
+        component.types.includes('postal_town') ||
+        component.types.includes('locality')
+      );
+    }).long_name;
+  }
+
+  private _findCountry(addressComponents: any) {
+    return addressComponents.find(component => {
+      return component.types.includes('country');
+    }).long_name;
   }
 
   private _populateFields() {
@@ -39,7 +80,10 @@ export class PropertyFormComponent implements OnInit {
       this.propertyForm.setValue({
         name: this.property.name,
         monthlyRent: this.property.monthlyRent,
-        image: this.property.image
+        image: this.property.image,
+        town: this.property.town,
+        country: this.property.country,
+        url: this.property.url
       });
     });
   }
@@ -62,12 +106,15 @@ export class PropertyFormComponent implements OnInit {
         validators: [Validators.required]
       }),
       monthlyRent: new FormControl(null),
-      image: new FormControl(null)
+      image: new FormControl(null),
+      town: new FormControl(null),
+      country: new FormControl(null),
+      url: new FormControl(null)
     });
   }
 
   private _postNewProperty() {
-    this.propertyService.addProperty(this.propertyForm.value).then(id => {
+    this.propertyService.addProperty(this._completePropertyForm()).then(id => {
       this.propertyForm.reset();
       this.router.navigate([`/properties/${id}`]);
     });
@@ -75,7 +122,7 @@ export class PropertyFormComponent implements OnInit {
 
   private _editProperty() {
     this.propertyService
-      .updateProperty(this.propertyForm.value, this.activePropertyId)
+      .updateProperty(this._completePropertyForm(), this.activePropertyId)
       .then(() => {
         this.router.navigate([`/properties/${this.activePropertyId}`]);
       });

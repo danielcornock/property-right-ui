@@ -7,6 +7,7 @@ import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { ToastrModule } from 'ngx-toastr';
 import { MatDialogModule, MatDialogRef } from '@angular/material';
 import { MatMenuModule } from '@angular/material/menu';
+import { GooglePlaceModule } from 'ngx-google-places-autocomplete';
 
 import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
@@ -36,6 +37,7 @@ import { ConfirmationModalComponent } from './components/confirmation-modal/conf
 import { UiPillComponent } from './components/assets/ui-pill/ui-pill.component';
 import { ContextMenuComponent } from './components/context-menu/context-menu.component';
 import { TenantCardComponent } from './tenants/presentation/tenant-card/tenant-card.component';
+import { SafeUrlPipe } from './core/api/safe-url/safe-url.pipe';
 
 @NgModule({
   declarations: [
@@ -64,7 +66,8 @@ import { TenantCardComponent } from './tenants/presentation/tenant-card/tenant-c
     ConfirmationModalComponent,
     UiPillComponent,
     ContextMenuComponent,
-    TenantCardComponent
+    TenantCardComponent,
+    SafeUrlPipe
   ],
   imports: [
     BrowserModule,
@@ -76,6 +79,7 @@ import { TenantCardComponent } from './tenants/presentation/tenant-card/tenant-c
     BrowserAnimationsModule,
     MatDialogModule,
     MatMenuModule,
+    GooglePlaceModule,
     ToastrModule.forRoot()
   ],
   entryComponents: [

@@ -1,9 +1,11 @@
 export interface IProperty {
-  _id: string;
+  _id?: string;
   name: string;
   monthlyRent: string;
-  user: string;
-  __v: string;
+  user?: string;
+  town: string;
+  country: string;
+  url: string;
   image: File | string;
-  todoCount: number;
+  todoCount?: number;
 }
