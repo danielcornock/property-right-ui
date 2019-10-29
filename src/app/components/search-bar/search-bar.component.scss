@@ -1,0 +1,57 @@
+@import 'src/assets/styles/themes.scss';
+.searchBar {
+  &-container {
+    align-items: center;
+    display: flex;
+    width: 100%;
+    flex: 1 1 100%;
+    background-color: rgba($color-bg-card, 1);
+    border-radius: 5px;
+    @include box-shadow(light);
+    overflow: hidden;
+    height: 42px;
+    position: relative;
+
+    &::after {
+      content: '';
+      position: absolute;
+      bottom: 0;
+      transition: 500ms;
+      height: 2px;
+      width: 100%;
+      background-color: $pink;
+      right: 100%;
+    }
+
+    &--active {
+      &::after {
+        right: 0;
+      }
+    }
+  }
+
+  &-search {
+    height: 100%;
+    border: none;
+    width: 100%;
+    background-color: transparent;
+    position: relative;
+    flex: 1 1 100%;
+
+    &::placeholder {
+      font-weight: $medium;
+      letter-spacing: 2px;
+      font-size: $font-tiny;
+      color: $color-text-tertiary;
+    }
+
+    &:focus {
+      outline: none;
+    }
+
+    &__icon {
+      padding: 0 20px;
+      color: $color-text-tertiary;
+    }
+  }
+}

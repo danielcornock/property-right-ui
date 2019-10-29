@@ -11,7 +11,6 @@ import { ITodoCount } from '../../interfaces/ITodoCount';
   styleUrls: ['./property-list.component.scss']
 })
 export class PropertyListComponent implements OnInit, OnDestroy {
-  public searchFocus: boolean = false;
   public pageTitle: string = 'Your Properties';
   public isLoading: boolean;
   public filteredProperties: Array<IProperty>;
@@ -50,21 +49,9 @@ export class PropertyListComponent implements OnInit, OnDestroy {
     this.propertiesSub.unsubscribe();
   }
 
-  public setSearchFocus(active: boolean) {
-    this.searchFocus = active;
-  }
-
-  public searchProperties(event: KeyboardEvent) {
-    if (event.key === 'Escape') {
-      this.searchBar.nativeElement.value = '';
-      this.searchBar.nativeElement.blur();
-    }
-    const filteredProps = this.properties.filter(property => {
-      return property.name
-        .toLowerCase()
-        .includes((event.target as HTMLInputElement).value.toLowerCase());
+  public searchProperties(query: string) {
+    this.filteredProperties = this.properties.filter(property => {
+      return property.name.toLowerCase().includes(query);
     });
-
-    this.filteredProperties = filteredProps;
   }
 }

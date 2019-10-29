@@ -38,6 +38,7 @@ import { UiPillComponent } from './components/assets/ui-pill/ui-pill.component';
 import { ContextMenuComponent } from './components/context-menu/context-menu.component';
 import { TenantCardComponent } from './tenants/presentation/tenant-card/tenant-card.component';
 import { SafeUrlPipe } from './core/api/safe-url/safe-url.pipe';
+import { SearchBarComponent } from './components/search-bar/search-bar.component';
 
 @NgModule({
   declarations: [
@@ -67,7 +68,8 @@ import { SafeUrlPipe } from './core/api/safe-url/safe-url.pipe';
     UiPillComponent,
     ContextMenuComponent,
     TenantCardComponent,
-    SafeUrlPipe
+    SafeUrlPipe,
+    SearchBarComponent
   ],
   imports: [
     BrowserModule,

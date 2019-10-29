@@ -1,0 +1,17 @@
+<div
+  class="searchBar-container"
+  [class.searchBar-container--active]="searchFocus"
+>
+  <div class="searchBar-search__icon">
+    <app-ui-icon name="search" size="tiny"></app-ui-icon>
+  </div>
+  <input
+    type="text"
+    #searchBar
+    (keyup)="onKeyEvent($event)"
+    (focus)="setSearchFocus(true)"
+    (blur)="setSearchFocus(false)"
+    class="searchBar-search"
+    placeholder="START TYPING TO SEARCH..."
+  />
+</div>

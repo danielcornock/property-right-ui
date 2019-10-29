@@ -13,7 +13,6 @@ export class TodosPageComponent implements OnInit {
   public todos: Array<ITodo>;
   public filteredTodos: Array<ITodo>;
   public searchFocus: boolean = false;
-  @ViewChild('searchBar', { static: true }) searchBar;
 
   constructor(
     private todoService: TodoService,
@@ -40,25 +39,11 @@ export class TodosPageComponent implements OnInit {
     this.modalService.openModal(TodoCreateComponent, {});
   }
 
-  public setSearchFocus(active: boolean) {
-    this.searchFocus = active;
-  }
-
-  public searchTodos(event: KeyboardEvent) {
-    if (event.key === 'Escape') {
-      this.searchBar.nativeElement.value = '';
-      this.searchBar.nativeElement.blur();
-    }
-
+  public searchTodos(query: string) {
     const filteredTodos = this.todos.filter(todo => {
       if (
-        todo.title
-          .toLowerCase()
-          .includes((event.target as HTMLInputElement).value.toLowerCase()) ||
-        (todo.propertyName &&
-          todo.propertyName
-            .toLowerCase()
-            .includes((event.target as HTMLInputElement).value.toLowerCase()))
+        todo.title.toLowerCase().includes(query) ||
+        (todo.propertyName && todo.propertyName.toLowerCase().includes(query))
       ) {
         return true;
       }
