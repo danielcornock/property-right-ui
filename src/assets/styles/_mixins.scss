@@ -207,3 +207,10 @@
   padding: $spacing-tiny;
   width: 100%;
 }
+
+@mixin page-header {
+  color: $color-text-primary;
+  font-size: $font-large;
+  margin-top: 0;
+  margin-bottom: $spacing-smaller;
+}

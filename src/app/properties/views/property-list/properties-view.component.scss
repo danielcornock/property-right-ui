@@ -1,0 +1,42 @@
+@import 'src/assets/styles/themes.scss';
+
+.propertiesView {
+  &-container {
+  }
+
+  &-title {
+    @include page-header;
+  }
+
+  &-header {
+    display: grid;
+    grid-template-columns: 1fr auto auto;
+    column-gap: $spacing-tiny;
+    margin-bottom: $spacing-smaller;
+    position: sticky;
+    top: $spacing-smaller;
+    z-index: 10;
+  }
+
+  &-headerButton {
+    @include button(default);
+
+    &__icon {
+      color: $color-text-highlight;
+      margin-right: $spacing-micro;
+
+      @include media($tablet) {
+        margin-right: 0;
+      }
+    }
+
+    &__text {
+      @include media($tablet) {
+        display: none;
+      }
+    }
+  }
+
+  &-propertiesList {
+  }
+}

@@ -1,0 +1,21 @@
+@import 'src/assets/styles/themes.scss';
+
+.propertiesList {
+  &-container {
+    display: grid;
+    grid-template-columns: 1fr 1fr 1fr 1fr;
+    grid-gap: $spacing-smaller;
+
+    @include media($sd) {
+      grid-template-columns: 1fr 1fr 1fr;
+    }
+
+    @include media($ld) {
+      grid-template-columns: 1fr 1fr;
+    }
+
+    @include media($tablet) {
+      grid-template-columns: 1fr;
+    }
+  }
+}

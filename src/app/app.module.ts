@@ -16,7 +16,7 @@ import { RegisterComponent } from './auth/register/register.component';
 import { DashboardComponent } from './views/dashboard/dashboard.component';
 import { SidebarComponent } from './layout/sidebar/sidebar.component';
 import { PropertyFormComponent } from './properties/views/property-form/property-form.component';
-import { PropertyListComponent } from './properties/views/property-list/property-list.component';
+import { PropertiesViewComponent } from './properties/views/property-list/properties-view.component';
 import { PropertySummaryComponent } from './properties/views/property-summary/property-summary.component';
 import { TodoListComponent } from './todos/todo-list/todo-list.component';
 import { TodoCreateComponent } from './todos/todo-create/todo-create.component';
@@ -39,6 +39,7 @@ import { ContextMenuComponent } from './components/context-menu/context-menu.com
 import { TenantCardComponent } from './tenants/presentation/tenant-card/tenant-card.component';
 import { SafeUrlPipe } from './core/api/safe-url/safe-url.pipe';
 import { SearchBarComponent } from './components/search-bar/search-bar.component';
+import { PropertiesListComponent } from './properties/presentation/properties-list/properties-list.component';
 
 @NgModule({
   declarations: [
@@ -48,7 +49,7 @@ import { SearchBarComponent } from './components/search-bar/search-bar.component
     DashboardComponent,
     SidebarComponent,
     PropertyFormComponent,
-    PropertyListComponent,
+    PropertiesViewComponent,
     PropertySummaryComponent,
     TodoListComponent,
     TodoCreateComponent,
@@ -69,7 +70,8 @@ import { SearchBarComponent } from './components/search-bar/search-bar.component
     ContextMenuComponent,
     TenantCardComponent,
     SafeUrlPipe,
-    SearchBarComponent
+    SearchBarComponent,
+    PropertiesListComponent
   ],
   imports: [
     BrowserModule,

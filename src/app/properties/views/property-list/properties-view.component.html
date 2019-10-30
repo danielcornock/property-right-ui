@@ -1,0 +1,43 @@
+<div class="propertiesView-container">
+  <h2 class="propertiesView-title">{{ pageTitle }}</h2>
+  <div class="propertiesView-header">
+    <app-search-bar
+      class="propertiesView-search"
+      (onSearch)="searchProperties($event)"
+    ></app-search-bar>
+
+    <button class="propertiesView-headerButton">
+      <app-ui-icon
+        size="tiny"
+        name="filter"
+        class="propertiesView-headerButton__icon"
+      ></app-ui-icon>
+      <span class="propertiesView-headerButton__text">Filter</span>
+    </button>
+
+    <a routerLink="create" class="propertiesView-headerButton">
+      <app-ui-icon
+        size="tiny"
+        name="plus"
+        class="propertiesView-headerButton__icon"
+      ></app-ui-icon>
+      <span class="propertiesView-headerButton__text">Add New</span>
+    </a>
+  </div>
+
+  <div class="propertiesView-propertiesContainer">
+    <span
+      class="propertiesView-noPropertiesFound"
+      *ngIf="filterableProperties && !properties.length"
+      >No properties found.</span
+    >
+
+    <app-loading-animation *ngIf="isLoading"></app-loading-animation>
+
+    <app-properties-list
+      [propertiesListProperties]="properties"
+      class="propertiesView-propertyList"
+      *ngIf="!isLoading"
+    ></app-properties-list>
+  </div>
+</div>

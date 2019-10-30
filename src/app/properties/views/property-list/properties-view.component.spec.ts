@@ -1,20 +1,19 @@
 import { async, ComponentFixture, TestBed } from '@angular/core/testing';
 
-import { PropertyListComponent } from './property-list.component';
+import { PropertiesViewComponent } from './properties-view.component';
 
 describe('PropertyListComponent', () => {
-  let component: PropertyListComponent;
-  let fixture: ComponentFixture<PropertyListComponent>;
+  let component: PropertiesViewComponent;
+  let fixture: ComponentFixture<PropertiesViewComponent>;
 
   beforeEach(async(() => {
     TestBed.configureTestingModule({
-      declarations: [ PropertyListComponent ]
-    })
-    .compileComponents();
+      declarations: [PropertiesViewComponent]
+    }).compileComponents();
   }));
 
   beforeEach(() => {
-    fixture = TestBed.createComponent(PropertyListComponent);
+    fixture = TestBed.createComponent(PropertiesViewComponent);
     component = fixture.componentInstance;
     fixture.detectChanges();
   });
