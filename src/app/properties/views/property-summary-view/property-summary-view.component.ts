@@ -8,11 +8,10 @@ import { TenantFormComponent } from 'src/app/tenants/business/tenant-form/tenant
 import { TodoCreateComponent } from 'src/app/todos/todo-create/todo-create.component';
 
 @Component({
-  selector: 'app-property-summary',
-  templateUrl: './property-summary.component.html',
-  styleUrls: ['./property-summary.component.scss']
+  templateUrl: './property-summary-view.component.html',
+  styleUrls: ['./property-summary-view.component.scss']
 })
-export class PropertySummaryComponent implements OnInit {
+export class PropertySummaryViewComponent implements OnInit {
   public property: IProperty;
   public propertyId: string;
   constructor(

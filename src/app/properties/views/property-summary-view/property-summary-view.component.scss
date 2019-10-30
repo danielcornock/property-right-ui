@@ -1,0 +1,70 @@
+@import 'src/assets/styles/themes.scss';
+
+.propertySummaryView {
+  $cmp: &;
+
+  &-container {
+  }
+
+  &-title {
+    @include page-title;
+  }
+
+  &-grid {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    grid-template-areas:
+      'featureImage map map'
+      'todo todo actionButtons'
+      'tenants tenants tenants';
+    grid-gap: $spacing-smaller;
+  }
+
+  &-featureImage {
+    grid-area: featureImage;
+    object-fit: cover;
+    height: 250px;
+    width: 100%;
+    @include card-default;
+  }
+
+  &-mapContainer {
+    @include card-default;
+    grid-area: map;
+  }
+
+  &-map {
+    width: 100%;
+    height: 100%;
+  }
+
+  &-todoList {
+    grid-area: todo;
+  }
+
+  &-keyActions {
+    height: 100%;
+    grid-area: actionButtons;
+  }
+
+  &-action {
+    @include button(default);
+    width: 100%;
+
+    @include space-by(down, $spacing-micro);
+
+    &__icon {
+      margin-right: $spacing-micro;
+    }
+
+    &--danger {
+      @extend #{$cmp}-action;
+      background-color: $color-bg-danger;
+      color: $color-text-danger;
+    }
+  }
+
+  &-tenants {
+    grid-area: tenants;
+  }
+}

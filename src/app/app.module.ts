@@ -16,8 +16,8 @@ import { RegisterComponent } from './auth/register/register.component';
 import { DashboardComponent } from './views/dashboard/dashboard.component';
 import { SidebarComponent } from './layout/sidebar/sidebar.component';
 import { PropertyFormComponent } from './properties/views/property-form/property-form.component';
-import { PropertiesViewComponent } from './properties/views/property-list/properties-view.component';
-import { PropertySummaryComponent } from './properties/views/property-summary/property-summary.component';
+import { PropertiesViewComponent } from './properties/views/properties-view/properties-view.component';
+import { PropertySummaryViewComponent } from './properties/views/property-summary-view/property-summary-view.component';
 import { TodoListComponent } from './todos/todo-list/todo-list.component';
 import { TodoCreateComponent } from './todos/todo-create/todo-create.component';
 import { TodosPageComponent } from './todos/views/todos-page/todos-page.component';
@@ -50,7 +50,7 @@ import { PropertiesListComponent } from './properties/presentation/properties-li
     SidebarComponent,
     PropertyFormComponent,
     PropertiesViewComponent,
-    PropertySummaryComponent,
+    PropertySummaryViewComponent,
     TodoListComponent,
     TodoCreateComponent,
     TodosPageComponent,

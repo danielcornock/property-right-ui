@@ -1,0 +1,86 @@
+<div *ngIf="property" class="propertySummaryView-container">
+  <h2 class="propertySummaryView-title">{{ property.name }}</h2>
+
+  <div class="propertySummaryView-grid">
+    <img
+      class="propertySummaryView-featureImage"
+      [src]="property.image"
+      alt=""
+    />
+
+    <div class="propertySummaryView-mapContainer">
+      <iframe
+        class="propertySummaryView-map"
+        id="gmap_canvas"
+        [src]="getPropertyUrl() | safeUrl"
+        frameborder="0"
+        scrolling="no"
+        marginheight="0"
+        marginwidth="0"
+      ></iframe>
+    </div>
+
+    <app-todo-list
+      class="propertySummaryView-todoList"
+      [propertyId]="propertyId"
+    ></app-todo-list>
+
+    <div class="propertySummaryView-keyActions">
+      <a
+        routerLink="/properties/{{ property._id }}/edit"
+        class="propertySummaryView-action"
+      >
+        <app-ui-icon
+          class="propertySummaryView-action__icon"
+          size="tiny"
+          name="Edit"
+        ></app-ui-icon>
+
+        <span>Edit Property</span>
+      </a>
+
+      <button
+        (click)="openCreateTodoModal()"
+        class="propertySummaryView-action"
+      >
+        <app-ui-icon
+          size="tiny"
+          name="check-square"
+          class="propertySummaryView-action__icon"
+        ></app-ui-icon>
+
+        <span>Add To-Do</span>
+      </button>
+
+      <button
+        (click)="openCreateTenantModal()"
+        class="propertySummaryView-action"
+      >
+        <app-ui-icon
+          class="propertySummaryView-action__icon"
+          size="tiny"
+          name="users"
+        ></app-ui-icon>
+
+        <span>Add Tenant</span>
+      </button>
+
+      <button
+        (click)="openConfirmDeleteModal()"
+        class="propertySummaryView-action--danger"
+      >
+        <app-ui-icon
+          class="propertySummaryView-action__icon"
+          size="tiny"
+          name="Trash2"
+        ></app-ui-icon>
+
+        <span>Delete Property</span>
+      </button>
+    </div>
+    <app-tenant-list
+      class="propertySummaryView-tenants"
+      [propertyId]="propertyId"
+    ></app-tenant-list>
+  </div>
+</div>

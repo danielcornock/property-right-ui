@@ -1,9 +1,6 @@
 <h1>Welcome, {{ getUserEmail() }}!</h1>
 
 <h2>Your Properties</h2>
-<div class="list-item" *ngFor="let property of properties">
-  <a [routerLink]="['/properties', property._id]"
-    ><div>{{ property.name }}</div></a
-  >
-  <div>{{ property.monthlyRent }}</div>
-</div>
+<app-properties-list
+  [propertiesListProperties]="properties"
+></app-properties-list>

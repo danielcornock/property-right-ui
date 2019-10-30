@@ -174,14 +174,14 @@
 @mixin space-by($direction, $spacing) {
   @if ($direction == 'right') {
     margin-right: $spacing;
-    &:last-of-type {
+    &:nth-last-child(1) {
       margin-right: 0px;
     }
   }
 
   @if ($direction == 'down') {
     margin-bottom: $spacing;
-    &:last-of-type {
+    &:nth-last-child(1) {
       margin-bottom: 0px;
     }
   }
@@ -208,7 +208,7 @@
   width: 100%;
 }
 
-@mixin page-header {
+@mixin page-title {
   color: $color-text-primary;
   font-size: $font-large;
   margin-top: 0;

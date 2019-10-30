@@ -4,8 +4,8 @@ import { LoginComponent } from './auth/login/login.component';
 import { RegisterComponent } from './auth/register/register.component';
 import { DashboardComponent } from './views/dashboard/dashboard.component';
 import { AuthGuardService as AuthGuard } from './auth/services/guards/auth-guard.service';
-import { PropertiesViewComponent } from './properties/views/property-list/properties-view.component';
-import { PropertySummaryComponent } from './properties/views/property-summary/property-summary.component';
+import { PropertiesViewComponent } from './properties/views/properties-view/properties-view.component';
+import { PropertySummaryViewComponent } from './properties/views/property-summary-view/property-summary-view.component';
 import { TodosPageComponent } from './todos/views/todos-page/todos-page.component';
 import { PropertyFormComponent } from './properties/views/property-form/property-form.component';
 import { TenantsPageComponent } from './tenants/views/tenants-page/tenants-page.component';
@@ -33,7 +33,7 @@ const routes: Routes = [
   {
     path: 'properties/:propertyId',
     canActivate: [AuthGuard],
-    component: PropertySummaryComponent
+    component: PropertySummaryViewComponent
   },
   {
     path: 'tenants/:tenantId',
