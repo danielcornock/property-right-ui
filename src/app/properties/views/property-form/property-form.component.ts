@@ -48,6 +48,23 @@ export class PropertyFormComponent implements OnInit {
     console.log(this.propertyForm);
   }
 
+  public getPageTitle() {
+    if (this.editMode) {
+      return 'Edit Property';
+    } else {
+      return 'Create New Property';
+    }
+  }
+
+  public showImagePreview() {
+    return (
+      (this.imagePreview !== '' &&
+        this.imagePreview &&
+        this.propertyForm.get('image').valid) ||
+      (this.property && this.property.image)
+    );
+  }
+
   private _completePropertyForm(): IProperty {
     return {
       name: this.propertyForm.value.name,
@@ -109,7 +126,7 @@ export class PropertyFormComponent implements OnInit {
       image: new FormControl(null),
       town: new FormControl(null),
       country: new FormControl(null),
-      url: new FormControl(null)
+      url: new FormControl({ disabled: true })
     });
   }
 

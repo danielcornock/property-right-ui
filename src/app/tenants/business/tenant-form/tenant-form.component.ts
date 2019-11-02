@@ -57,6 +57,10 @@ export class TenantFormComponent implements OnInit {
         this.isLoading = false;
       });
   }
+
+  public closeModal() {
+    this.matDialogRef.close(false);
+  }
   private _initialiseTenantForm() {
     return this.formBuilder.group({
       name: ['', Validators.required],

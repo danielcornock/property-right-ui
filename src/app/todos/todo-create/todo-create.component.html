@@ -1,10 +1,12 @@
 <app-loading-animation *ngIf="isLoading"></app-loading-animation>
 <div class="todoCreate-container" *ngIf="!isLoading">
+  <h2 class="todoCreate-header">Add new todo</h2>
   <form
     [formGroup]="todoForm"
     class="todoCreate-form"
     (ngSubmit)="submitTodo()"
   >
+    <label class="todoCreate-label">Title</label>
     <input
       placeholder="Title"
       type="text"
@@ -12,12 +14,16 @@
       class="todoCreate-input"
       required
     />
+
+    <label class="todoCreate-label">Date</label>
     <input
       placeholder="Date"
       type="date"
       formControlName="date"
       class="todoCreate-input"
     />
+
+    <label class="todoCreate-label">Severity</label>
     <select formControlName="severity" class="todoCreate-dropdown">
       <option value="" disabled selected>Severity</option>
       <option value="easy">Easy</option>
@@ -25,6 +31,7 @@
       <option value="severe">Severe</option>
     </select>
 
+    <label *ngIf="!propertyId" class="todoCreate-label">Property</label>
     <select
       *ngIf="!propertyId"
       formControlName="propertyId"
@@ -37,6 +44,9 @@
       }}</option>
     </select>
 
-    <input type="submit" value="Add Todo" class="todoCreate-submit" />
+    <div class="todoCreate-buttons">
+      <button (click)="closeModal()" class="todoCreate-cancel">Cancel</button>
+      <input type="submit" value="Add Todo" class="todoCreate-submit" />
+    </div>
   </form>
 </div>

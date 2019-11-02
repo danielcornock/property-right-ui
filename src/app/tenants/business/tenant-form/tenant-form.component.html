@@ -41,7 +41,9 @@
         >
       </select>
     </div>
-
-    <input type="submit" value="Save Tenant" class="tenantForm-submit" />
+    <div class="tenantForm-buttons">
+      <button (click)="closeModal()" class="tenantForm-cancel">Cancel</button>
+      <input type="submit" value="Save Tenant" class="tenantForm-submit" />
+    </div>
   </form>
 </div>

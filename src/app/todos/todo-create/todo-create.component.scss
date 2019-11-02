@@ -4,8 +4,13 @@
   &-container {
     background-color: white;
     padding: 25px;
-    width: 600px;
+    width: 500px;
   }
+
+  &-header {
+    @include modal-header;
+  }
+
   &-input {
     @include default-text-input;
     margin-bottom: $spacing-small;
@@ -15,8 +20,30 @@
     display: grid;
   }
 
+  &-label {
+    @include default-input-label;
+  }
+
+  &-buttons {
+    display: flex;
+    justify-content: flex-end;
+  }
+
+  &-cancel {
+    @include button-default;
+    text-decoration: none;
+    font-size: $font-standard;
+    color: $color-text-grey;
+    margin-right: $spacing-med;
+
+    @include hover($t250) {
+      color: $color-text-highlight;
+    }
+  }
+
   &-submit {
     @include button(primary);
+    align-self: flex-end;
   }
 
   &-dropdown {

@@ -1,24 +1,112 @@
-.property-form {
-  display: flex;
-  flex-direction: column;
-  align-items: flex-start;
-}
+@import 'src/assets/styles/themes.scss';
 
-.select-image {
-}
+.propertyForm {
+  $cmp: &;
 
-.inputImageHidden {
-  visibility: hidden;
-}
+  &-container {
+  }
 
-.image-preview {
-  width: 300px;
+  &-title {
+    @include page-title;
+  }
 
-  img {
+  &-form {
+    @include card-default;
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    grid-gap: $spacing-med $spacing-small;
+    padding: $spacing-small;
+    grid-template-areas:
+      'search search search'
+      'street town country'
+      'rent image imagePreview'
+      'submit empty empty';
+  }
+
+  &-search {
+    @include default-text-input;
+  }
+
+  &-label {
+    @include default-input-label;
+    display: block;
+  }
+
+  &-input {
+    @include default-text-input;
+  }
+
+  &-addressInput {
+    @extend #{$cmp}-input;
+  }
+
+  &-addressContainer {
+    @include flex(row);
+  }
+
+  &-inputContainer {
     width: 100%;
+    @include space-by(right, $spacing-smaller);
+  }
+
+  &-imageButton {
+    @include button(default);
+    height: 48px;
+    width: 100%;
+
+    &__icon {
+      color: $color-text-highlight;
+      margin-right: $spacing-micro;
+    }
+
+    &--hidden {
+      visibility: hidden;
+    }
+  }
+
+  &-imagePreviewContainer {
+    grid-area: imagePreview;
+    width: 100%;
+    height: 200px;
+  }
+
+  &-imagePreview {
+    @include card-default;
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+  }
+
+  &-hidden {
+    display: none;
+  }
+
+  &-submit {
+    grid-area: submit;
+    @include button(primary);
   }
 }
 
-input {
-  min-width: 300px;
+.search {
+  grid-area: search;
+}
+
+.street {
+  grid-area: street;
+}
+
+.town {
+  grid-area: town;
+}
+
+.country {
+  grid-area: country;
+}
+
+.rent {
+  grid-area: rent;
+}
+
+.image {
+  grid-area: image;
 }

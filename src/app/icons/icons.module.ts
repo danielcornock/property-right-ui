@@ -21,7 +21,8 @@ import {
   Trash2,
   MoreVertical,
   Calendar,
-  Edit
+  Edit,
+  Upload
 } from 'angular-feather/icons';
 
 const icons = {
@@ -43,7 +44,8 @@ const icons = {
   Trash2,
   MoreVertical,
   Calendar,
-  Edit
+  Edit,
+  Upload
 };
 
 @NgModule({

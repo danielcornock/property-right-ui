@@ -72,6 +72,10 @@ export class TodoCreateComponent implements OnInit {
       });
   }
 
+  public closeModal() {
+    this.matDialogRef.close();
+  }
+
   private _updateTodo() {
     this.todoService.updateTodo(this.todoForm.value, this.todoId).then(() => {
       this.todoService.todoRefresh.next();

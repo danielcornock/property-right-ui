@@ -2,7 +2,7 @@
 
 .tenantForm {
   &-container {
-    padding: 15px;
+    padding: $spacing-small;
     width: 500px;
   }
 
@@ -33,7 +33,25 @@
     height: 48px;
   }
 
+  &-buttons {
+    display: flex;
+    justify-content: flex-end;
+  }
+
   &-submit {
     @include button(primary);
+    align-self: flex-end;
+  }
+
+  &-cancel {
+    @include button-default;
+    text-decoration: none;
+    font-size: $font-standard;
+    color: $color-text-grey;
+    margin-right: $spacing-med;
+
+    @include hover($t250) {
+      color: $color-text-highlight;
+    }
   }
 }

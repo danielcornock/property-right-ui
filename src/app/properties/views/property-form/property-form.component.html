@@ -1,55 +1,100 @@
-<h2>Add new property</h2>
-<form [formGroup]="propertyForm" class="property-form" (ngSubmit)="submit()">
-  <label>Property Name</label>
-  <input
-    ngx-google-places-autocomplete
-    [options]="options"
-    #placesRef="ngx-places"
-    (onAddressChange)="handleAddressChange($event)"
-  />
-  <input
-    placeholder="Street Address"
-    type="text"
-    formControlName="name"
-    class="property-form__input"
-    required
-  />
-  <input
-    placeholder="Town"
-    type="text"
-    formControlName="town"
-    class="property-form__input"
-  />
-  <input
-    placeholder="Country"
-    type="text"
-    formControlName="country"
-    class="property-form__input"
-  />
-  <input
-    placeholder="Country"
-    type="text"
-    formControlName="url"
-    class="property-form__input"
-    disabled
-    hidden
-  />
-  <label>Monthly Rent Income</label>
-  <input
-    type="text"
-    class="property-form__input"
-    placeholders="Monthly Rent"
-    formControlName="monthlyRent"
-    required
-  />
+<div class="propertyForm-container">
+  <h2 class="propertyForm-title">{{ getPageTitle() }}</h2>
+  <form
+    [formGroup]="propertyForm"
+    class="propertyForm-form"
+    (ngSubmit)="submit()"
+  >
+    <div class="propertyForm-inputContainer search">
+      <label class="propertyForm-label">Search for property</label>
+      <input
+        ngx-google-places-autocomplete
+        [options]="options"
+        #placesRef="ngx-places"
+        class="propertyForm-search"
+        (onAddressChange)="handleAddressChange($event)"
+      />
+    </div>
 
-  <input #imagePicker type="file" (change)="onImagePicked($event)" />
-  <input type="submit" value="Submit" class="property-form__submit" />
-</form>
+    <div class="propertyForm-inputContainer street">
+      <label class="propertyForm-label">Street Address</label>
+      <input
+        placeholder="Street Address"
+        type="text"
+        formControlName="name"
+        class="propertyForm-addressInput"
+        required
+      />
+    </div>
 
-<div
-  class="image-preview"
-  *ngIf="imagePreview !== '' && imagePreview && propertyForm.get('image').valid"
->
-  <img [src]="imagePreview" />
+    <div class="propertyForm-inputContainer town">
+      <label class="propertyForm-label">City/Town</label>
+
+      <input
+        placeholder="Town"
+        type="text"
+        formControlName="town"
+        class="propertyForm-addressInput"
+      />
+    </div>
+
+    <div class="propertyForm-inputContainer country">
+      <label class="propertyForm-label">Country</label>
+
+      <input
+        placeholder="Country"
+        type="text"
+        formControlName="country"
+        class="propertyForm-addressInput"
+      />
+    </div>
+
+    <input type="text" formControlName="url" class="propertyForm-hidden" />
+
+    <div class="propertyForm-inputContainer rent">
+      <label class="propertyForm-label">Monthly Rent Income</label>
+      <input
+        type="text"
+        class="propertyForm-input"
+        placeholders="Monthly Rent"
+        formControlName="monthlyRent"
+        placeholder="Monthly Rent"
+        required
+      />
+    </div>
+
+    <div class="propertyForm-inputContainer image">
+      <label class="propertyForm-label">Cover Image</label>
+
+      <button
+        class="propertyForm-imageButton"
+        type="button"
+        (click)="imagePicker.click()"
+      >
+        <app-ui-icon
+          size="tiny"
+          name="upload"
+          class="propertyForm-imageButton__icon"
+        ></app-ui-icon>
+        Upload File
+      </button>
+    </div>
+
+    <div class="propertyForm-imagePreviewContainer" *ngIf="showImagePreview()">
+      <label class="propertyForm-label">Image Preview</label>
+
+      <img
+        class="propertyForm-imagePreview"
+        [src]="imagePreview || property.image"
+      />
+    </div>
+
+    <input
+      class="propertyForm-imageButton--hidden"
+      #imagePicker
+      type="file"
+      (change)="onImagePicked($event)"
+    />
+    <input type="submit" value="Submit" class="propertyForm-submit" />
+  </form>
 </div>
