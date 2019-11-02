@@ -3,8 +3,8 @@
   <span>{{ tenant.name }}</span>
   <span>{{ tenant.email }}</span>
   <span>{{ tenant.phone }}</span>
-  <a routerLink="/properties/{{ tenant.propertyId }}">{{
-    tenant.propertyName
+  <a routerLink="/properties/{{ tenant.property._id }}">{{
+    tenant.property.name
   }}</a>
 </div>
 

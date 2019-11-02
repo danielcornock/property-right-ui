@@ -66,7 +66,7 @@ export class TenantFormComponent implements OnInit {
       name: ['', Validators.required],
       email: ['', Validators.email],
       phone: '',
-      propertyId: null
+      property: null
     });
   }
 

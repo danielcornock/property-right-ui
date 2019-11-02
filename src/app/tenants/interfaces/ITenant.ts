@@ -1,10 +1,11 @@
+import { IProperty } from 'src/app/properties/interfaces/IProperty';
+
 export interface ITenant {
   _id: string;
   name: string;
   email?: string;
   phone?: string;
-  propertyId?: string;
-  propertyName?: string;
+  property: Partial<IProperty>;
   avatar?: IAvatar;
 }
 

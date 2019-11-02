@@ -17,26 +17,26 @@
 
     <div class="todoItem-meta" *ngIf="hasMeta || showMeta">
       <div
-        *ngIf="!propertyId && (todo.propertyId || showMeta)"
+        *ngIf="!propertyId && (todo.property._id || showMeta)"
         class="todoItem-propertyContainer"
       >
         <a
-          *ngIf="todo.propertyId"
+          *ngIf="todo.property._id"
           class="todoItem-property"
-          [routerLink]="['/properties', todo.propertyId]"
+          [routerLink]="['/properties', todo.property._id]"
         >
           <app-ui-icon
             class="todoItem-inlineIcon"
             name="home"
             size="micro"
           ></app-ui-icon>
-          {{ todo.propertyName }}
+          {{ todo.property.name }}
         </a>
 
         <button
-          *ngIf="!todo.propertyId && showMeta"
+          *ngIf="!todo.property._id && showMeta"
           class="todoItem-addProperty"
-          [routerLink]="['/properties', todo.propertyId]"
+          [routerLink]="['/properties', todo.property._id]"
         >
           <app-ui-icon
             class="todoItem-inlineIcon"

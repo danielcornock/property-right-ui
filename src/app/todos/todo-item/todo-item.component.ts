@@ -33,7 +33,7 @@ export class TodoItemComponent implements OnInit {
     this.contextMenuConfig = this._createContextMenuConfig();
     this.showMeta = false;
     this.hasMeta =
-      (this.todo.propertyName && !this.propertyId) || this.todo.date
+      (this.todo.property.name && !this.propertyId) || this.todo.date
         ? true
         : false;
   }

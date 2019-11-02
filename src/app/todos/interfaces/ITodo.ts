@@ -1,7 +1,8 @@
+import { IProperty } from 'src/app/properties/interfaces/IProperty';
+
 export interface ITodo {
   _id: string;
-  propertyId?: string;
-  propertyName?: string;
+  property: Partial<IProperty>;
   user: string;
   title: string;
   date?: Date;

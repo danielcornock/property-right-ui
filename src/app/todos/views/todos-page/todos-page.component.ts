@@ -43,7 +43,7 @@ export class TodosPageComponent implements OnInit {
     const filteredTodos = this.todos.filter(todo => {
       if (
         todo.title.toLowerCase().includes(query) ||
-        (todo.propertyName && todo.propertyName.toLowerCase().includes(query))
+        (todo.property.name && todo.property.name.toLowerCase().includes(query))
       ) {
         return true;
       }

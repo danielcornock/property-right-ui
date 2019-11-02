@@ -22,8 +22,8 @@
       <span class="tenantCard-address" *ngIf="!propertyId">
         <a
           [style.color]="subtextColor"
-          routerLink="/properties/{{ tenant.propertyId }}"
-          >{{ tenant.propertyName }}</a
+          routerLink="/properties/{{ tenant.property._id }}"
+          >{{ tenant.property.name }}</a
         ></span
       >
     </div>

@@ -58,7 +58,7 @@ export class TodoCreateComponent implements OnInit {
       return this._updateTodo();
     }
     if (this.propertyId) {
-      this.todoForm.value.propertyId = this.propertyId;
+      this.todoForm.value.property = this.propertyId;
     }
     this.todoService
       .addTodo(this.todoForm.value)
@@ -93,7 +93,7 @@ export class TodoCreateComponent implements OnInit {
       this.todoForm.setValue({
         title: this.todo.title,
         date: modifiedDate,
-        propertyId: this.todo.propertyId,
+        property: this.todo.property._id,
         severity: this.todo.severity
       });
     });
@@ -117,7 +117,7 @@ export class TodoCreateComponent implements OnInit {
       title: ['', Validators.required],
       date: '',
       severity: '',
-      propertyId: null
+      property: null
     });
   }
 }
