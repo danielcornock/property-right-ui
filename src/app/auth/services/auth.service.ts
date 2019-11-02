@@ -22,19 +22,13 @@ export class AuthService {
     private toast: ToastService
   ) {}
 
-  login(user: IHttpLoginRequest): Promise<string> {
-    // TODO - Temporary solution - remove later
-    localStorage.setItem('email', user.email);
-
+  login(user: IHttpLoginRequest, remember: boolean = false): Promise<string> {
     return new Promise((resolve, reject) => {
       this.httpService.post('/users/login', user).subscribe(
         (res: IHttpResponse) => {
-          const resUser: IHttpAuthResponse = res.data.user;
           if (res.token) {
-            this.jwt.setToken(res.token);
-            this.toast.blankSuccess(
-              `Welcome back, ${localStorage.getItem('name')}!`
-            );
+            this.jwt.setToken(res.token, remember);
+            this.toast.blankSuccess(`Welcome back, ${this.jwt.getName()}!`);
             return resolve();
           } else {
             this.toast.error(
@@ -53,18 +47,17 @@ export class AuthService {
     });
   }
 
-  register(user: IHttpRegisterRequest): Promise<boolean> {
-    // TODO - Temporary solution - remove later
-    localStorage.setItem('email', user.email);
-
+  register(
+    user: IHttpRegisterRequest,
+    remember: boolean = false
+  ): Promise<boolean> {
     return new Promise((resolve, reject) => {
       this.httpService.post('users/signup', user).subscribe(
         (res: IHttpResponse) => {
-          const resUser: IHttpAuthResponse = res.data.user;
           if (res.token) {
-            this.jwt.setToken(res.token);
+            this.jwt.setToken(res.token, remember);
             this.toast.blankSuccess(
-              `Welcome to the crew, ${localStorage.getItem('email')}`
+              `Welcome to the crew, ${this.jwt.getName()}`
             );
             return resolve();
           } else {

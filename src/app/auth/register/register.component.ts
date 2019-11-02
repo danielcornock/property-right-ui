@@ -17,6 +17,7 @@ export class RegisterComponent implements OnInit {
 
   registerForm: FormGroup;
   isSubmitted: boolean;
+  private remembered;
 
   ngOnInit() {
     this.isSubmitted = false;
@@ -27,13 +28,17 @@ export class RegisterComponent implements OnInit {
     });
   }
 
+  public setRemember(remember: boolean) {
+    this.remembered = remember;
+  }
+
   register() {
     this.isSubmitted = true;
     if (this.registerForm.invalid) {
       return console.error('You have not filled in all of the correct fields.');
     }
     this.authService
-      .register(this.registerForm.value)
+      .register(this.registerForm.value, this.remembered)
       .then(() => {
         this.router.navigate('dashboard');
       })

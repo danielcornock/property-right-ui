@@ -12,6 +12,8 @@ export class LoginComponent implements OnInit {
   public isLoading: boolean;
   loginForm: FormGroup;
 
+  private remembered = false;
+
   constructor(
     private formBuilder: FormBuilder,
     private authService: AuthService,
@@ -30,14 +32,19 @@ export class LoginComponent implements OnInit {
     return this.loginForm.controls;
   }
 
+  public setRemember(event) {
+    this.remembered = event;
+  }
+
   login() {
     if (this.loginForm.invalid) {
       return console.error('This login form is invalid');
     }
     this.isLoading = true;
     this.authService
-      .login(this.loginForm.value)
+      .login(this.loginForm.value, this.remembered)
       .then(() => {
+        console.log('then');
         this.isLoading = false;
         this.router.navigate('properties');
       })

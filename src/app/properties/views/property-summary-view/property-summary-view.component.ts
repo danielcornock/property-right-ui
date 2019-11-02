@@ -14,6 +14,7 @@ import { TodoCreateComponent } from 'src/app/todos/todo-create/todo-create.compo
 export class PropertySummaryViewComponent implements OnInit {
   public property: IProperty;
   public propertyId: string;
+  public isLoading: boolean;
   constructor(
     private route: ActivatedRoute,
     private propertyService: PropertyService,
@@ -22,6 +23,7 @@ export class PropertySummaryViewComponent implements OnInit {
   ) {}
 
   ngOnInit() {
+    this.isLoading = true;
     this.route.paramMap.subscribe((paramMap: ParamMap) => {
       this.propertyId = paramMap.get('propertyId');
       this.propertyService
@@ -30,7 +32,11 @@ export class PropertySummaryViewComponent implements OnInit {
           if (!property) {
             return this.router.navigate('/properties');
           }
+          this.isLoading = false;
           this.property = property;
+        })
+        .catch(() => {
+          this.isLoading = false;
         });
     });
   }

@@ -11,7 +11,8 @@ export class HttpService {
 
   private addAuthHeaders() {
     return new HttpHeaders({
-      Authorization: 'Bearer ' + localStorage.getItem('jwt_token')
+      Authorization: `Bearer ${localStorage.getItem('jwt_token') ||
+        sessionStorage.getItem('jwt_token')}`
     });
   }
 

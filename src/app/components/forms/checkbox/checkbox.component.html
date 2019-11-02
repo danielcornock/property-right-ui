@@ -4,6 +4,7 @@
     type="checkbox"
     name="remember"
     [attr.checked]="isChecked"
+    (change)="onChange($event)"
   />
   <span *ngIf="label" class="checkbox-label">{{ label }}</span>
 </label>

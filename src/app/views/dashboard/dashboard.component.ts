@@ -4,6 +4,7 @@ import { IHttpResponse } from '../../core/api/interfaces/IHttpResponse';
 import { IProperty } from '../../properties/interfaces/IProperty';
 import { PropertyService } from 'src/app/properties/services/property.service';
 import { Subscription } from 'rxjs';
+import { JwtService } from 'src/app/auth/services/jwt/jwt.service';
 
 @Component({
   selector: 'app-dashboard',
@@ -13,7 +14,10 @@ import { Subscription } from 'rxjs';
 export class DashboardComponent implements OnInit, OnDestroy {
   public properties: Array<IProperty>;
   private propertiesSub: Subscription;
-  constructor(private propertyService: PropertyService) {}
+  constructor(
+    private propertyService: PropertyService,
+    private jwtService: JwtService
+  ) {}
 
   ngOnInit() {
     this.propertyService
@@ -29,9 +33,8 @@ export class DashboardComponent implements OnInit, OnDestroy {
       });
   }
 
-  getUserEmail() {
-    // TODO - this is temporary
-    return localStorage.getItem('email');
+  getUserName() {
+    return this.jwtService.getName();
   }
 
   ngOnDestroy() {
