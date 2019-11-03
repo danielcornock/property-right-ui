@@ -44,6 +44,7 @@ export class TodoCreateComponent implements OnInit {
     this.todoForm = this._initialiseTodoForm();
     this.setPropertyDropdownOptions();
     if (this.todoId) {
+      this.isLoading = true;
       this.editMode = true;
       this._populateFields();
     }
@@ -76,6 +77,14 @@ export class TodoCreateComponent implements OnInit {
     this.matDialogRef.close();
   }
 
+  public getModalHeader() {
+    if (this.editMode) {
+      return 'Edit Todo';
+    } else {
+      return 'Add New Todo';
+    }
+  }
+
   private _updateTodo() {
     this.todoService.updateTodo(this.todoForm.value, this.todoId).then(() => {
       this.todoService.todoRefresh.next();
@@ -90,6 +99,7 @@ export class TodoCreateComponent implements OnInit {
       if (this.todo.date) {
         modifiedDate = this.todo.date.toString().slice(0, 10);
       }
+      this.isLoading = false;
       this.todoForm.setValue({
         title: this.todo.title,
         date: modifiedDate,

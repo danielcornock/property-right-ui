@@ -40,11 +40,11 @@ export class TenantFormComponent implements OnInit {
   }
 
   public submitTenant() {
+    if (this.propertyId) {
+      this.tenantForm.value.property = this.propertyId;
+    }
     if (this.tenantForm.invalid) {
       return console.error('Some details in the tenant form are incorrect.');
-    }
-    if (this.propertyId) {
-      this.tenantForm.value.propertyId = this.propertyId;
     }
     this.isLoading = true;
     this.tenantService

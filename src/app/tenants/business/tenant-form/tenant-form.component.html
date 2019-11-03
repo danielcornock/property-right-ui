@@ -33,7 +33,12 @@
       *ngIf="!propertyId && propertyOptions.length"
     >
       <label class="tenantForm-label">Property</label>
-      <select class="tenantForm-dropdown" formControlName="property">
+      <select
+        class="tenantForm-dropdown"
+        formControlName="property"
+        placeholder="Property"
+      >
+        <option value="" disabled selected>Property</option>
         <option
           *ngFor="let option of propertyOptions"
           value="{{ option.id }}"

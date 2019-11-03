@@ -17,34 +17,32 @@
 
     <div class="todoItem-meta" *ngIf="hasMeta || showMeta">
       <div
-        *ngIf="!propertyId && (todo.property._id || showMeta)"
+        *ngIf="!propertyId && (!!todo.property || showMeta)"
         class="todoItem-propertyContainer"
       >
-        <a
-          *ngIf="todo.property._id"
-          class="todoItem-property"
-          [routerLink]="['/properties', todo.property._id]"
-        >
-          <app-ui-icon
-            class="todoItem-inlineIcon"
-            name="home"
-            size="micro"
-          ></app-ui-icon>
-          {{ todo.property.name }}
-        </a>
-
-        <button
-          *ngIf="!todo.property._id && showMeta"
-          class="todoItem-addProperty"
-          [routerLink]="['/properties', todo.property._id]"
-        >
-          <app-ui-icon
-            class="todoItem-inlineIcon"
-            name="home"
-            size="micro"
-          ></app-ui-icon>
-          Attach Property
-        </button>
+        <ng-container *ngIf="!!todo.property">
+          <a
+            class="todoItem-property"
+            [routerLink]="['/properties', todo.property._id]"
+          >
+            <app-ui-icon
+              class="todoItem-inlineIcon"
+              name="home"
+              size="micro"
+            ></app-ui-icon>
+            {{ todo.property.name }}
+          </a>
+        </ng-container>
+        <ng-container *ngIf="!todo.property && showMeta">
+          <button class="todoItem-addProperty" (click)="editTodo()">
+            <app-ui-icon
+              class="todoItem-inlineIcon"
+              name="home"
+              size="micro"
+            ></app-ui-icon>
+            Attach Property
+          </button>
+        </ng-container>
       </div>
       <button class="todoItem-date" *ngIf="showMeta || todo.date">
         <app-ui-icon

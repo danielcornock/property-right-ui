@@ -1,6 +1,6 @@
 <app-loading-animation *ngIf="isLoading"></app-loading-animation>
 <div class="todoCreate-container" *ngIf="!isLoading">
-  <h2 class="todoCreate-header">Add new todo</h2>
+  <h2 class="todoCreate-header">{{ getModalHeader() }}</h2>
   <form
     [formGroup]="todoForm"
     class="todoCreate-form"

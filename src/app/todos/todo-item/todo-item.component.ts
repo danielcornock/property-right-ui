@@ -33,7 +33,8 @@ export class TodoItemComponent implements OnInit {
     this.contextMenuConfig = this._createContextMenuConfig();
     this.showMeta = false;
     this.hasMeta =
-      (this.todo.property.name && !this.propertyId) || this.todo.date
+      (this.todo.property && this.todo.property.name && !this.propertyId) ||
+      this.todo.date
         ? true
         : false;
   }
@@ -65,7 +66,7 @@ export class TodoItemComponent implements OnInit {
     });
   }
 
-  private editTodo(): void {
+  public editTodo(): void {
     this.modalService.openModal(TodoCreateComponent, {
       todoId: this.todo._id
     });
