@@ -1,0 +1,52 @@
+import {
+  Component,
+  Input,
+  OnChanges,
+  ViewChild,
+  OnDestroy,
+  OnInit
+} from '@angular/core';
+import { IPayment } from '../../interfaces/IPayment';
+import { MatTable } from '@angular/material';
+import { Subscription } from 'rxjs';
+import { PaymentService } from '../../services/payment.service';
+
+@Component({
+  selector: 'app-payment-list',
+  templateUrl: './payment-list.component.html',
+  styleUrls: ['./payment-list.component.scss']
+})
+export class PaymentListComponent implements OnChanges, OnInit, OnDestroy {
+  @Input() paymentListPayments: Array<IPayment>;
+
+  private paymentSub: Subscription;
+
+  @ViewChild('paymentTable', { static: true }) paymentTable: MatTable<string>;
+
+  public columnsToDisplay = ['amount', 'status', 'due', 'recurring', 'actions'];
+
+  constructor(private paymentService: PaymentService) {}
+
+  ngOnInit() {
+    this._subscribeToNewPayments();
+  }
+
+  ngOnChanges() {}
+
+  public markAsPaid(id: string) {
+    console.log(id);
+  }
+
+  private _subscribeToNewPayments() {
+    this.paymentSub = this.paymentService.paymentObservable.subscribe(
+      (payment: IPayment) => {
+        this.paymentListPayments.unshift(payment);
+        this.paymentTable.renderRows();
+      }
+    );
+  }
+
+  ngOnDestroy() {
+    this.paymentSub.unsubscribe();
+  }
+}

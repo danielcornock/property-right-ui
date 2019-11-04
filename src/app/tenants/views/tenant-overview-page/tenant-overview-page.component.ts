@@ -4,6 +4,10 @@ import { TenantService } from '../../services/tenant.service';
 import { ActivatedRoute, ParamMap } from '@angular/router';
 import { RouterService } from 'src/app/core/routing/router.service';
 import { ModalService } from 'src/app/core/modal/modal.service';
+import { PaymentCreateComponent } from 'src/app/payments/business/payment-create/payment-create.component';
+import { PaymentService } from 'src/app/payments/services/payment.service';
+import { IPayment } from 'src/app/payments/interfaces/IPayment';
+import { Subscription } from 'rxjs';
 
 @Component({
   selector: 'app-tenant-overview-page',
@@ -14,26 +18,44 @@ export class TenantOverviewPageComponent implements OnInit {
   public tenant: ITenant;
   public tenantId: string;
   public isLoading: boolean;
+  public payments: Array<IPayment>;
+
   constructor(
     private tenantService: TenantService,
     private route: ActivatedRoute,
     private router: RouterService,
-    private modalService: ModalService
+    private modalService: ModalService,
+    private paymentService: PaymentService
   ) {}
 
   ngOnInit() {
     this.isLoading = true;
-    this.route.paramMap.subscribe((paramMap: ParamMap) => {
+    this.route.paramMap.subscribe(async (paramMap: ParamMap) => {
       this.tenantId = paramMap.get('tenantId');
-      this.tenantService
-        .getTenant(this.tenantId)
-        .then((tenant: ITenant) => {
-          this.tenant = tenant;
-          this.isLoading = false;
-        })
-        .catch(() => {
-          this.isLoading = false;
+      try {
+        this.tenant = await this.tenantService.getTenant(this.tenantId);
+        this.payments = await this.paymentService.getPayments({
+          tenantId: this.tenantId
         });
+        this.isLoading = false;
+      } catch {
+        this.isLoading = false;
+      }
+    });
+  }
+
+  private _getPayments() {
+    this.paymentService
+      .getPayments({ tenantId: this.tenantId })
+      .then((payments: Array<IPayment>) => {
+        this.payments = payments;
+      });
+  }
+
+  public openCreatePaymentModal() {
+    this.modalService.openModal(PaymentCreateComponent, {
+      tenantId: this.tenantId,
+      propertyId: this.tenant.property._id
     });
   }
 

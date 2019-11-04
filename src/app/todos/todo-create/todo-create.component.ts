@@ -6,7 +6,6 @@ import { IProperty } from '../../properties/interfaces/IProperty';
 import { IPropertyDropdownOption } from './interfaces/IPropertyDropdownOption';
 import { MatDialogRef, MAT_DIALOG_DATA } from '@angular/material';
 import { ITodo } from '../interfaces/ITodo';
-import { Subject } from 'rxjs';
 
 @Component({
   selector: 'app-todo-create',
@@ -22,6 +21,7 @@ export class TodoCreateComponent implements OnInit {
   private todo: ITodo;
   private todoId: string;
   private editMode: boolean;
+
   constructor(
     @Inject(MAT_DIALOG_DATA) public data: any,
     private formBuilder: FormBuilder,

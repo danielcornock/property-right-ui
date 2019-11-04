@@ -58,14 +58,6 @@ export class TodoItemComponent implements OnInit {
       : null;
   }
 
-  public formatDate(): string {
-    const date = new Date(this.todoInput.date);
-    return date.toLocaleString('en-gb', {
-      month: 'short',
-      day: 'numeric'
-    });
-  }
-
   public editTodo(): void {
     this.modalService.openModal(TodoCreateComponent, {
       todoId: this.todo._id

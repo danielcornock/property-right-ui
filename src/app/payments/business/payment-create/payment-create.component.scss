@@ -1,0 +1,52 @@
+@import 'src/assets/styles/themes.scss';
+
+.paymentCreate {
+  &-container {
+    padding: $spacing-small;
+    width: 400px;
+  }
+
+  &-header {
+    @include modal-header;
+  }
+
+  &-form {
+    @include flex(column);
+  }
+
+  &-label {
+    @include default-input-label;
+  }
+
+  &-input {
+    @include default-text-input;
+    height: 48px;
+    margin-bottom: $spacing-small;
+  }
+
+  &-checkbox {
+    margin-bottom: $spacing-small;
+  }
+
+  &-buttons {
+    display: flex;
+    justify-content: flex-end;
+  }
+
+  &-cancel {
+    @include button-default;
+    text-decoration: none;
+    font-size: $font-standard;
+    color: $color-text-grey;
+    margin-right: $spacing-med;
+
+    @include hover($t250) {
+      color: $color-text-highlight;
+    }
+  }
+
+  &-submit {
+    @include button(primary);
+    align-self: flex-end;
+  }
+}

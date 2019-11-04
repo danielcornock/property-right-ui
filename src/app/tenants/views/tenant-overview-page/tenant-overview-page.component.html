@@ -8,4 +8,14 @@
   }}</a>
 </div>
 
-<button (click)="openConfirmDeleteModal()">Delete Tenant</button>
+<button class="tempButton" (click)="openConfirmDeleteModal()">
+  Delete Tenant
+</button>
+<div class="spacer">hi</div>
+
+<div class="tenantOverview-payments">
+  <button class="tempButton" (click)="openCreatePaymentModal()">
+    Add rental payment
+  </button>
+  <app-payment-list [paymentListPayments]="payments"></app-payment-list>
+</div>

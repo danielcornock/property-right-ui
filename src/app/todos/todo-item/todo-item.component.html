@@ -50,7 +50,7 @@
           name="calendar"
           size="micro"
         ></app-ui-icon
-        >{{ todo.date ? formatDate() : 'Add Date' }}
+        >{{ todo.date | date: 'MMM d' }}
       </button>
     </div>
   </div>

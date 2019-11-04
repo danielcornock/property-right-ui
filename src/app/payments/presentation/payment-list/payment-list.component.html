@@ -1,0 +1,80 @@
+<div class="paymentList-container">
+  <table
+    #paymentTable
+    class="paymentList-table"
+    mat-table
+    [dataSource]="paymentListPayments"
+  >
+    <ng-container matColumnDef="amount">
+      <th class="paymentList-tableHeader" mat-header-cell *matHeaderCellDef>
+        Amount
+      </th>
+      <td class="paymentList-amount" mat-cell *matCellDef="let payment">
+        {{ payment.amount }}
+      </td>
+    </ng-container>
+
+    <ng-container matColumnDef="status">
+      <th class="paymentList-tableHeader" mat-header-cell *matHeaderCellDef>
+        Status
+      </th>
+      <td mat-cell *matCellDef="let payment">
+        <app-ui-pill
+          [uiPillContent]="payment.status"
+          [uiPillColor]="
+            payment.status === 'overdue'
+              ? 'severe'
+              : payment.status === 'paid'
+              ? 'easy'
+              : 'moderate'
+          "
+        ></app-ui-pill>
+      </td>
+    </ng-container>
+
+    <ng-container matColumnDef="due">
+      <th class="paymentList-tableHeader" mat-header-cell *matHeaderCellDef>
+        Due
+      </th>
+      <td mat-cell *matCellDef="let payment">
+        {{ payment.due | date }}
+      </td>
+    </ng-container>
+
+    <ng-container matColumnDef="recurring">
+      <th class="paymentList-tableHeader" mat-header-cell *matHeaderCellDef>
+        Recurring
+      </th>
+      <td mat-cell *matCellDef="let payment">
+        {{ payment.recurring }}
+      </td>
+    </ng-container>
+
+    <ng-container matColumnDef="actions">
+      <th class="paymentList-tableHeader" mat-header-cell *matHeaderCellDef>
+        Actions
+      </th>
+      <td mat-cell *matCellDef="let payment">
+        <div class="paymentList-actionContainer">
+          <app-ui-pill
+            *ngIf="!payment.paid"
+            (click)="markAsPaid(payment._id)"
+            class="paymentList-action"
+            uiPillContent="Paid"
+            uiPillIcon="dollar-sign"
+            uiPillColor="easy"
+          ></app-ui-pill>
+          <app-ui-pill
+            class="paymentList-action"
+            uiPillContent="Delete"
+            uiPillColor="severe"
+            uiPillIcon="trash2"
+          ></app-ui-pill>
+        </div>
+      </td>
+    </ng-container>
+
+    <tr mat-header-row *matHeaderRowDef="columnsToDisplay"></tr>
+    <tr mat-row *matRowDef="let myRowData; columns: columnsToDisplay"></tr>
+  </table>
+</div>

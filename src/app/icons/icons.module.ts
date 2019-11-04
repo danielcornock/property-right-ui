@@ -22,7 +22,8 @@ import {
   MoreVertical,
   Calendar,
   Edit,
-  Upload
+  Upload,
+  DollarSign
 } from 'angular-feather/icons';
 
 const icons = {
@@ -45,7 +46,8 @@ const icons = {
   MoreVertical,
   Calendar,
   Edit,
-  Upload
+  Upload,
+  DollarSign
 };
 
 @NgModule({

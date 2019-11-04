@@ -1,0 +1,40 @@
+<div class="paymentCreate-container">
+  <h2 class="paymentCreate-header">Add new payment</h2>
+
+  <form
+    [formGroup]="paymentForm"
+    (ngSubmit)="submitPayment()"
+    class="paymentCreate-form"
+  >
+    <label class="paymentCreate-label">Monthly Amount</label>
+    <input type="text" formControlName="amount" class="paymentCreate-input" />
+
+    <label for="" class="paymentCreate-label">Date Due</label>
+    <input type="date" formControlName="due" class="paymentCreate-input" />
+
+    <app-checkbox
+      class="paymentCreate-checkbox"
+      [checkboxDefault]="false"
+      label="Paid"
+      (click)="togglePaid()"
+    ></app-checkbox>
+
+    <app-checkbox
+      class="paymentCreate-checkbox"
+      [checkboxDefault]="false"
+      label="Recurring Payment?"
+      (click)="toggleRecurring()"
+    ></app-checkbox>
+
+    <div class="paymentCreate-buttons">
+      <button (click)="closeModal()" class="paymentCreate-cancel">
+        Cancel
+      </button>
+      <input
+        type="submit"
+        value="Create Payment"
+        class="paymentCreate-submit"
+      />
+    </div>
+  </form>
+</div>

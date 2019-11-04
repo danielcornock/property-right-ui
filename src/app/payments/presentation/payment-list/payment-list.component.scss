@@ -1,0 +1,42 @@
+@import 'src/assets/styles/themes.scss';
+
+.paymentList {
+  &-container {
+    width: 100%;
+  }
+
+  &-table {
+    @include card-default;
+    width: 100%;
+    font-family: inherit;
+    overflow: hidden;
+  }
+
+  &-tableHeader {
+    color: $color-text-highlight;
+  }
+
+  &-actionContainer {
+    @include flex(row);
+    width: 56px;
+  }
+
+  &-action {
+    @include space-by(right, $spacing-tiny);
+    cursor: pointer;
+    @include hover($t250) {
+      transform: scale(1.1);
+    }
+  }
+
+  &-amount {
+    font-size: $font-default;
+    color: $color-text-primary;
+    font-weight: $semi-bold;
+    letter-spacing: 1px;
+  }
+}
+
+.mat-row {
+  height: 65px;
+}

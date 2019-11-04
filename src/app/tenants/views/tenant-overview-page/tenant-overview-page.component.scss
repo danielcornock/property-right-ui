@@ -5,3 +5,12 @@
     @include flex(column);
   }
 }
+
+.tempButton {
+  @include button(default);
+  margin-bottom: 15px;
+}
+
+.spacer {
+  padding: 100px;
+}

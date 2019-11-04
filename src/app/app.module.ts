@@ -8,6 +8,7 @@ import { ToastrModule } from 'ngx-toastr';
 import { MatDialogModule, MatDialogRef } from '@angular/material';
 import { MatMenuModule } from '@angular/material/menu';
 import { GooglePlaceModule } from 'ngx-google-places-autocomplete';
+import { MatTableModule } from '@angular/material/table';
 
 import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
@@ -40,6 +41,8 @@ import { TenantCardComponent } from './tenants/presentation/tenant-card/tenant-c
 import { SafeUrlPipe } from './core/api/safe-url/safe-url.pipe';
 import { SearchBarComponent } from './components/search-bar/search-bar.component';
 import { PropertiesListComponent } from './properties/presentation/properties-list/properties-list.component';
+import { PaymentListComponent } from './payments/presentation/payment-list/payment-list.component';
+import { PaymentCreateComponent } from './payments/business/payment-create/payment-create.component';
 
 @NgModule({
   declarations: [
@@ -71,7 +74,9 @@ import { PropertiesListComponent } from './properties/presentation/properties-li
     TenantCardComponent,
     SafeUrlPipe,
     SearchBarComponent,
-    PropertiesListComponent
+    PropertiesListComponent,
+    PaymentListComponent,
+    PaymentCreateComponent
   ],
   imports: [
     BrowserModule,
@@ -84,12 +89,14 @@ import { PropertiesListComponent } from './properties/presentation/properties-li
     MatDialogModule,
     MatMenuModule,
     GooglePlaceModule,
+    MatTableModule,
     ToastrModule.forRoot()
   ],
   entryComponents: [
     TenantFormComponent,
     ConfirmationModalComponent,
-    TodoCreateComponent
+    TodoCreateComponent,
+    PaymentCreateComponent
   ],
   providers: [{ provide: MatDialogRef, useValue: {} }],
   bootstrap: [AppComponent]
