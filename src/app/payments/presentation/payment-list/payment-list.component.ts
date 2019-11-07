@@ -28,16 +28,33 @@ export class PaymentListComponent implements OnChanges, OnInit, OnDestroy {
   constructor(private paymentService: PaymentService) {}
 
   ngOnInit() {
-    this._subscribeToNewPayments();
+    this._subscribeToPayments();
   }
 
-  ngOnChanges() {}
+  ngOnChanges() {
+    console.log('changes');
+    // this.paymentTable.renderRows();
+  }
 
   public markAsPaid(id: string) {
-    console.log(id);
+    this.paymentService.updatePayment({ paid: true }, id);
   }
 
-  private _subscribeToNewPayments() {
+  public toggleRecurring(id: string, currentlyRecurring: boolean) {
+    this.paymentService.updatePayment({ recurring: !currentlyRecurring }, id);
+  }
+
+  public deletePayment(id: string) {
+    this.paymentService.deletePayment(id).then(() => {
+      this.paymentListPayments = this.paymentListPayments.filter(
+        (payment: IPayment) => {
+          return payment._id !== id;
+        }
+      );
+    });
+  }
+
+  private _subscribeToPayments() {
     this.paymentSub = this.paymentService.paymentObservable.subscribe(
       (payment: IPayment) => {
         this.paymentListPayments.unshift(payment);

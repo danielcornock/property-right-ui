@@ -23,7 +23,9 @@ import {
   Calendar,
   Edit,
   Upload,
-  DollarSign
+  DollarSign,
+  CheckCircle,
+  XCircle
 } from 'angular-feather/icons';
 
 const icons = {
@@ -47,7 +49,9 @@ const icons = {
   Calendar,
   Edit,
   Upload,
-  DollarSign
+  DollarSign,
+  CheckCircle,
+  XCircle
 };
 
 @NgModule({

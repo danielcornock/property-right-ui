@@ -1,4 +1,5 @@
 export interface IPayment {
+  _id: string;
   user: string;
   tenant: string;
   property: string;
@@ -6,4 +7,5 @@ export interface IPayment {
   status: 'due' | 'overdue' | 'paid';
   due: Date;
   paid: boolean;
+  recurring: boolean;
 }

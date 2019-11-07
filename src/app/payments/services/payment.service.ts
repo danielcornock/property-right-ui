@@ -11,6 +11,7 @@ import { IHttpResponse } from 'src/app/core/api/interfaces/IHttpResponse';
 })
 export class PaymentService {
   public paymentObservable: Subject<IPayment> = new Subject<IPayment>();
+  public paymentRefresh: Subject<void> = new Subject<void>();
 
   constructor(private http: HttpService, private toast: ToastService) {}
 
@@ -20,7 +21,7 @@ export class PaymentService {
       this.http.post('payments', payment).subscribe(
         (res: IHttpResponse) => {
           const paymentResponse: IPayment = res.data.payment;
-          this.paymentObservable.next(paymentResponse);
+          this.paymentRefresh.next();
           this.toast.success('Payment successfully added.');
           resolve();
         },
@@ -46,6 +47,39 @@ export class PaymentService {
         (error: IHttpErrorResponse) => {
           console.log(error);
           this.toast.error('Not able to fetch payments at this time!');
+          reject();
+        }
+      );
+    });
+  }
+
+  public deletePayment(id: string): Promise<void> {
+    return new Promise((resolve, reject) => {
+      this.http.delete(`payments/${id}`).subscribe(
+        () => {
+          this.toast.success('Payment deleted.');
+          resolve();
+        },
+        (error: IHttpErrorResponse) => {
+          console.log(error);
+          this.toast.error('Unable to delete payment at this time.');
+          reject();
+        }
+      );
+    });
+  }
+
+  public updatePayment(payment: Partial<IPayment>, paymentId: string) {
+    return new Promise((resolve, reject) => {
+      this.http.put(`payments/${paymentId}`, payment).subscribe(
+        (res: IHttpResponse) => {
+          this.paymentRefresh.next();
+          // this.toast.success('Payment updated!');
+          resolve();
+        },
+        (error: IHttpErrorResponse) => {
+          console.log(error);
+          this.toast.error('Not able to update payment at this time.');
           reject();
         }
       );

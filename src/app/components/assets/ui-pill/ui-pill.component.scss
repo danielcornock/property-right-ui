@@ -35,7 +35,9 @@
     }
   }
 
-  &-icon {
-    margin-right: $spacing-smallest;
+  &-text {
+    &--withIcon {
+      margin-left: $spacing-smallest;
+    }
   }
 }

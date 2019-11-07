@@ -16,14 +16,14 @@
       class="paymentCreate-checkbox"
       [checkboxDefault]="false"
       label="Paid"
-      (click)="togglePaid()"
+      (click)="togglePaid($event)"
     ></app-checkbox>
 
     <app-checkbox
       class="paymentCreate-checkbox"
       [checkboxDefault]="false"
       label="Recurring Payment?"
-      (click)="toggleRecurring()"
+      (click)="toggleRecurring($event)"
     ></app-checkbox>
 
     <div class="paymentCreate-buttons">

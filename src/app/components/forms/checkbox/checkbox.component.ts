@@ -21,6 +21,7 @@ export class CheckboxComponent implements OnInit {
   }
 
   public onChange(event) {
+    console.log(event.target);
     if (event.target.value === 'on') {
       this.checkboxIsChecked.emit(true);
     } else {

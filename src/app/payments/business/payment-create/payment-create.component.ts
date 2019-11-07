@@ -57,6 +57,7 @@ export class PaymentCreateComponent implements OnInit {
 
   public toggleRecurring() {
     this.paymentForm.value.recurring = !this.paymentForm.value.recurring;
+    console.log(this.paymentForm.value.recurring);
   }
 
   public togglePaid() {
