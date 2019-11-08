@@ -23,7 +23,13 @@ export class PaymentListComponent implements OnChanges, OnInit, OnDestroy {
 
   @ViewChild('paymentTable', { static: true }) paymentTable: MatTable<string>;
 
-  public columnsToDisplay = ['amount', 'status', 'due', 'recurring', 'actions'];
+  public columnsToDisplay: Array<string> = [
+    'amount',
+    'status',
+    'due',
+    'recurring',
+    'actions'
+  ];
 
   constructor(private paymentService: PaymentService) {}
 
@@ -33,10 +39,12 @@ export class PaymentListComponent implements OnChanges, OnInit, OnDestroy {
 
   ngOnChanges() {
     console.log('changes');
+    // this._setTableColumns();
     // this.paymentTable.renderRows();
   }
 
   public markAsPaid(id: string) {
+    console.log(id);
     this.paymentService.updatePayment({ paid: true }, id);
   }
 

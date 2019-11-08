@@ -16,7 +16,8 @@
     grid-template-areas:
       'featureImage map map'
       'todo todo actionButtons'
-      'tenants tenants tenants';
+      'tenants tenants tenants'
+      'payments payments payments';
     grid-gap: $spacing-smaller;
   }
 
@@ -66,5 +67,9 @@
 
   &-tenants {
     grid-area: tenants;
+  }
+
+  &-payments {
+    grid-area: payments;
   }
 }

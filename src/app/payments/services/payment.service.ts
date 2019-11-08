@@ -34,7 +34,7 @@ export class PaymentService {
     });
   }
 
-  public getPayments(parent: {
+  public getPayments(parent?: {
     propertyId?: string;
     tenantId?: string;
   }): Promise<Array<IPayment>> {
@@ -87,10 +87,12 @@ export class PaymentService {
   }
 
   private _setPaymentRoute(parent: { propertyId?: string; tenantId?: string }) {
-    if (parent.propertyId) {
+    if (parent && parent.propertyId) {
       return `properties/${parent.propertyId}/payments`;
-    } else if (parent.tenantId) {
+    } else if (parent && parent.tenantId) {
       return `tenants/${parent.tenantId}/payments`;
+    } else {
+      return 'payments';
     }
   }
 }

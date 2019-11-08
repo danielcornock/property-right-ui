@@ -9,8 +9,12 @@
       <th class="paymentList-tableHeader" mat-header-cell *matHeaderCellDef>
         Amount
       </th>
-      <td class="paymentList-amount" mat-cell *matCellDef="let payment">
-        {{ payment.amount | currency: 'GBP' }}
+      <td mat-cell *matCellDef="let payment">
+        <h3 class="paymentList-amount">
+          {{ payment.amount | currency: 'GBP' }}
+        </h3>
+        <div *ngIf="payment.tenant.name">{{ payment.tenant.name }}</div>
+        <div *ngIf="payment.property.name">{{ payment.property.name }}</div>
       </td>
     </ng-container>
 

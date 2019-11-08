@@ -22,7 +22,7 @@
   }
 
   &-action {
-    @include space-by(right, $spacing-tiny);
+    @include space-by(right, $spacing-micro);
     cursor: pointer;
     @include hover($t250) {
       transform: scale(1.1);
@@ -50,5 +50,5 @@
 }
 
 .mat-row {
-  height: 65px;
+  height: 95px;
 }

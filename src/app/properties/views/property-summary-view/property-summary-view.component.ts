@@ -6,6 +6,8 @@ import { RouterService } from 'src/app/core/routing/router.service';
 import { ModalService } from 'src/app/core/modal/modal.service';
 import { TenantFormComponent } from 'src/app/tenants/business/tenant-form/tenant-form.component';
 import { TodoCreateComponent } from 'src/app/todos/todo-create/todo-create.component';
+import { PaymentService } from 'src/app/payments/services/payment.service';
+import { IPayment } from 'src/app/payments/interfaces/IPayment';
 
 @Component({
   templateUrl: './property-summary-view.component.html',
@@ -15,15 +17,19 @@ export class PropertySummaryViewComponent implements OnInit {
   public property: IProperty;
   public propertyId: string;
   public isLoading: boolean;
+  public payments: Array<IPayment>;
+
   constructor(
     private route: ActivatedRoute,
     private propertyService: PropertyService,
     private router: RouterService,
-    private modalService: ModalService
+    private modalService: ModalService,
+    private paymentService: PaymentService
   ) {}
 
   ngOnInit() {
     this.isLoading = true;
+    this._watchPayments();
     this.route.paramMap.subscribe((paramMap: ParamMap) => {
       this.propertyId = paramMap.get('propertyId');
       this.propertyService
@@ -37,6 +43,11 @@ export class PropertySummaryViewComponent implements OnInit {
         })
         .catch(() => {
           this.isLoading = false;
+        });
+      this.paymentService
+        .getPayments({ propertyId: this.propertyId })
+        .then((paymentRes: Array<IPayment>) => {
+          this.payments = paymentRes;
         });
     });
   }
@@ -66,6 +77,14 @@ export class PropertySummaryViewComponent implements OnInit {
         this._deleteProperty();
       })
       .catch(() => {});
+  }
+
+  private _watchPayments() {
+    this.paymentService.paymentRefresh.subscribe(async () => {
+      this.payments = await this.paymentService.getPayments({
+        propertyId: this.propertyId
+      });
+    });
   }
 
   private _deleteProperty() {
