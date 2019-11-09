@@ -19,11 +19,6 @@
   }
 
   &-input {
-    @include default-text-input;
-    height: 48px;
-  }
-
-  &-checkbox {
     margin-bottom: $spacing-small;
   }
 
@@ -47,10 +42,5 @@
   &-submit {
     @include button(primary);
     align-self: flex-end;
-  }
-
-  &-inputContainer {
-    position: relative;
-    margin-bottom: $spacing-small;
   }
 }

@@ -13,8 +13,20 @@
         <h3 class="paymentList-amount">
           {{ payment.amount | currency: 'GBP' }}
         </h3>
-        <div *ngIf="payment.tenant.name">{{ payment.tenant.name }}</div>
-        <div *ngIf="payment.property.name">{{ payment.property.name }}</div>
+
+        <ng-container>
+          <div *ngIf="payment.tenant && payment.tenant.name">
+            {{ payment.tenant.name }}
+          </div>
+          <i *ngIf="!payment.tenant">Tenant Deleted</i>
+        </ng-container>
+
+        <ng-container>
+          <div *ngIf="payment.property && payment.property.name">
+            {{ payment.property.name }}
+          </div>
+          <i *ngIf="!payment.property">Property Deleted</i>
+        </ng-container>
       </td>
     </ng-container>
 

@@ -27,6 +27,11 @@
     margin-bottom: $spacing-small;
   }
 
+  &-inputContainer {
+    display: block;
+    margin-bottom: $spacing-small;
+  }
+
   &-dropdown {
     @include default-text-input;
     margin-bottom: $spacing-small;

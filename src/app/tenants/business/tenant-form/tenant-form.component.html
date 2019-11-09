@@ -6,28 +6,29 @@
     class="tenantForm-form"
     (ngSubmit)="submitTenant()"
   >
-    <label class="tenantForm-label">Name</label>
-    <input
-      type="text"
-      placeholder="Tenant Name"
-      formControlName="name"
-      class="tenantForm-input"
-      required
-    />
-    <label class="tenantForm-label">Email Address</label>
-    <input
-      type="email"
-      placeholder="Tenant Email"
-      formControlName="email"
-      class="tenantForm-input"
-    />
-    <label class="tenantForm-label">Phone Number</label>
-    <input
-      type="tel"
-      placeholder="Tenant Phone number"
-      formControlName="phone"
-      class="tenantForm-input"
-    />
+    <app-input-text
+      class="tenantForm-inputContainer"
+      [formInputParentForm]="tenantForm"
+      formInputLabel="Name"
+      formInputControl="name"
+    ></app-input-text>
+
+    <app-input-text
+      class="tenantForm-inputContainer"
+      [formInputParentForm]="tenantForm"
+      formInputLabel="Email Address"
+      formInputControl="email"
+      formInputType="email"
+    ></app-input-text>
+
+    <app-input-text
+      class="tenantForm-inputContainer"
+      [formInputParentForm]="tenantForm"
+      formInputLabel="Phone Number"
+      formInputControl="phone"
+      formInputType="tel"
+    ></app-input-text>
+
     <div
       class="tenantForm-dropdownContainer"
       *ngIf="!propertyId && propertyOptions.length"

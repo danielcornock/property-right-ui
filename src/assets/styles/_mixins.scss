@@ -33,9 +33,11 @@
   border-radius: 5px;
   padding: $spacing-tiny;
   width: 100%;
+  height: 48px;
 }
 
 @mixin default-input-label {
+  display: block;
   font-size: $font-tiny;
   text-transform: uppercase;
   font-weight: $semi-bold;

@@ -6,20 +6,18 @@
     class="todoCreate-form"
     (ngSubmit)="submitTodo()"
   >
-    <label class="todoCreate-label">Title</label>
-    <input
-      placeholder="Title"
-      type="text"
-      formControlName="title"
-      class="todoCreate-input"
-      required
-    />
+    <app-input-text
+      class="todoCreate-inputContainer"
+      [formInputParentForm]="todoForm"
+      formInputLabel="Title"
+      formInputControl="title"
+    ></app-input-text>
 
-    <label class="todoCreate-label">Date</label>
     <app-input-date
       class="todoCreate-inputContainer"
-      [parentForm]="todoForm"
-      control="date"
+      [formInputParentForm]="todoForm"
+      formInputControl="date"
+      formInputLabel="Due Date"
     ></app-input-date>
 
     <label class="todoCreate-label">Severity</label>

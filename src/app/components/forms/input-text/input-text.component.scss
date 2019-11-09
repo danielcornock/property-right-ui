@@ -1,0 +1,14 @@
+@import 'src/assets/styles/themes.scss';
+
+.inputText {
+  &-container {
+  }
+
+  &-input {
+    @include default-text-input;
+  }
+
+  &-label {
+    @include default-input-label;
+  }
+}

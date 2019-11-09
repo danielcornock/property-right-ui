@@ -49,6 +49,8 @@ import { PropertiesListComponent } from './properties/presentation/properties-li
 import { PaymentListComponent } from './payments/presentation/payment-list/payment-list.component';
 import { PaymentCreateComponent } from './payments/business/payment-create/payment-create.component';
 import { InputDateComponent } from './components/forms/input-date/input-date.component';
+import { FormInputComponent } from './components/forms/form-input/form-input.component';
+import { InputTextComponent } from './components/forms/input-text/input-text.component';
 
 @NgModule({
   declarations: [
@@ -83,7 +85,9 @@ import { InputDateComponent } from './components/forms/input-date/input-date.com
     PropertiesListComponent,
     PaymentListComponent,
     PaymentCreateComponent,
-    InputDateComponent
+    InputDateComponent,
+    FormInputComponent,
+    InputTextComponent
   ],
   imports: [
     BrowserModule,

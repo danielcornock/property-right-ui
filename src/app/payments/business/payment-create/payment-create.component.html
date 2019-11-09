@@ -6,25 +6,29 @@
     (ngSubmit)="submitPayment()"
     class="paymentCreate-form"
   >
-    <label class="paymentCreate-label">Monthly Amount</label>
-    <div class="paymentCreate-inputContainer">
-      <input type="text" formControlName="amount" class="paymentCreate-input" />
-    </div>
+    <app-input-text
+      class="paymentCreate-input"
+      formInputControl="amount"
+      [formInputParentForm]="paymentForm"
+      formInputLabel="Monthly Amount"
+    ></app-input-text>
 
-    <label for="" class="paymentCreate-label">Date Due</label>
-    <div class="paymentCreate-inputContainer">
-      <app-input-date [parentForm]="paymentForm" control="due"></app-input-date>
-    </div>
+    <app-input-date
+      class="paymentCreate-input"
+      [formInputParentForm]="paymentForm"
+      formInputControl="due"
+      formInputLabel="Date Due"
+    ></app-input-date>
 
     <app-checkbox
-      class="paymentCreate-checkbox"
+      class="paymentCreate-input"
       [checkboxDefault]="false"
       label="Paid"
       (click)="togglePaid($event)"
     ></app-checkbox>
 
     <app-checkbox
-      class="paymentCreate-checkbox"
+      class="paymentCreate-input"
       [checkboxDefault]="false"
       label="Recurring Payment?"
       (click)="toggleRecurring($event)"

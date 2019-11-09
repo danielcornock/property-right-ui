@@ -1,12 +1,19 @@
-<div [formGroup]="parentForm" class="inputDate-container">
-  <input
-    class="inputDate-input"
-    [formControlName]="control"
-    [matDatepicker]="myDatepicker"
-  />
-  <mat-datepicker-toggle
-    class="inputDate-dateButton"
-    [for]="myDatepicker"
-  ></mat-datepicker-toggle>
+<div [formGroup]="formInputParentForm" class="inputDate-container">
+  <label [for]="formInputControl" class="inputDate-label">{{
+    formInputLabel || 'Date'
+  }}</label>
+  <div class="inputDate-inputContainer">
+    <input
+      [id]="formInputControl"
+      class="inputDate-input"
+      [formControlName]="formInputControl"
+      [matDatepicker]="myDatepicker"
+      placeholder="Date"
+    />
+    <mat-datepicker-toggle
+      class="inputDate-dateButton"
+      [for]="myDatepicker"
+    ></mat-datepicker-toggle>
+  </div>
   <mat-datepicker #myDatepicker></mat-datepicker>
 </div>

@@ -19,10 +19,7 @@
 
   &-inputContainer {
     margin-bottom: $spacing-small;
-  }
-
-  &-form {
-    display: grid;
+    display: block;
   }
 
   &-label {
