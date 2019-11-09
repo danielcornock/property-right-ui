@@ -16,12 +16,11 @@
     />
 
     <label class="todoCreate-label">Date</label>
-    <input
-      placeholder="Date"
-      type="date"
-      formControlName="date"
-      class="todoCreate-input"
-    />
+    <app-input-date
+      class="todoCreate-inputContainer"
+      [parentForm]="todoForm"
+      control="date"
+    ></app-input-date>
 
     <label class="todoCreate-label">Severity</label>
     <select formControlName="severity" class="todoCreate-dropdown">

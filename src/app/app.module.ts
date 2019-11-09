@@ -5,10 +5,15 @@ import { HttpClientModule } from '@angular/common/http';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 
 import { ToastrModule } from 'ngx-toastr';
-import { MatDialogModule, MatDialogRef } from '@angular/material';
+import {
+  MatDialogModule,
+  MatDialogRef,
+  MatNativeDateModule
+} from '@angular/material';
 import { MatMenuModule } from '@angular/material/menu';
 import { GooglePlaceModule } from 'ngx-google-places-autocomplete';
 import { MatTableModule } from '@angular/material/table';
+import { MatDatepickerModule } from '@angular/material/datepicker';
 
 import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
@@ -43,6 +48,7 @@ import { SearchBarComponent } from './components/search-bar/search-bar.component
 import { PropertiesListComponent } from './properties/presentation/properties-list/properties-list.component';
 import { PaymentListComponent } from './payments/presentation/payment-list/payment-list.component';
 import { PaymentCreateComponent } from './payments/business/payment-create/payment-create.component';
+import { InputDateComponent } from './components/forms/input-date/input-date.component';
 
 @NgModule({
   declarations: [
@@ -76,7 +82,8 @@ import { PaymentCreateComponent } from './payments/business/payment-create/payme
     SearchBarComponent,
     PropertiesListComponent,
     PaymentListComponent,
-    PaymentCreateComponent
+    PaymentCreateComponent,
+    InputDateComponent
   ],
   imports: [
     BrowserModule,
@@ -90,6 +97,8 @@ import { PaymentCreateComponent } from './payments/business/payment-create/payme
     MatMenuModule,
     GooglePlaceModule,
     MatTableModule,
+    MatDatepickerModule,
+    MatNativeDateModule,
     ToastrModule.forRoot()
   ],
   entryComponents: [
@@ -98,7 +107,7 @@ import { PaymentCreateComponent } from './payments/business/payment-create/payme
     TodoCreateComponent,
     PaymentCreateComponent
   ],
-  providers: [{ provide: MatDialogRef, useValue: {} }],
+  providers: [{ provide: MatDialogRef, useValue: {} }, MatDatepickerModule],
   bootstrap: [AppComponent]
 })
 export class AppModule {}

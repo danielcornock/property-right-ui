@@ -1,0 +1,22 @@
+@import 'src/assets/styles/themes.scss';
+
+.inputDate {
+  &-container {
+    position: relative;
+  }
+  &-input {
+    @include default-text-input;
+    height: 48px;
+  }
+
+  &-dateButton {
+    position: absolute;
+    right: $spacing-smallest;
+    top: 50%;
+    transform: translateY(-50%);
+  }
+}
+
+.mat-datepicker-toggle-active {
+  color: $color-text-highlight !important;
+}

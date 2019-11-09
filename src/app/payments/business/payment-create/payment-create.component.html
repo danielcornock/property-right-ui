@@ -7,10 +7,14 @@
     class="paymentCreate-form"
   >
     <label class="paymentCreate-label">Monthly Amount</label>
-    <input type="text" formControlName="amount" class="paymentCreate-input" />
+    <div class="paymentCreate-inputContainer">
+      <input type="text" formControlName="amount" class="paymentCreate-input" />
+    </div>
 
     <label for="" class="paymentCreate-label">Date Due</label>
-    <input type="date" formControlName="due" class="paymentCreate-input" />
+    <div class="paymentCreate-inputContainer">
+      <app-input-date [parentForm]="paymentForm" control="due"></app-input-date>
+    </div>
 
     <app-checkbox
       class="paymentCreate-checkbox"
