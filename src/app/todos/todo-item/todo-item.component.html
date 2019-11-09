@@ -44,13 +44,22 @@
           </button>
         </ng-container>
       </div>
-      <button class="todoItem-date" *ngIf="showMeta || todo.date">
+      <button
+        (click)="editTodo()"
+        class="todoItem-date"
+        *ngIf="showMeta || todo.date"
+      >
         <app-ui-icon
           class="todoItem-inlineIcon"
           name="calendar"
           size="micro"
-        ></app-ui-icon
-        >{{ todo.date | date: 'MMM d' }}
+        ></app-ui-icon>
+        <ng-container *ngIf="todo.date">
+          {{ todo.date | date: 'MMM d' }}
+        </ng-container>
+        <ng-container *ngIf="!todo.date">
+          Add date
+        </ng-container>
       </button>
     </div>
   </div>
