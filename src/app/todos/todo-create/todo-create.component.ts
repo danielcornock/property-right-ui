@@ -103,7 +103,7 @@ export class TodoCreateComponent implements OnInit {
       this.todoForm.setValue({
         title: this.todo.title,
         date: modifiedDate,
-        property: this.todo.property ? this.todo.property._id : '',
+        property: this.todo.property ? this.todo.property._id : null,
         severity: this.todo.severity
       });
     });
