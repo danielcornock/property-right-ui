@@ -103,7 +103,11 @@ import { InputTextComponent } from './components/forms/input-text/input-text.com
     MatTableModule,
     MatDatepickerModule,
     MatNativeDateModule,
-    ToastrModule.forRoot()
+    ToastrModule.forRoot({
+      timeOut: 40000,
+      positionClass: 'toast-bottom-right',
+      preventDuplicates: true
+    })
   ],
   entryComponents: [
     TenantFormComponent,
