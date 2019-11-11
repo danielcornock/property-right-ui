@@ -10,6 +10,7 @@ import { TodosPageComponent } from './todos/views/todos-page/todos-page.componen
 import { PropertyFormComponent } from './properties/views/property-form/property-form.component';
 import { TenantsPageComponent } from './tenants/views/tenants-page/tenants-page.component';
 import { TenantOverviewPageComponent } from './tenants/views/tenant-overview-page/tenant-overview-page.component';
+import { PaymentsViewComponent } from './payments/views/payments-view/payments-view.component';
 
 const routes: Routes = [
   { path: '', pathMatch: 'full', redirectTo: 'dashboard' },
@@ -54,6 +55,11 @@ const routes: Routes = [
     path: 'todos',
     canActivate: [AuthGuard],
     component: TodosPageComponent
+  },
+  {
+    path: 'payments',
+    canActivate: [AuthGuard],
+    component: PaymentsViewComponent
   },
   { path: '**', component: DashboardComponent }
 ];

@@ -25,7 +25,8 @@ import {
   Upload,
   DollarSign,
   CheckCircle,
-  XCircle
+  XCircle,
+  TrendingUp
 } from 'angular-feather/icons';
 
 const icons = {
@@ -51,7 +52,8 @@ const icons = {
   Upload,
   DollarSign,
   CheckCircle,
-  XCircle
+  XCircle,
+  TrendingUp
 };
 
 @NgModule({

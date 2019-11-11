@@ -1,0 +1,10 @@
+@import 'src/assets/styles/themes.scss';
+
+.paymentsView {
+  &-container {
+  }
+
+  &-title {
+    @include page-title;
+  }
+}

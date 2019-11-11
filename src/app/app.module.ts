@@ -51,6 +51,7 @@ import { PaymentCreateComponent } from './payments/business/payment-create/payme
 import { InputDateComponent } from './components/forms/input-date/input-date.component';
 import { FormInputComponent } from './components/forms/form-input/form-input.component';
 import { InputTextComponent } from './components/forms/input-text/input-text.component';
+import { PaymentsViewComponent } from './payments/views/payments-view/payments-view.component';
 
 @NgModule({
   declarations: [
@@ -87,7 +88,8 @@ import { InputTextComponent } from './components/forms/input-text/input-text.com
     PaymentCreateComponent,
     InputDateComponent,
     FormInputComponent,
-    InputTextComponent
+    InputTextComponent,
+    PaymentsViewComponent
   ],
   imports: [
     BrowserModule,

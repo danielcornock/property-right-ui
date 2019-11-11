@@ -1,0 +1,10 @@
+<div class="paymentsView-container">
+  <h2 class="paymentsView-title">Payments</h2>
+  <div class="paymentsView-paymentsContainer">
+    <app-loading-animation *ngIf="isLoading"></app-loading-animation>
+    <app-payment-list
+      *ngIf="!isLoading"
+      [paymentListPayments]="payments"
+    ></app-payment-list>
+  </div>
+</div>

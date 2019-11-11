@@ -28,6 +28,11 @@ export class SidebarComponent implements OnInit {
       label: 'Tenants',
       link: '/tenants',
       icon: 'users'
+    },
+    {
+      label: 'Payments',
+      link: '/payments',
+      icon: 'trending-up'
     }
   ];
 
