@@ -106,7 +106,7 @@ import { PaymentsViewComponent } from './payments/views/payments-view/payments-v
     MatDatepickerModule,
     MatNativeDateModule,
     ToastrModule.forRoot({
-      timeOut: 40000,
+      timeOut: 3000,
       positionClass: 'toast-bottom-right',
       preventDuplicates: true
     })

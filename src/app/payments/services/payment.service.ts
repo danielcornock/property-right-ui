@@ -86,6 +86,22 @@ export class PaymentService {
     });
   }
 
+  public getUrgentPayments(): Promise<Array<IPayment>> {
+    return new Promise((resolve, reject) => {
+      this.http.get('payments/urgent').subscribe(
+        (res: IHttpResponse) => {
+          const payments: Array<IPayment> = res.data.payments;
+          resolve(payments);
+        },
+        (error: IHttpErrorResponse) => {
+          console.log(error);
+          this.toast.error('Not able to fetch payments at this time!');
+          reject();
+        }
+      );
+    });
+  }
+
   private _setPaymentRoute(parent: { propertyId?: string; tenantId?: string }) {
     if (parent && parent.propertyId) {
       return `properties/${parent.propertyId}/payments`;

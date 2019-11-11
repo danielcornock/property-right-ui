@@ -1,5 +1,21 @@
-.list-item {
-  display: grid;
-  grid-template-columns: 200px 40px;
-  padding: 10px;
+@import 'src/assets/styles/themes.scss';
+
+.dashboard {
+  &-container {
+  }
+
+  &-title {
+    @include page-title;
+  }
+
+  &-subtitle {
+    @include page-title;
+    font-size: 20px;
+    font-weight: $semi-bold;
+  }
+
+  &-properties {
+    margin-bottom: $spacing-small;
+    display: block;
+  }
 }

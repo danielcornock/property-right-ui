@@ -1,8 +1,12 @@
-<h1>Welcome, {{ getUserName() }}!</h1>
-
-<h2>Your Properties</h2>
-<app-properties-list
-  [propertiesListProperties]="properties"
-></app-properties-list>
-
-<app-payment-list [paymentListPayments]="payments"></app-payment-list>
+<div class="dashboard-container">
+  <h2 class="dashboard-title">Welcome, {{ getUserName() }}!</h2>
+  <h3 class="dashboard-subtitle">Your Properties</h3>
+  <app-properties-list
+    class="dashboard-properties"
+    [propertiesListProperties]="properties"
+  ></app-properties-list>
+  <app-payment-list
+    [paymentListPayments]="payments"
+    [paymentListShowVitals]="true"
+  ></app-payment-list>
+</div>

@@ -46,9 +46,11 @@ export class DashboardComponent implements OnInit, OnDestroy {
   }
 
   private _getPayments() {
-    this.paymentService.getPayments().then((payments: Array<IPayment>) => {
-      this.payments = payments;
-    });
+    this.paymentService
+      .getUrgentPayments()
+      .then((payments: Array<IPayment>) => {
+        this.payments = payments;
+      });
   }
 
   getUserName() {

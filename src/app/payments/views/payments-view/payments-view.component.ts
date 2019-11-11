@@ -15,6 +15,11 @@ export class PaymentsViewComponent implements OnInit {
 
   ngOnInit() {
     this.isLoading = true;
+    this._fetchPayments();
+    this._subscribeToPayments();
+  }
+
+  private _fetchPayments() {
     this.paymentService
       .getPayments()
       .then((payments: Array<IPayment>) => {
@@ -24,5 +29,11 @@ export class PaymentsViewComponent implements OnInit {
       .catch(() => {
         this.isLoading = false;
       });
+  }
+
+  private _subscribeToPayments() {
+    this.paymentService.paymentRefresh.subscribe(() => {
+      this._fetchPayments();
+    });
   }
 }

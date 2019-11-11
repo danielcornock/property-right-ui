@@ -14,14 +14,14 @@
           {{ payment.amount | currency: 'GBP' }}
         </h3>
 
-        <ng-container>
+        <ng-container *ngIf="payment.tenant">
           <div *ngIf="payment.tenant && payment.tenant.name">
             {{ payment.tenant.name }}
           </div>
           <i *ngIf="!payment.tenant">Tenant Deleted</i>
         </ng-container>
 
-        <ng-container>
+        <ng-container *ngIf="payment.property">
           <div *ngIf="payment.property && payment.property.name">
             {{ payment.property.name }}
           </div>
@@ -99,7 +99,7 @@
       </td>
     </ng-container>
 
-    <tr mat-header-row *matHeaderRowDef="columnsToDisplay"></tr>
-    <tr mat-row *matRowDef="let myRowData; columns: columnsToDisplay"></tr>
+    <tr mat-header-row *matHeaderRowDef="getDisplayedColumns()"></tr>
+    <tr mat-row *matRowDef="let myRowData; columns: getDisplayedColumns()"></tr>
   </table>
 </div>
