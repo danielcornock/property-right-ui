@@ -19,7 +19,7 @@
         routerLink="/tenants/{{ tenant._id }}"
         >{{ tenant.name }}</a
       >
-      <span class="tenantCard-address" *ngIf="!propertyId">
+      <span class="tenantCard-address">
         <a
           [style.color]="subtextColor"
           routerLink="/properties/{{ tenant.property._id }}"

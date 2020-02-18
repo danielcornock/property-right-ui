@@ -1,22 +1,22 @@
-import { Component, OnInit, Inject } from '@angular/core';
-import { MAT_DIALOG_DATA, MatDialogRef } from '@angular/material';
+import { Component, OnInit, Inject } from "@angular/core";
+import { MAT_DIALOG_DATA, MatDialogRef } from "@angular/material";
 import {
   FormBuilder,
   FormGroup,
   Validators,
   FormControl
-} from '@angular/forms';
-import { PaymentService } from '../../services/payment.service';
+} from "@angular/forms";
+import { PaymentService } from "../../services/payment.service";
 
 @Component({
-  selector: 'app-payment-create',
-  templateUrl: './payment-create.component.html',
-  styleUrls: ['./payment-create.component.scss']
+  selector: "app-payment-create",
+  templateUrl: "./payment-create.component.html",
+  styleUrls: ["./payment-create.component.scss"]
 })
 export class PaymentCreateComponent implements OnInit {
   private propertyId: string;
   private tenantId: string;
-  private paymentForm: FormGroup;
+  public paymentForm: FormGroup;
 
   constructor(
     @Inject(MAT_DIALOG_DATA) public data: any,
@@ -39,7 +39,7 @@ export class PaymentCreateComponent implements OnInit {
 
   public submitPayment() {
     if (this.paymentForm.invalid) {
-      return console.error('This form is invalid!');
+      return console.error("This form is invalid!");
     }
     console.log(this.paymentForm.value);
 
@@ -67,8 +67,8 @@ export class PaymentCreateComponent implements OnInit {
 
   private _initialisePaymentForm(): FormGroup {
     return this.formBuilder.group({
-      amount: ['', Validators.required],
-      due: ['', Validators.required],
+      amount: ["", Validators.required],
+      due: ["", Validators.required],
       paid: false,
       recurring: false,
       property: this.propertyId,

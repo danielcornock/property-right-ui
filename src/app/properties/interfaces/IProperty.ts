@@ -1,3 +1,5 @@
+import { ITenant } from "src/app/tenants/interfaces/ITenant";
+
 export interface IProperty {
   _id?: string;
   name: string;
@@ -8,4 +10,5 @@ export interface IProperty {
   url: string;
   image: File | string;
   todoCount?: number;
+  tenants?: Array<ITenant>;
 }

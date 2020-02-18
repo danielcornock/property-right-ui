@@ -9,7 +9,6 @@
       <label class="propertyForm-label">Search for property</label>
       <input
         ngx-google-places-autocomplete
-        [options]="options"
         #placesRef="ngx-places"
         class="propertyForm-search"
         (onAddressChange)="handleAddressChange($event)"

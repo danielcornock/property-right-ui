@@ -10,7 +10,7 @@ import { IProperty } from 'src/app/properties/interfaces/IProperty';
   styleUrls: ['./property-form.component.scss']
 })
 export class PropertyFormComponent implements OnInit {
-  private propertyForm: FormGroup;
+  public propertyForm: FormGroup;
   private hiddenForm: FormGroup;
   public property: IProperty;
   public address: any;
