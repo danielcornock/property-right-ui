@@ -1,7 +1,6 @@
-@import '~normalize.css';
-@import 'src/assets/styles/themes.scss';
-@import url('https://fonts.googleapis.com/css?family=Montserrat:300,400,500,600,700,800&display=swap');
-@import 'src/assets/styles/classes/animations';
+@import "~normalize.css";
+@import "src/assets/styles/themes.scss";
+@import "src/assets/styles/classes/animations";
 
 *,
 *::after,
@@ -9,7 +8,7 @@
   box-sizing: border-box;
 }
 html {
-  font-family: 'Montserrat';
+  font-family: "Montserrat", sans-serif;
   // line-height: 100%;
 }
 
