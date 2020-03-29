@@ -3,10 +3,12 @@
 .paymentList {
   &-container {
     width: 100%;
+    overflow-x: auto;
   }
 
   &-table {
     @include card-default;
+    min-width: 980px;
     width: 100%;
     font-family: inherit;
     overflow: hidden;

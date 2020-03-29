@@ -19,6 +19,10 @@
       'tenants tenants tenants'
       'payments payments payments';
     grid-gap: $spacing-smaller;
+
+    @include media($tablet) {
+      display: block;
+    }
   }
 
   &-featureImage {
@@ -71,5 +75,18 @@
 
   &-payments {
     grid-area: payments;
+  }
+
+  &-spacedElement {
+    @include media($tablet) {
+      display: block;
+      margin-bottom: 20px;
+    }
+  }
+
+  &-mobileHeader {
+    @include page-title;
+    font-size: 20px;
+    font-weight: $semi-bold;
   }
 }

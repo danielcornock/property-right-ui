@@ -1,12 +1,11 @@
-import { Component, OnInit, OnDestroy } from '@angular/core';
-import { HttpService } from 'src/app/core/api/http.service';
-import { IHttpResponse } from '../../core/api/interfaces/IHttpResponse';
-import { IProperty } from '../../properties/interfaces/IProperty';
-import { PropertyService } from 'src/app/properties/services/property.service';
+import { Component, OnDestroy, OnInit } from '@angular/core';
 import { Subscription } from 'rxjs';
 import { JwtService } from 'src/app/auth/services/jwt/jwt.service';
-import { PaymentService } from 'src/app/payments/services/payment.service';
 import { IPayment } from 'src/app/payments/interfaces/IPayment';
+import { PaymentService } from 'src/app/payments/services/payment.service';
+import { PropertyService } from 'src/app/properties/services/property.service';
+
+import { IProperty } from '../../properties/interfaces/IProperty';
 
 @Component({
   selector: 'app-dashboard',
@@ -16,6 +15,7 @@ import { IPayment } from 'src/app/payments/interfaces/IPayment';
 export class DashboardComponent implements OnInit, OnDestroy {
   public properties: Array<IProperty>;
   public payments: Array<IPayment>;
+  public isLoading: boolean;
 
   private propertiesSub: Subscription;
 
@@ -26,11 +26,11 @@ export class DashboardComponent implements OnInit, OnDestroy {
   ) {}
 
   ngOnInit() {
-    this.propertyService
-      .getAllProperties()
-      .then((properties: Array<IProperty>) => {
-        this.properties = properties;
-      });
+    this.isLoading = true;
+    this.propertyService.getAllProperties().then((properties: Array<IProperty>) => {
+      this.properties = properties;
+      this.isLoading = false;
+    });
 
     this._getPayments();
 
@@ -38,19 +38,15 @@ export class DashboardComponent implements OnInit, OnDestroy {
       this._getPayments();
     });
 
-    this.propertiesSub = this.propertyService
-      .getPostUpdateListener()
-      .subscribe((properties: Array<IProperty>) => {
-        this.properties = properties;
-      });
+    this.propertiesSub = this.propertyService.getPostUpdateListener().subscribe((properties: Array<IProperty>) => {
+      this.properties = properties;
+    });
   }
 
   private _getPayments() {
-    this.paymentService
-      .getUrgentPayments()
-      .then((payments: Array<IPayment>) => {
-        this.payments = payments;
-      });
+    this.paymentService.getUrgentPayments().then((payments: Array<IPayment>) => {
+      this.payments = payments;
+    });
   }
 
   getUserName() {

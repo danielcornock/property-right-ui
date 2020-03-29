@@ -21,6 +21,10 @@
       'street town country'
       'rent image imagePreview'
       'submit empty empty';
+
+    @include media($tablet) {
+      display: block;
+    }
   }
 
   &-search {
@@ -47,6 +51,11 @@
   &-inputContainer {
     width: 100%;
     @include space-by(right, $spacing-smaller);
+    @include media($tablet) {
+      & + & {
+        margin-top: 25px;
+      }
+    }
   }
 
   &-imageButton {
@@ -61,6 +70,7 @@
 
     &--hidden {
       visibility: hidden;
+      display: none;
     }
   }
 
@@ -68,6 +78,10 @@
     grid-area: imagePreview;
     width: 100%;
     height: 200px;
+
+    @include media($tablet) {
+      height: initial;
+    }
   }
 
   &-imagePreview {
@@ -84,6 +98,11 @@
   &-submit {
     grid-area: submit;
     @include button(primary);
+
+    @include media($tablet) {
+      margin-top: 25px;
+      width: 100%;
+    }
   }
 }
 

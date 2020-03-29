@@ -48,7 +48,15 @@
 
     &__icon {
       color: $pink;
-      margin-right: 10px;
+    }
+  }
+
+  &-addNewText {
+    display: block;
+    margin-left: 10px;
+
+    @include media($phone) {
+      display: none;
     }
   }
 

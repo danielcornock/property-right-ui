@@ -1,10 +1,6 @@
 <div class="propertyForm-container">
   <h2 class="propertyForm-title">{{ getPageTitle() }}</h2>
-  <form
-    [formGroup]="propertyForm"
-    class="propertyForm-form"
-    (ngSubmit)="submit()"
-  >
+  <form [formGroup]="propertyForm" class="propertyForm-form" (ngSubmit)="submit()">
     <div class="propertyForm-inputContainer search">
       <label class="propertyForm-label">Search for property</label>
       <input
@@ -29,26 +25,14 @@
     <div class="propertyForm-inputContainer town">
       <label class="propertyForm-label">City/Town</label>
 
-      <input
-        placeholder="Town"
-        type="text"
-        formControlName="town"
-        class="propertyForm-addressInput"
-      />
+      <input placeholder="Town" type="text" formControlName="town" class="propertyForm-addressInput" />
     </div>
 
     <div class="propertyForm-inputContainer country">
       <label class="propertyForm-label">Country</label>
 
-      <input
-        placeholder="Country"
-        type="text"
-        formControlName="country"
-        class="propertyForm-addressInput"
-      />
+      <input placeholder="Country" type="text" formControlName="country" class="propertyForm-addressInput" />
     </div>
-
-    <input type="text" formControlName="url" class="propertyForm-hidden" />
 
     <div class="propertyForm-inputContainer rent">
       <label class="propertyForm-label">Monthly Rent Income</label>
@@ -65,35 +49,20 @@
     <div class="propertyForm-inputContainer image">
       <label class="propertyForm-label">Cover Image</label>
 
-      <button
-        class="propertyForm-imageButton"
-        type="button"
-        (click)="imagePicker.click()"
-      >
-        <app-ui-icon
-          size="tiny"
-          name="upload"
-          class="propertyForm-imageButton__icon"
-        ></app-ui-icon>
+      <button class="propertyForm-imageButton" type="button" (click)="imagePicker.click()">
+        <app-ui-icon size="tiny" name="upload" class="propertyForm-imageButton__icon"></app-ui-icon>
         Upload File
       </button>
     </div>
 
-    <div class="propertyForm-imagePreviewContainer" *ngIf="showImagePreview()">
+    <div class="propertyForm-imagePreviewContainer propertyForm-inputContainer" *ngIf="showImagePreview()">
       <label class="propertyForm-label">Image Preview</label>
 
-      <img
-        class="propertyForm-imagePreview"
-        [src]="imagePreview || property.image"
-      />
+      <img class="propertyForm-imagePreview" [src]="imagePreview || property.image" />
     </div>
 
-    <input
-      class="propertyForm-imageButton--hidden"
-      #imagePicker
-      type="file"
-      (change)="onImagePicked($event)"
-    />
+    <input class="propertyForm-imageButton--hidden" #imagePicker type="file" (change)="onImagePicked($event)" />
     <input type="submit" value="Submit" class="propertyForm-submit" />
+    <input type="text" formControlName="url" class="propertyForm-hidden" />
   </form>
 </div>

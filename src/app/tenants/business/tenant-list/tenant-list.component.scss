@@ -12,6 +12,10 @@
   display: grid;
   grid-template-columns: repeat(3, 1fr);
   grid-gap: 20px;
+
+  @include media($tablet) {
+    grid-template-columns: 1fr;
+  }
 }
 
 .table-header {

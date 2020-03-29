@@ -5,12 +5,8 @@
       <app-search-bar (onSearch)="searchTodos($event)"></app-search-bar>
     </div>
     <button (click)="openCreateTodoModal()" class="todosPage-addNew">
-      <app-ui-icon
-        size="tiny"
-        name="plus"
-        class="todosPage-addNew__icon"
-      ></app-ui-icon>
-      Add New
+      <app-ui-icon size="tiny" name="plus" class="todosPage-addNew__icon"></app-ui-icon>
+      <span class="todosPage-addNewText">Add New</span>
     </button>
   </div>
   <app-todo-list [todoListFilteredTodos]="filteredTodos"></app-todo-list>

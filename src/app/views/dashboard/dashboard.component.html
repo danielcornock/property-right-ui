@@ -1,12 +1,9 @@
-<div class="dashboard-container">
+<app-loading-animation *ngIf="isLoading"></app-loading-animation>
+
+<div class="dashboard-container" *ngIf="!isLoading">
   <h2 class="dashboard-title">Welcome, {{ getUserName() }}!</h2>
   <h3 class="dashboard-subtitle">Your Properties</h3>
-  <app-properties-list
-    class="dashboard-properties"
-    [propertiesListProperties]="properties"
-  ></app-properties-list>
-  <app-payment-list
-    [paymentListPayments]="payments"
-    [paymentListShowVitals]="true"
-  ></app-payment-list>
+  <app-properties-list class="dashboard-properties" [propertiesListProperties]="properties"></app-properties-list>
+  <h3 class="dashboard-subtitle">Overdue payments</h3>
+  <app-payment-list [paymentListPayments]="payments" [paymentListShowVitals]="true"></app-payment-list>
 </div>

@@ -17,6 +17,7 @@
 
   @include media($phone) {
     padding: $spacing-tiny;
+    padding-bottom: 70px;
   }
 }
 
