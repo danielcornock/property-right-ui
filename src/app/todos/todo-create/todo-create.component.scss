@@ -6,6 +6,10 @@
     padding: 25px;
     width: 400px;
     border-radius: $br-small;
+
+    @include media($phone) {
+      width: 320px;
+    }
   }
 
   &-header {

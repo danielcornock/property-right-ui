@@ -1,11 +1,7 @@
 <app-loading-animation *ngIf="isLoading"></app-loading-animation>
 <div class="tenantForm-container" *ngIf="!isLoading">
   <h2 class="tenantForm-header">Add New Tenant</h2>
-  <form
-    [formGroup]="tenantForm"
-    class="tenantForm-form"
-    (ngSubmit)="submitTenant()"
-  >
+  <form [formGroup]="tenantForm" class="tenantForm-form" (ngSubmit)="submitTenant()">
     <app-input-text
       class="tenantForm-inputContainer"
       [formInputParentForm]="tenantForm"
@@ -29,22 +25,11 @@
       formInputType="tel"
     ></app-input-text>
 
-    <div
-      class="tenantForm-dropdownContainer"
-      *ngIf="!propertyId && propertyOptions.length"
-    >
+    <div class="tenantForm-dropdownContainer" *ngIf="!propertyId && propertyOptions.length">
       <label class="tenantForm-label">Property</label>
-      <select
-        class="tenantForm-dropdown"
-        formControlName="property"
-        placeholder="Property"
-      >
+      <select class="tenantForm-dropdown" formControlName="property" placeholder="Property">
         <option value="" disabled selected>Property</option>
-        <option
-          *ngFor="let option of propertyOptions"
-          value="{{ option.id }}"
-          >{{ option.name }}</option
-        >
+        <option *ngFor="let option of propertyOptions" value="{{ option.id }}">{{ option.name }}</option>
       </select>
     </div>
     <div class="tenantForm-buttons">

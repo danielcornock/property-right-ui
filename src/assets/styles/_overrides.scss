@@ -25,3 +25,9 @@
 .mat-calendar-body-selected {
   background-color: $color-bg-highlight !important;
 }
+
+.cdk-overlay-pane {
+  @include media($tablet) {
+    max-width: 95vw !important;
+  }
+}

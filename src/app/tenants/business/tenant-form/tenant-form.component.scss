@@ -4,6 +4,14 @@
   &-container {
     padding: $spacing-small;
     width: 500px;
+
+    @include media($tablet) {
+      width: 400px;
+    }
+
+    @include media($phone) {
+      width: 320px;
+    }
   }
 
   &-form {

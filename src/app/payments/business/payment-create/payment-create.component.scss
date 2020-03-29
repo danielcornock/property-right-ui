@@ -4,6 +4,10 @@
   &-container {
     padding: $spacing-small;
     width: 400px;
+
+    @include media($phone) {
+      width: 320px;
+    }
   }
 
   &-header {
@@ -25,6 +29,11 @@
   &-buttons {
     display: flex;
     justify-content: flex-end;
+
+    @include media($phone) {
+      flex-direction: column;
+      justify-content: initial;
+    }
   }
 
   &-cancel {
@@ -37,10 +46,20 @@
     @include hover($t250) {
       color: $color-text-highlight;
     }
+
+    @include media($phone) {
+      margin-right: initial;
+      order: 2;
+      margin-top: 20px;
+    }
   }
 
   &-submit {
     @include button(primary);
     align-self: flex-end;
+
+    @include media($phone) {
+      align-self: initial;
+    }
   }
 }

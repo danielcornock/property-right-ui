@@ -1,10 +1,11 @@
-import { Component, OnInit, Inject } from '@angular/core';
-import { FormGroup, FormBuilder, Validators } from '@angular/forms';
-import { IPropertyDropdownOption } from 'src/app/todos/todo-create/interfaces/IPropertyDropdownOption';
-import { TenantService } from '../../services/tenant.service';
-import { PropertyService } from 'src/app/properties/services/property.service';
+import { Component, Inject, OnInit } from '@angular/core';
+import { FormBuilder, FormGroup, Validators } from '@angular/forms';
+import { MAT_DIALOG_DATA, MatDialogRef } from '@angular/material';
 import { IProperty } from 'src/app/properties/interfaces/IProperty';
-import { MatDialogRef, MAT_DIALOG_DATA } from '@angular/material';
+import { PropertyService } from 'src/app/properties/services/property.service';
+import { IPropertyDropdownOption } from 'src/app/todos/todo-create/interfaces/IPropertyDropdownOption';
+
+import { TenantService } from '../../services/tenant.service';
 
 @Component({
   selector: 'app-tenant-form',
@@ -12,9 +13,9 @@ import { MatDialogRef, MAT_DIALOG_DATA } from '@angular/material';
   styleUrls: ['./tenant-form.component.scss']
 })
 export class TenantFormComponent implements OnInit {
-  private tenantForm: FormGroup;
+  public tenantForm: FormGroup;
   public propertyOptions: Array<IPropertyDropdownOption> = [];
-  public isLoading: boolean;
+  public isLoading: boolean = true;
   public isModal: boolean = true;
   public propertyId: string;
 
@@ -31,11 +32,13 @@ export class TenantFormComponent implements OnInit {
     }
   }
 
-  ngOnInit() {
-    this.isLoading = false;
+  async ngOnInit() {
     this.tenantForm = this._initialiseTenantForm();
     if (!this.propertyId) {
-      this._setPropertyDropdownOptions();
+      await this._setPropertyDropdownOptions();
+      this.isLoading = false;
+    } else {
+      this.isLoading = false;
     }
   }
 
@@ -70,16 +73,13 @@ export class TenantFormComponent implements OnInit {
     });
   }
 
-  private _setPropertyDropdownOptions(): void {
-    this.propertyService
-      .getAllProperties()
-      .then((propertiesResponse: Array<IProperty>) => {
-        this.propertyOptions = propertiesResponse.map(property => {
-          return {
-            name: property.name,
-            id: property._id
-          };
-        });
-      });
+  private async _setPropertyDropdownOptions(): Promise<void> {
+    const propertiesResponse: Array<IProperty> = await this.propertyService.getAllProperties();
+    this.propertyOptions = propertiesResponse.map((property) => {
+      return {
+        name: property.name,
+        id: property._id
+      };
+    });
   }
 }
