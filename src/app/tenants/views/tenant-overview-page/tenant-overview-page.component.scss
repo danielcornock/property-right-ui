@@ -4,6 +4,18 @@
   &-container {
     @include flex(column);
   }
+
+  &-card {
+    display: block;
+    margin-bottom: 15px;
+  }
+
+  &-deleteButton {
+    @include button(danger);
+    margin-bottom: 15px;
+    align-self: flex-start;
+    width: auto;
+  }
 }
 
 .tempButton {

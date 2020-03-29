@@ -1,20 +1,14 @@
 <app-loading-animation *ngIf="isLoading"></app-loading-animation>
 <div *ngIf="!isLoading" class="tenantOverview-container">
-  <span>{{ tenant.name }}</span>
-  <span>{{ tenant.email }}</span>
-  <span>{{ tenant.phone }}</span>
-  <a routerLink="/properties/{{ tenant.property._id }}">{{
-    tenant.property.name
-  }}</a>
-</div>
-
-<button class="tempButton" (click)="openConfirmDeleteModal()">
-  Delete Tenant
-</button>
-
-<div class="tenantOverview-payments">
-  <button class="tempButton" (click)="openCreatePaymentModal()">
-    Add rental payment
+  <app-tenant-card [tenantCardTenant]="tenant" class="tenantOverview-card"></app-tenant-card>
+  <button class="tenantOverview-deleteButton" (click)="openConfirmDeleteModal()">
+    Delete Tenant
   </button>
-  <app-payment-list [paymentListPayments]="payments"></app-payment-list>
+
+  <div class="tenantOverview-payments">
+    <button class="tempButton" (click)="openCreatePaymentModal()">
+      Add rental payment
+    </button>
+    <app-payment-list [paymentListPayments]="payments"></app-payment-list>
+  </div>
 </div>
