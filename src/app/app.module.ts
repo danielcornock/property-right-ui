@@ -52,6 +52,7 @@ import { InputDateComponent } from './components/forms/input-date/input-date.com
 import { FormInputComponent } from './components/forms/form-input/form-input.component';
 import { InputTextComponent } from './components/forms/input-text/input-text.component';
 import { PaymentsViewComponent } from './payments/views/payments-view/payments-view.component';
+import { MobileSidebarComponent } from './layout/mobile-sidebar/mobile-sidebar.component';
 
 @NgModule({
   declarations: [
@@ -89,7 +90,8 @@ import { PaymentsViewComponent } from './payments/views/payments-view/payments-v
     InputDateComponent,
     FormInputComponent,
     InputTextComponent,
-    PaymentsViewComponent
+    PaymentsViewComponent,
+    MobileSidebarComponent
   ],
   imports: [
     BrowserModule,

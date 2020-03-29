@@ -1,0 +1,16 @@
+<div class="mobileSidebar-container">
+  <nav class="mobileSidebar-nav">
+    <a
+      *ngFor="let navLink of navLinks"
+      routerLinkActive="active"
+      class="mobileSidebar-nav__item"
+      [routerLink]="navLink.link"
+    >
+      <app-ui-icon class="mobileSidebar-nav__item-icon" [name]="navLink.icon" [size]="'small'"></app-ui-icon>
+    </a>
+    <button class="mobileSidebar-nav__item" (click)="logout()">
+      <app-ui-icon name="log-out" class="mobileSidebar-nav__item-icon"></app-ui-icon>
+    </button>
+  </nav>
+  <div class="mobileSidebar-actionButtons"></div>
+</div>

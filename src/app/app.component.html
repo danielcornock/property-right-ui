@@ -1,6 +1,7 @@
 <div class="app">
   <div class="sidebar">
     <app-sidebar class="sidebar" *ngIf="isLoggedIn()"></app-sidebar>
+    <app-mobile-sidebar *ngIf="isLoggedIn()"></app-mobile-sidebar>
   </div>
   <div class="main">
     <!-- <app-topbar *ngIf="showSidebar()"></app-topbar> -->
